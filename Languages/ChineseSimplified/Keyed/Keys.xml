@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<!-- ====== 设置界面 ====== -->
+	<FC.SettingsCategory>设施兼容补丁</FC.SettingsCategory>
+	<FC.Title>按建筑类别分组的设施兼容</FC.Title>
+	<FC.NoData>尚未扫描或未发现任何设施。请重启游戏以完成首次扫描。</FC.NoData>
+	<!-- ====== 日志 ====== -->
+	<FC.LogPrefix>[设施兼容]</FC.LogPrefix>
+	<FC.LogNeedRestart>Xpath 补丁已自动生成，重启游戏后生效。</FC.LogNeedRestart>
+	<FC.LogNoSettings>设置为空，无法应用补丁。</FC.LogNoSettings>
+	<FC.LogPatched>已调整 {0} 个目标，覆盖 {1} 个类别。</FC.LogPatched>
+	<FC.LogPatchFailed>设施补丁应用失败</FC.LogPatchFailed>
+	<FC.LogXpathGenerated>xpath 补丁已生成: {0}</FC.LogXpathGenerated>
+	<FC.LogXpathFailed>xpath 生成失败</FC.LogXpathFailed>
+	<FC.LogGenStart>XpathGen: 开始，savedCategories={0}，savedFacilities={1}</FC.LogGenStart>
+	<FC.LogGenNoData>XpathGen: 无已保存数据，跳过生成</FC.LogGenNoData>
+	<FC.LogGenSkipCat>XpathGen: 跳过类别 [{0}]，原因={1}</FC.LogGenSkipCat>
+	<FC.LogGenFallback>XpathGen: [{0}] 降级构建目标列表，共 {1} 个</FC.LogGenFallback>
+	<FC.LogGenCategory>XpathGen: [{0}] 设施={1}，有comp={2}，无comp={3}</FC.LogGenCategory>
+	<FC.LogGenDone>XpathGen: 完成，{0} 个类别，{1} 个补丁操作</FC.LogGenDone>
+	<FC.MsgCopied>已复制 [{0}] 的配置（类别: {1}）</FC.MsgCopied>
+	<FC.MsgPasted>已粘贴配置到 [{0}]</FC.MsgPasted>
+	<FC.MsgPastedFiltered>已粘贴配置到 [{0}]，{1} 个目标被过滤（类别不匹配）</FC.MsgPastedFiltered>
+	<FC.MsgPasteNoMatch>粘贴到 [{0}] 失败：所有目标均不匹配，未做更改</FC.MsgPasteNoMatch>
+
+	<!-- 顶部按钮 -->
+	<FC.BtnEnableAll>全部兼容（不建议）</FC.BtnEnableAll>
+	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
+	<FC.BtnSave>保存并应用</FC.BtnSave>
+	<FC.BtnExport>导出</FC.BtnExport>
+	<FC.BtnImport>导入</FC.BtnImport>
+	<FC.MsgSaved>设施兼容设置已保存，重启游戏后生效。</FC.MsgSaved>
+	<FC.MsgExported>预设已导出: {0}</FC.MsgExported>
+	<FC.MsgNoPresets>没有可导入的预设文件</FC.MsgNoPresets>
+	<FC.MsgImported>已导入 {0} 条排除设置，跳过 {1} 条（不存在）</FC.MsgImported>
+	<FC.DlgExportTitle>导出预设</FC.DlgExportTitle>
+	<FC.DlgExportMsg>请输入预设文件名：</FC.DlgExportMsg>
+	<FC.DlgImportTitle>导入预设</FC.DlgImportTitle>
+	<FC.DlgImportMsg>请输入预设文件的完整路径：</FC.DlgImportMsg>
+	<FC.ImportManual>手动输入路径...</FC.ImportManual>
+	<FC.ImportOpenFolder>打开预设文件夹</FC.ImportOpenFolder>
+
+	<!-- 设施行按钮 -->
+	<FC.BtnAllOn>全部启用</FC.BtnAllOn>
+	<FC.BtnAllOff>全部禁用</FC.BtnAllOff>
+	<FC.BtnManual>手动</FC.BtnManual>
+	<FC.BtnCollapse>收起</FC.BtnCollapse>
+	<FC.BtnReset>重置</FC.BtnReset>
+	<FC.BtnCopy>复制</FC.BtnCopy>
+	<FC.BtnPaste>粘贴</FC.BtnPaste>
+
+	<!-- 设置选项 -->
+	<FC.OptRuntimePatch>C# 运行时二次注入（无配置时注入临时补丁，关闭可提升性能）</FC.OptRuntimePatch>
+
+	<!-- 类别标题格式：{0}=目标数 {1}=设施数 -->
+	<FC.CatTargetCount>{0} 目标</FC.CatTargetCount>
+	<FC.CatFacilityCount>{0} 设施</FC.CatFacilityCount>
+
+	<!-- 模组来源名称 -->
+	<FC.SourceUnknown>未知</FC.SourceUnknown>
+	<FC.SourceCore>原版</FC.SourceCore>
+	<FC.SourceRoyalty>皇权</FC.SourceRoyalty>
+	<FC.SourceIdeology>文化</FC.SourceIdeology>
+	<FC.SourceBiotech>生物科技</FC.SourceBiotech>
+	<FC.SourceAnomaly>异象</FC.SourceAnomaly>
+	<FC.SourceOdyssey>奥德赛</FC.SourceOdyssey>
+
+	<!-- 建筑类别名称（thingClass → 中文） -->
+	<FC.CatBed>床铺</FC.CatBed>
+	<FC.CatWorkTable>工作台</FC.CatWorkTable>
+	<FC.CatResearchBench>研究台</FC.CatResearchBench>
+	<FC.CatCryptoBed>低温休眠舱</FC.CatCryptoBed>
+	<FC.CatGeneAssembler>基因装配器</FC.CatGeneAssembler>
+	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
+	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
+</LanguageData>

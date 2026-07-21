@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<!-- ====== Settings UI ====== -->
+	<FC.SettingsCategory>設施兼容補丁</FC.SettingsCategory>
+	<FC.Title>按建築類別分組的設施兼容</FC.Title>
+	<FC.NoData>尚未掃描或未發現任何設施。請重啟遊戲以完成首次掃描。</FC.NoData>
+	<!-- ====== Log ====== -->
+	<FC.LogPrefix>[設施相容]</FC.LogPrefix>
+	<FC.LogNeedRestart>Xpath 補丁已自動生成，重啟遊戲後生效。</FC.LogNeedRestart>
+	<FC.LogNoSettings>設定為空，無法套用補丁。</FC.LogNoSettings>
+	<FC.LogPatched>已調整 {0} 個目標，覆蓋 {1} 個類別。</FC.LogPatched>
+	<FC.LogPatchFailed>設施補丁套用失敗</FC.LogPatchFailed>
+	<FC.LogXpathGenerated>xpath 補丁已生成: {0}</FC.LogXpathGenerated>
+	<FC.LogXpathFailed>xpath 生成失敗</FC.LogXpathFailed>
+	<FC.LogGenStart>XpathGen: 開始，savedCategories={0}，savedFacilities={1}</FC.LogGenStart>
+	<FC.LogGenNoData>XpathGen: 無已儲存資料，跳過</FC.LogGenNoData>
+	<FC.LogGenSkipCat>XpathGen: 跳過類別 [{0}]，原因={1}</FC.LogGenSkipCat>
+	<FC.LogGenFallback>XpathGen: [{0}] 降級建構目標列表，共 {1} 個</FC.LogGenFallback>
+	<FC.LogGenCategory>XpathGen: [{0}] 設施={1}，有comp={2}，無comp={3}</FC.LogGenCategory>
+	<FC.LogGenDone>XpathGen: 完成，{0} 個類別，{1} 個補丁操作</FC.LogGenDone>
+	<FC.MsgCopied>已複製 [{0}] 的設定（類別: {1}）</FC.MsgCopied>
+	<FC.MsgPasted>已貼上設定到 [{0}]</FC.MsgPasted>
+	<FC.MsgPastedFiltered>已貼上設定到 [{0}]，{1} 個目標被過濾（類別不符）</FC.MsgPastedFiltered>
+	<FC.MsgPasteNoMatch>貼上到 [{0}] 失敗：所有目標均不符合，未做更改</FC.MsgPasteNoMatch>
+
+	<!-- Top buttons -->
+	<FC.BtnEnableAll>全部兼容（不建議）</FC.BtnEnableAll>
+	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
+	<FC.BtnSave>儲存並套用</FC.BtnSave>
+	<FC.BtnExport>匯出</FC.BtnExport>
+	<FC.BtnImport>匯入</FC.BtnImport>
+	<FC.MsgSaved>設施兼容設定已儲存，重啟遊戲後生效。</FC.MsgSaved>
+	<FC.MsgExported>預設已匯出: {0}</FC.MsgExported>
+	<FC.MsgNoPresets>沒有可匯入的預設檔案</FC.MsgNoPresets>
+	<FC.MsgImported>已匯入 {0} 條排除設定，跳過 {1} 條（不存在）</FC.MsgImported>
+	<FC.DlgExportTitle>匯出預設</FC.DlgExportTitle>
+	<FC.DlgExportMsg>請輸入預設檔案名稱：</FC.DlgExportMsg>
+	<FC.DlgImportTitle>匯入預設</FC.DlgImportTitle>
+	<FC.DlgImportMsg>請輸入預設檔案的完整路徑：</FC.DlgImportMsg>
+	<FC.ImportManual>手動輸入路徑...</FC.ImportManual>
+	<FC.ImportOpenFolder>開啟預設資料夾</FC.ImportOpenFolder>
+
+	<!-- Facility row buttons -->
+	<FC.BtnAllOn>全部啟用</FC.BtnAllOn>
+	<FC.BtnAllOff>全部停用</FC.BtnAllOff>
+	<FC.BtnManual>手動</FC.BtnManual>
+	<FC.BtnCollapse>收起</FC.BtnCollapse>
+	<FC.BtnReset>重設</FC.BtnReset>
+	<FC.BtnCopy>複製</FC.BtnCopy>
+	<FC.BtnPaste>貼上</FC.BtnPaste>
+
+	<!-- 設定選項 -->
+	<FC.OptRuntimePatch>C# 執行階段二次注入（無配置時注入临时补丁，關閉可提升效能）</FC.OptRuntimePatch>
+
+	<!-- Category header format: {0}=target count {1}=facility count -->
+	<FC.CatTargetCount>{0} 目標</FC.CatTargetCount>
+	<FC.CatFacilityCount>{0} 設施</FC.CatFacilityCount>
+
+	<!-- Mod source names -->
+	<FC.SourceUnknown>未知</FC.SourceUnknown>
+	<FC.SourceCore>原版</FC.SourceCore>
+	<FC.SourceRoyalty>皇權</FC.SourceRoyalty>
+	<FC.SourceIdeology>文化</FC.SourceIdeology>
+	<FC.SourceBiotech>生物科技</FC.SourceBiotech>
+	<FC.SourceAnomaly>異象</FC.SourceAnomaly>
+	<FC.SourceOdyssey>奧德賽</FC.SourceOdyssey>
+
+	<!-- Building category names (thingClass → locale) -->
+	<FC.CatBed>床舖</FC.CatBed>
+	<FC.CatWorkTable>工作檯</FC.CatWorkTable>
+	<FC.CatResearchBench>研究檯</FC.CatResearchBench>
+	<FC.CatCryptoBed>低溫休眠艙</FC.CatCryptoBed>
+	<FC.CatGeneAssembler>基因組裝器</FC.CatGeneAssembler>
+	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
+	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
+</LanguageData>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+	<!-- ====== Settings UI ====== -->
+	<FC.SettingsCategory>FacilityCompat</FC.SettingsCategory>
+	<FC.Title>Facility Compatibility by Building Category</FC.Title>
+	<FC.NoData>No facilities discovered yet. Restart the game to complete the initial scan.</FC.NoData>
+	<!-- ====== Log ====== -->
+	<FC.LogPrefix>[FacilityCompat]</FC.LogPrefix>
+	<FC.LogNeedRestart>Xpath patch auto-generated. Restart the game to work.</FC.LogNeedRestart>
+	<FC.LogNoSettings>Settings not loaded, cannot apply patches.</FC.LogNoSettings>
+	<FC.LogPatched>Patched {0} targets across {1} categories.</FC.LogPatched>
+	<FC.LogPatchFailed>Facility patch application failed</FC.LogPatchFailed>
+	<FC.LogXpathGenerated>Xpath patch generated: {0}</FC.LogXpathGenerated>
+	<FC.LogXpathFailed>Xpath generation failed</FC.LogXpathFailed>
+	<FC.LogGenStart>XpathGen: start, savedCategories={0}, savedFacilities={1}</FC.LogGenStart>
+	<FC.LogGenNoData>XpathGen: no saved data, skip</FC.LogGenNoData>
+	<FC.LogGenSkipCat>XpathGen: skip category [{0}], reason={1}</FC.LogGenSkipCat>
+	<FC.LogGenFallback>XpathGen: [{0}] fallback target list, {1} targets</FC.LogGenFallback>
+	<FC.LogGenCategory>XpathGen: [{0}] facilities={1}, withComp={2}, withoutComp={3}</FC.LogGenCategory>
+	<FC.LogGenDone>XpathGen: done, {0} categories, {1} patch ops</FC.LogGenDone>
+	<FC.MsgCopied>Copied config of [{0}] (category: {1})</FC.MsgCopied>
+	<FC.MsgPasted>Pasted config to [{0}]</FC.MsgPasted>
+	<FC.MsgPastedFiltered>Pasted config to [{0}], {1} targets filtered (category mismatch)</FC.MsgPastedFiltered>
+	<FC.MsgPasteNoMatch>Paste to [{0}] failed: no matching targets, unchanged</FC.MsgPasteNoMatch>
+
+	<!-- Top buttons -->
+	<FC.BtnEnableAll>Enable All (not recommended)</FC.BtnEnableAll>
+	<FC.BtnResetAll>Reset All</FC.BtnResetAll>
+	<FC.BtnSave>Save and Apply</FC.BtnSave>
+	<FC.BtnExport>Export</FC.BtnExport>
+	<FC.BtnImport>Import</FC.BtnImport>
+	<FC.MsgSaved>FacilityCompat settings saved. Restart the game for changes to take effect.</FC.MsgSaved>
+	<FC.MsgExported>Preset exported: {0}</FC.MsgExported>
+	<FC.MsgNoPresets>No preset files to import</FC.MsgNoPresets>
+	<FC.MsgImported>Imported {0} exclusions, {1} skipped (not found)</FC.MsgImported>
+	<FC.DlgExportTitle>Export Preset</FC.DlgExportTitle>
+	<FC.DlgExportMsg>Enter preset file name:</FC.DlgExportMsg>
+	<FC.DlgImportTitle>Import Preset</FC.DlgImportTitle>
+	<FC.DlgImportMsg>Enter full path to preset XML file:</FC.DlgImportMsg>
+	<FC.ImportManual>Enter file path...</FC.ImportManual>
+	<FC.ImportOpenFolder>Open Presets Folder</FC.ImportOpenFolder>
+
+	<!-- Facility row buttons -->
+	<FC.BtnAllOn>Enable All</FC.BtnAllOn>
+	<FC.BtnAllOff>Disable All</FC.BtnAllOff>
+	<FC.BtnManual>Manual</FC.BtnManual>
+	<FC.BtnCollapse>Collapse</FC.BtnCollapse>
+	<FC.BtnReset>Reset</FC.BtnReset>
+	<FC.BtnCopy>Copy</FC.BtnCopy>
+	<FC.BtnPaste>Paste</FC.BtnPaste>
+
+	<!-- Option -->
+	<FC.OptRuntimePatch>C# runtime patch (effective when no settings are loaded, turn off for better performance)</FC.OptRuntimePatch>
+
+	<!-- Category header format: {0}=target count {1}=facility count -->
+	<FC.CatTargetCount>{0} targets</FC.CatTargetCount>
+	<FC.CatFacilityCount>{0} facilities</FC.CatFacilityCount>
+
+	<!-- Mod source names -->
+	<FC.SourceUnknown>Unknown</FC.SourceUnknown>
+	<FC.SourceCore>Core</FC.SourceCore>
+	<FC.SourceRoyalty>Royalty</FC.SourceRoyalty>
+	<FC.SourceIdeology>Ideology</FC.SourceIdeology>
+	<FC.SourceBiotech>Biotech</FC.SourceBiotech>
+	<FC.SourceAnomaly>Anomaly</FC.SourceAnomaly>
+	<FC.SourceOdyssey>Odyssey</FC.SourceOdyssey>
+
+	<!-- Building category names (thingClass → locale) -->
+	<FC.CatBed>Beds</FC.CatBed>
+	<FC.CatWorkTable>Work Tables</FC.CatWorkTable>
+	<FC.CatResearchBench>Research Benches</FC.CatResearchBench>
+	<FC.CatCryptoBed>Crypto Caskets</FC.CatCryptoBed>
+	<FC.CatGeneAssembler>Gene Assemblers</FC.CatGeneAssembler>
+	<FC.CatGravEngine>Grav Engines</FC.CatGravEngine>
+	<FC.CatHoldingPlatform>Holding Platforms</FC.CatHoldingPlatform>
+</LanguageData>

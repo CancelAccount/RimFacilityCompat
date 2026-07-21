@@ -1,0 +1,27 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.sln.docstates
+.vscode/
+
+# JetBrains Rider
+.idea/
+*.sln.iml
+
+# C# 编译输出
+Source/obj/
+Source/bin/
+
+# 临时文件
+*.tmp
+*.temp
+*.cache
+~$*
+
+# Windows
+Thumbs.db
+Desktop.ini
+
+# 操作系统
+.DS_Store

@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>设施兼容补丁</name>
+	<author>Cancelation</author>
+	<packageId>Cancelation.FacilityCompat</packageId>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<description>
+		扫描所有已安装模组中的各类建筑，收集其声明的可链接设施（如各个mod中定义的衣柜、梳妆台等）
+		在设置界面中进行配置，重启后注入到对应建筑的设施链接列表中。
+
+		放在会新增建筑的模组后面，否则该模组无法扫描到全部建筑。
+		</description>
+</ModMetaData>

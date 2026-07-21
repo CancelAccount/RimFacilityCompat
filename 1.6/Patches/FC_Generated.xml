@@ -1,0 +1,1769 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_DoubleErgonomic"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_DoubleErgonomic"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_Ergonomic"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_Ergonomic"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AnimalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AnimalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AnimalSleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AnimalSleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AnimalSleepingBox"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AnimalSleepingBox"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SNORHOI"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SNORHOI"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HospitalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="HospitalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SlabDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SlabDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DoubleSleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DoubleSleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BedrollDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="BedrollDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PILFURBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="PILFURBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Crib"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Crib"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BabySleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="BabySleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="PETSNORR"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="PETSNORR"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SlabBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SlabBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_OperatingTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_OperatingTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_MingDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_MingDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DeathrestCasket"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DeathrestCasket"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AncientSingleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AncientSingleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AncientDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AncientDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SleepingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bedroll"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bedroll"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SLABNEPPDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SLABNEPPDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_Bed_SimpleDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_Bed_SimpleDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_Simple"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_Simple"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_SleepingBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_SleepingBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SNOREGGSingle"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SNOREGGSingle"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SNOREGGDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SNOREGGDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RoyalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RoyalBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_Kingsize"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_Kingsize"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_Lounger"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_Lounger"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="AncientBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="AncientBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="KRUDNEPPSingle"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="KRUDNEPPSingle"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_Bed_StoneSlabDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_Bed_StoneSlabDouble"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_StoneSlab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_StoneSlab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_AdvDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_AdvDoubleBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_AdvBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_AdvBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>EndTable</li>
+        <li>Dresser</li>
+        <li>VitalsMonitor</li>
+        <li>SleepAccelerator</li>
+        <li>Table_RoyalDresser</li>
+        <li>Table_RoyalEndTable</li>
+        <li>Table_Wardrobe</li>
+        <li>VFE_RoyalWardrobe</li>
+        <li>Table_IlluminatedEndTable</li>
+        <li>Table_IlluminatedDresser</li>
+        <li>VFES_Table_IlluminatedWardrobe</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>RI_Building_StorageShelf</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="FEERSTELL"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="FEERSTELL"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableBionics"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableBionics"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_PrimitiveStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_PrimitiveStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_PrimitiveSlab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_PrimitiveSlab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_FoodPrepareTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_FoodPrepareTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableButcher"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableButcher"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableButcherElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableButcherElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ButcherSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ButcherSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Stone_DarklightCampfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Stone_DarklightCampfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="CraftingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="CraftingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_MudDigWhole"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_MudDigWhole"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_DrySaltField"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_DrySaltField"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableMachiningLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableMachiningLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableMachining"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableMachining"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SubcoreEncoder"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SubcoreEncoder"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BioferriteShaper"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="BioferriteShaper"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Stone_Campfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Stone_Campfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_CookTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_CookTable"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_ElectricKiln"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_ElectricKiln"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_StoneMile"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_StoneMile"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_ComponentFabricationBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_ComponentFabricationBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Campfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Campfire"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="FabricationBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="FabricationBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="BiofuelRefinery"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="BiofuelRefinery"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableOrgans"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableOrgans"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_GlaceVat"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_GlaceVat"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableSculpting"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableSculpting"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_TeaStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_TeaStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="DrugLab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="DrugLab"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableDrugLabElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableDrugLabElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SerumCentrifuge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SerumCentrifuge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HandTailoringBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="HandTailoringBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricTailoringBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ElectricTailoringBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Brewery"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Brewery"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_SawHorse"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_SawHorse"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableSmithyLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableSmithyLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="FueledSmithy"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="FueledSmithy"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricSmithy"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ElectricSmithy"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>ToolCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>VFE_SmithyCabinet</li>
+        <li>VFE_MachiningCabinet</li>
+        <li>VFE_DrugCabinet</li>
+        <li>VFE_FabricationCabinet</li>
+        <li>TableBionics</li>
+        <li>TableOrgans</li>
+        <li>RI_Building_KitchenCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="TableStonecutter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="TableStonecutter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableStonecutterElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableStonecutterElectric"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_DairyWorkBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_DairyWorkBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricCrematorium"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ElectricCrematorium"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="FueledStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="FueledStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ElectricStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_HotPressMachine"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_HotPressMachine"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableStoveLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableStoveLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_FueledSmelter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_FueledSmelter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="ElectricSmelter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="ElectricSmelter"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_ModernCookingStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_ModernCookingStove"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_ElectricStockpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_ElectricStockpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_BrickKiln"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_BrickKiln"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="VFE_TableTailorLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="VFE_TableTailorLarge"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_TofuPressingBox"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_TofuPressingBox"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="RI_Building_FuPot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="RI_Building_FuPot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VFE_KitchenSinkCabinet</li>
+        <li>VFE_TailorCabinet</li>
+        <li>ToolCabinet</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="SimpleResearchBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>Misc_FileCabinet</li>
+        <li>Facility_ResearchCounter</li>
+        <li>MultiAnalyzer</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HiTechResearchBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="HiTechResearchBench"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>Misc_FileCabinet</li>
+        <li>Facility_ResearchCounter</li>
+        <li>MultiAnalyzer</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="GeneAssembler"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="GeneAssembler"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>GeneBank</li>
+        <li>GeneProcessor</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HoldingPlatform"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="HoldingPlatform"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>Electroharvester</li>
+        <li>ElectricInhibitor</li>
+        <li>ShardInhibitor</li>
+        <li>BioferriteHarvester</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="HoldingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="HoldingSpot"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>Electroharvester</li>
+        <li>ElectricInhibitor</li>
+        <li>ShardInhibitor</li>
+        <li>BioferriteHarvester</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="GravEngine"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="GravEngine"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>GravFieldExtender</li>
+        <li>PilotConsole</li>
+        <li>ChemfuelTank</li>
+        <li>LargeChemfuelTank</li>
+        <li>SmallThruster</li>
+        <li>LargeThruster</li>
+        <li>FuelOptimizer</li>
+        <li>SignalJammer</li>
+        <li>PilotSubpersonaCore</li>
+        <li>GravshipShieldGenerator</li>
+      </value>
+    </match>
+  </Operation>
+  <Operation Class="PatchOperationConditional">
+    <xpath>/Defs/ThingDef[defName="Bed_CryptoBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[defName="Bed_CryptoBed"]/comps/li[@Class="CompProperties_AffectedByFacilities"]/linkableFacilities</xpath>
+      <value>
+        <li>VitalsMonitor</li>
+        <li>Facility_VitalsCentre</li>
+        <li>Facility_IVDrip</li>
+        <li>SleepAccelerator</li>
+      </value>
+    </match>
+  </Operation>
+</Patch>
