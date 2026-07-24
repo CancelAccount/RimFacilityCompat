@@ -8,6 +8,7 @@
 	<FC.LogPrefix>[設施相容]</FC.LogPrefix>
 	<FC.LogNeedRestart>Xpath 補丁已自動生成，重啟遊戲後生效。</FC.LogNeedRestart>
 	<FC.LogNoSettings>設定為空，無法套用補丁。</FC.LogNoSettings>
+	<FC.LogSanitized>已清理 {0} 個目標（合併重複comp + 移除失效條目），覆蓋 {1} 個類別。</FC.LogSanitized>
 	<FC.LogPatched>已調整 {0} 個目標，覆蓋 {1} 個類別。</FC.LogPatched>
 	<FC.LogPatchFailed>設施補丁套用失敗</FC.LogPatchFailed>
 	<FC.LogXpathGenerated>xpath 補丁已生成: {0}</FC.LogXpathGenerated>

@@ -25,3 +25,6 @@ Desktop.ini
 
 # 操作系统
 .DS_Store
+
+# 生成的 XML 文件
+1.6/Patches/FC_Generated.xml

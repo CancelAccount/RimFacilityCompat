@@ -160,15 +160,29 @@ namespace FacilityCompat
         }
 
         /// <summary>
-        /// 回到原始状态：只保留每个设施原本就链接的目标，取消一切跨mod修改
+        /// 回到原始状态：只保留每个设施原本就链接的目标，取消一切跨mod修改。
+        /// 对于新增设施（originalLinks 中无记录），视为原本无链接，全部禁用。
         /// </summary>
         public void ResetToOriginal()
         {
             excludedTargets.Clear();
 
-            foreach (var kvp in originalLinks)
+            // 处理所有已扫描到的设施：已有记录的保留原始链接，新设施全部禁用
+            foreach (var catKvp in categories)
             {
-                ExcludeNonOriginal(kvp.Key, kvp.Value);
+                var category = catKvp.Key;
+                foreach (var srcList in catKvp.Value.facilities.Values)
+                {
+                    foreach (var facilityDefName in srcList)
+                    {
+                        var key = MakeKey(category, facilityDefName);
+                        if (originalLinks.TryGetValue(key, out var originalTargets))
+                            ExcludeNonOriginal(key, originalTargets);
+                        else
+                            // 该设施原本没有任何链接（新 mod 引入）→ 全部禁用
+                            DisableAllTargets(category, facilityDefName);
+                    }
+                }
             }
         }
 

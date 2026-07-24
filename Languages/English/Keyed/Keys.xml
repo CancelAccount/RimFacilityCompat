@@ -8,6 +8,7 @@
 	<FC.LogPrefix>[FacilityCompat]</FC.LogPrefix>
 	<FC.LogNeedRestart>Xpath patch auto-generated. Restart the game to work.</FC.LogNeedRestart>
 	<FC.LogNoSettings>Settings not loaded, cannot apply patches.</FC.LogNoSettings>
+	<FC.LogSanitized>Sanitized {0} targets (merged duplicate comps + removed stale entries) across {1} categories.</FC.LogSanitized>
 	<FC.LogPatched>Patched {0} targets across {1} categories.</FC.LogPatched>
 	<FC.LogPatchFailed>Facility patch application failed</FC.LogPatchFailed>
 	<FC.LogXpathGenerated>Xpath patch generated: {0}</FC.LogXpathGenerated>

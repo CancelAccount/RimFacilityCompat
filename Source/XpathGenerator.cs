@@ -9,16 +9,13 @@ namespace FacilityCompat
 {
     /// <summary>
     /// xpath 补丁生成器：在 Mod 启动时将用户配置的设施链接写入 Patches 目录。
-    /// 用 defName 精确匹配目标 ThingDef，而非 thingClass，解决继承属性在 xpath 阶段不可见的问题。
     /// 同类设施打包注入，每个目标只打一次补丁。
     /// </summary>
     public static class XpathGenerator
     {
         /// <summary>
         /// 根据已保存的设置生成 xpath 补丁文件。
-        /// 对每个目标 defName 按是否有 CompProperties_AffectedByFacilities 分为两类：
-        ///   1) 已有 → 在 linkableFacilities 下批量追加设施
-        ///   2) 没有 → 创建新的 CompProperties_AffectedByFacilities 并填入所有设施
+        /// 对每个目标生成带 fallback 的补丁：深层 xpath 匹配失败时回退到 comps 层。
         /// </summary>
         public static void Generate(FacilityCompatSettings settings)
         {
@@ -56,77 +53,34 @@ namespace FacilityCompat
                     FCLogger.Raw($"XpathGen: [{category}] fallback={targetDefNames.Count} targets");
                 }
 
-                // 筛选未被完全禁用的设施
-                var activeFacilities = facilityNames
-                    .Where(fn => !IsFullyDisabled(settings, category, fn))
-                    .ToList();
-                if (activeFacilities.Count == 0) continue;
+                int categoryOps = 0;
 
-                // 按目标是否有 CompProperties_AffectedByFacilities 分组
-                var defsWithComp = new List<string>();
-                var defsWithoutComp = new List<string>();
-
-                foreach (var targetDefName in targetDefNames)
+                // 为目标注入自己应该链接的设施
+                foreach (var defName in targetDefNames)
                 {
-                    var targetDef = DefDatabase<ThingDef>.GetNamedSilentFail(targetDefName);
+                    var targetDef = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
                     if (targetDef == null) continue;
 
-                    if (targetDef.comps.Any(c => c is CompProperties_AffectedByFacilities))
-                        defsWithComp.Add(targetDefName);
-                    else
-                        defsWithoutComp.Add(targetDefName);
-                }
+                    // 收集该目标应该链接的设施
+                    var facilitiesForTarget = facilityNames
+                        .Where(fn => settings.ShouldLink(category, fn, defName))
+                        .ToList();
 
-                FCLogger.Raw($"XpathGen: [{category}] fac={activeFacilities.Count}, withComp={defsWithComp.Count}, withoutComp={defsWithoutComp.Count}");
+                    if (facilitiesForTarget.Count == 0) continue;
 
-                // 操作1：目标已有 CompProperties_AffectedByFacilities → 追加到 linkableFacilities
-                foreach (var defName in defsWithComp)
-                {
-                    var xpath = $"/Defs/ThingDef[defName=\"{defName}\"]/comps/li[@Class=\"CompProperties_AffectedByFacilities\"]/linkableFacilities";
-                    var cond = new XElement("Operation",
-                        new XAttribute("Class", "PatchOperationConditional"));
-                    cond.Add(new XElement("xpath", xpath));
+                    // 检查目标是否已有 CompProperties_AffectedByFacilities
+                    bool hasComp = targetDef.comps.Any(c => c is CompProperties_AffectedByFacilities);
 
-                    var match = new XElement("match",
-                        new XAttribute("Class", "PatchOperationAdd"));
-                    match.Add(new XElement("xpath", xpath));
-
-                    var value = new XElement("value");
-                    foreach (var fn in activeFacilities)
-                        value.Add(new XElement("li", fn));
-                    match.Add(value);
-                    cond.Add(match);
-                    doc.Root!.Add(cond);
+                    // 生成针对该目标的补丁
+                    AddTargetPatch(doc, defName, facilitiesForTarget, hasComp);
                     totalOps++;
+                    categoryOps++;
                 }
 
-                // 操作2：目标没有 CompProperties_AffectedByFacilities → 创建新 comp
-                foreach (var defName in defsWithoutComp)
-                {
-                    var compsXpath = $"/Defs/ThingDef[defName=\"{defName}\"]/comps";
-                    var cond = new XElement("Operation",
-                        new XAttribute("Class", "PatchOperationConditional"));
-                    cond.Add(new XElement("xpath", compsXpath));
+                if (categoryOps > 0)
+                    totalCategories++;
 
-                    var match = new XElement("match",
-                        new XAttribute("Class", "PatchOperationAdd"));
-                    match.Add(new XElement("xpath", compsXpath));
-
-                    var linkableFacilities = new XElement("linkableFacilities");
-                    foreach (var fn in activeFacilities)
-                        linkableFacilities.Add(new XElement("li", fn));
-
-                    var value = new XElement("value",
-                        new XElement("li",
-                            new XAttribute("Class", "CompProperties_AffectedByFacilities"),
-                            linkableFacilities));
-                    match.Add(value);
-                    cond.Add(match);
-                    doc.Root!.Add(cond);
-                    totalOps++;
-                }
-
-                totalCategories++;
+                FCLogger.Raw($"XpathGen: [{category}] targets={targetDefNames.Count}, ops={categoryOps}, facilities={facilityNames.Count}");
             }
 
             FCLogger.Raw($"XpathGen: done, {totalCategories} categories, {totalOps} ops");
@@ -146,18 +100,110 @@ namespace FacilityCompat
             }
         }
 
-        /// <summary>检查设施是否对该类别完全禁用</summary>
-        private static bool IsFullyDisabled(FacilityCompatSettings settings, string category, string facility)
+        /// <summary>
+        /// 为目标生成补丁
+        /// </summary>
+        private static void AddTargetPatch(XDocument doc, string defName, List<string> facilities, bool hasComp)
         {
-            var key = $"{category}|{facility}";
-            if (!settings.excludedTargets.TryGetValue(key, out var excluded))
-                return false; // 不在排除列表中 → 全部启用
+            var deepXpath = $"/Defs/ThingDef[defName=\"{defName}\"]/comps/li[@Class=\"CompProperties_AffectedByFacilities\"]/linkableFacilities";
+            var compsXpath = $"/Defs/ThingDef[defName=\"{defName}\"]/comps";
+            var defXpath = $"/Defs/ThingDef[defName=\"{defName}\"]";
 
-            // 检查是否所有目标都被排除了
-            if (settings.categories.TryGetValue(category, out var info))
-                return excluded.Count >= info.targets.Count;
+            if (hasComp)
+            {
+                // 目标已有 CompProperties_AffectedByFacilities → 尝试追加到 linkableFacilities
+                // 三级 fallback：deep → comps → def
+                // nomatch 自身即 PatchOperationConditional，不额外包裹 <Operation>
+                doc.Root!.Add(BuildConditionalOp(deepXpath,
+                    BuildDeepMatch(deepXpath, facilities),
+                    BuildConditionalOp(compsXpath,
+                        BuildCompsMatch(compsXpath, facilities),
+                        BuildConditionalOp(defXpath,
+                            BuildDefMatch(defXpath, facilities),
+                            null, "nomatch"),
+                        "nomatch")));
+            }
+            else
+            {
+                // 目标没有 CompProperties_AffectedByFacilities → 在 comps 下创建新 comp
+                // 二级 fallback：comps → def
+                doc.Root!.Add(BuildConditionalOp(compsXpath,
+                    BuildCompsMatch(compsXpath, facilities),
+                    BuildConditionalOp(defXpath,
+                        BuildDefMatch(defXpath, facilities),
+                        null, "nomatch")));
+            }
+        }
 
-            return excluded.Count > 0;
+        // 构件设施 <li> 列表
+        private static List<XElement> BuildFacilityLiElements(List<string> facilities)
+        {
+            return facilities.Select(fn => new XElement("li", fn)).ToList();
+        }
+
+        // 构件 PatchOperationConditional（elementName 控制根标签：Operation 或 nomatch）
+        private static XElement BuildConditionalOp(string xpath, XElement match, XElement? nomatch, string elementName = "Operation")
+        {
+            var op = new XElement(elementName,
+                new XAttribute("Class", "PatchOperationConditional"));
+            op.Add(new XElement("xpath", xpath));
+            op.Add(match);
+            if (nomatch != null)
+                op.Add(nomatch);
+            return op;
+        }
+
+        // buildmatch：深层匹配 → 追加 <li> 到 linkableFacilities
+        private static XElement BuildDeepMatch(string xpath, List<string> facilities)
+        {
+            var match = new XElement("match",
+                new XAttribute("Class", "PatchOperationAdd"));
+            match.Add(new XElement("xpath", xpath));
+            var value = new XElement("value");
+            foreach (var li in BuildFacilityLiElements(facilities))
+                value.Add(li);
+            match.Add(value);
+            return match;
+        }
+
+        // buildmatch：comps 层 → 追加新 CompProperties_AffectedByFacilities
+        private static XElement BuildCompsMatch(string xpath, List<string> facilities)
+        {
+            var match = new XElement("match",
+                new XAttribute("Class", "PatchOperationAdd"));
+            match.Add(new XElement("xpath", xpath));
+            match.Add(BuildCompValue(facilities));
+            return match;
+        }
+
+        // buildmatch：def 层（兜底）→ 创建 <comps> + 新 CompProperties_AffectedByFacilities
+        private static XElement BuildDefMatch(string xpath, List<string> facilities)
+        {
+            var match = new XElement("match",
+                new XAttribute("Class", "PatchOperationAdd"));
+            match.Add(new XElement("xpath", xpath));
+            var value = new XElement("value",
+                new XElement("comps",
+                    BuildCompLiElement(facilities)));
+            match.Add(value);
+            return match;
+        }
+
+        // 构件完整的 CompProperties_AffectedByFacilities <li> 元素
+        private static XElement BuildCompLiElement(List<string> facilities)
+        {
+            var linkable = new XElement("linkableFacilities");
+            foreach (var li in BuildFacilityLiElements(facilities))
+                linkable.Add(li);
+            return new XElement("li",
+                new XAttribute("Class", "CompProperties_AffectedByFacilities"),
+                linkable);
+        }
+
+        // 构件 <value> 包含 CompProperties_AffectedByFacilities<li>
+        private static XElement BuildCompValue(List<string> facilities)
+        {
+            return new XElement("value", BuildCompLiElement(facilities));
         }
     }
 }
