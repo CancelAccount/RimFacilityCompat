@@ -31,34 +31,15 @@ namespace FacilityCompat
                 settings.scanCompleted = true;
                 settings.originalLinks = ScanOriginalLinks(settings.categories);
 
-                // 始终填充 targets（设置界面需要）
-                foreach (var kvp in settings.categories)
-                {
-                    var info = kvp.Value;
-                    var allTargetDefs = DefDatabase<ThingDef>.AllDefs
-                        .Where(def => def.thingClass != null
-                            && def.thingClass.Name == info.thingClassName)
-                        .ToList();
-                    settings.categories[kvp.Key].targets = allTargetDefs
-                        .Select(def => new BuildingTarget(def.defName, def.label,
-                            def.modContentPack != null && !def.modContentPack.IsCoreMod
-                                ? def.modContentPack.Name
-                                : "FC.SourceCore".Translate()))
-                        .OrderBy(t => t.label)
-                        .ToList();
-                }
-
                 // 合并重复 CompProperties_AffectedByFacilities + 清理失效条目
                 int totalSanitized = 0;
+                var sanitizedTargets = new HashSet<string>();
                 foreach (var kvp in settings.categories)
                 {
                     var info = kvp.Value;
-                    var allTargetDefs = DefDatabase<ThingDef>.AllDefs
-                        .Where(def => def.thingClass != null && def.thingClass.Name == info.thingClassName)
-                        .ToList();
-                    foreach (var targetDef in allTargetDefs)
+                    foreach (var targetDef in GetTargetDefs(info))
                     {
-                        if (CleanupComps(targetDef))
+                        if (sanitizedTargets.Add(targetDef.defName) && CleanupComps(targetDef))
                             totalSanitized++;
                     }
                 }
@@ -81,12 +62,7 @@ namespace FacilityCompat
 
                         if (facilityDefNames.Count == 0) continue;
 
-                        var allTargetDefs = DefDatabase<ThingDef>.AllDefs
-                            .Where(def => def.thingClass != null
-                                && def.thingClass.Name == info.thingClassName)
-                            .ToList();
-
-                        foreach (var targetDef in allTargetDefs)
+                        foreach (var targetDef in GetTargetDefs(info))
                         {
                             if (PatchTarget(targetDef, facilityDefNames, category, settings))
                                 totalPatched++;
@@ -114,6 +90,20 @@ namespace FacilityCompat
             {
                 FCLogger.Exception("FC.LogPatchFailed".Translate(), ex);
             }
+        }
+
+        /// <summary>
+        /// 扫描器已经完成语义分类；后续阶段只解析它明确给出的目标，
+        /// 避免再次按 thingClass 扩张，尤其不能把普通 Building 扩展为所有建筑。
+        /// </summary>
+        private static List<ThingDef> GetTargetDefs(CategoryInfo info)
+        {
+            return info.targets
+                .Select(target => DefDatabase<ThingDef>.GetNamedSilentFail(target.defName))
+                .Where(def => def != null)
+                .Cast<ThingDef>()
+                .Distinct()
+                .ToList();
         }
 
         /// <summary>
@@ -221,30 +211,28 @@ namespace FacilityCompat
         public static Dictionary<string, List<string>> ScanOriginalLinks(Dictionary<string, CategoryInfo> categories)
         {
             var result = new Dictionary<string, List<string>>();
-
+            // 遍历所有类别
             foreach (var ckv in categories)
             {
                 var category = ckv.Key;
                 var info = ckv.Value;
-
-                var targetDefs = DefDatabase<ThingDef>.AllDefs
-                    .Where(def => def.thingClass != null && def.thingClass.Name == info.thingClassName)
-                    .ToList();
-
-                foreach (var targetDef in targetDefs)
+                // 遍历所有目标类别下的设施
+                foreach (var targetDef in GetTargetDefs(info))
                 {
                     var affectedByFacilities = targetDef.comps
                         .OfType<CompProperties_AffectedByFacilities>()
                         .FirstOrDefault();
 
                     if (affectedByFacilities?.linkableFacilities == null) continue;
-
+                    // 遍历所有链接的设施
                     foreach (var facilityDef in affectedByFacilities.linkableFacilities)
                     {
+                        if (facilityDef == null) continue;
                         var key = $"{category}|{facilityDef.defName}";
                         if (!result.ContainsKey(key))
                             result[key] = new List<string>();
-                        result[key].Add(targetDef.defName);
+                        if (!result[key].Contains(targetDef.defName))
+                            result[key].Add(targetDef.defName);
                     }
                 }
             }

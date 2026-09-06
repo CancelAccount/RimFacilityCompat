@@ -24,6 +24,18 @@
 	<FC.MsgPastedFiltered>已粘贴配置到 [{0}]，{1} 个目标被过滤（类别不匹配）</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>粘贴到 [{0}] 失败：所有目标均不匹配，未做更改</FC.MsgPasteNoMatch>
 
+	<!-- ====== 双栏配置窗口 ====== -->
+	<FC.UiGlobalMenu>全局操作</FC.UiGlobalMenu>
+	<FC.UiSearch>搜索:</FC.UiSearch>
+	<FC.UiMain>主设施 ({0})</FC.UiMain>
+	<FC.UiAccessory>附属设备 ({0})</FC.UiAccessory>
+	<FC.UiMainSide>[主设施]</FC.UiMainSide>
+	<FC.UiAccessorySide>[附属设备]</FC.UiAccessorySide>
+	<FC.TipLinked>已连接</FC.TipLinked>
+	<FC.TipExcluded>已排除</FC.TipExcluded>
+	<FC.UiSelectedFmt>选中: {0} → 已连接 {1}/{2}</FC.UiSelectedFmt>
+	<FC.UiNoSelection>点击任意图标选中，再点击另一侧图标切换连接；选中后可用批量按钮连续设置</FC.UiNoSelection>
+
 	<!-- 顶部按钮 -->
 	<FC.BtnEnableAll>全部兼容（不建议）</FC.BtnEnableAll>
 	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
@@ -49,6 +61,13 @@
 	<FC.BtnReset>重置</FC.BtnReset>
 	<FC.BtnCopy>复制</FC.BtnCopy>
 	<FC.BtnPaste>粘贴</FC.BtnPaste>
+	<FC.BtnBatchOn>批量连接</FC.BtnBatchOn>
+	<FC.BtnBatchOff>批量断开</FC.BtnBatchOff>
+	<FC.TipBatch>批量模式：点击或按住左键拖过对侧图标应用此状态；按住右键拖动应用反向状态；再次点击此按钮退出</FC.TipBatch>
+
+	<!-- 调试工具（仅调试版显示） -->
+	<FC.DbgLog>调试日志（点击事件链）</FC.DbgLog>
+	<FC.DbgDraw>调试可视化（命中框与坐标）</FC.DbgDraw>
 
 	<!-- 设置选项 -->
 	<FC.OptRuntimePatch>C# 运行时二次注入（无配置时注入临时补丁，关闭可提升性能）</FC.OptRuntimePatch>
@@ -74,4 +93,6 @@
 	<FC.CatGeneAssembler>基因装配器</FC.CatGeneAssembler>
 	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
+	<FC.CatLinkedBuilding>普通建筑设施组：{0}</FC.CatLinkedBuilding>
+	<FC.CatUnassigned>未分配设施</FC.CatUnassigned>
 </LanguageData>

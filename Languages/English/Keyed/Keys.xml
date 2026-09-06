@@ -24,6 +24,18 @@
 	<FC.MsgPastedFiltered>Pasted config to [{0}], {1} targets filtered (category mismatch)</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>Paste to [{0}] failed: no matching targets, unchanged</FC.MsgPasteNoMatch>
 
+	<!-- ====== Dual-panel config window ====== -->
+	<FC.UiGlobalMenu>Global Actions</FC.UiGlobalMenu>
+	<FC.UiSearch>Search:</FC.UiSearch>
+	<FC.UiMain>Main Buildings ({0})</FC.UiMain>
+	<FC.UiAccessory>Accessories ({0})</FC.UiAccessory>
+	<FC.UiMainSide>[Main Building]</FC.UiMainSide>
+	<FC.UiAccessorySide>[Accessory]</FC.UiAccessorySide>
+	<FC.TipLinked>Linked</FC.TipLinked>
+	<FC.TipExcluded>Excluded</FC.TipExcluded>
+	<FC.UiSelectedFmt>Selected: {0} → {1}/{2} linked</FC.UiSelectedFmt>
+	<FC.UiNoSelection>Click an icon to select, then click the other side to toggle links; use batch buttons for continuous painting</FC.UiNoSelection>
+
 	<!-- Top buttons -->
 	<FC.BtnEnableAll>Enable All (not recommended)</FC.BtnEnableAll>
 	<FC.BtnResetAll>Reset All</FC.BtnResetAll>
@@ -49,6 +61,13 @@
 	<FC.BtnReset>Reset</FC.BtnReset>
 	<FC.BtnCopy>Copy</FC.BtnCopy>
 	<FC.BtnPaste>Paste</FC.BtnPaste>
+	<FC.BtnBatchOn>Batch Link</FC.BtnBatchOn>
+	<FC.BtnBatchOff>Batch Unlink</FC.BtnBatchOff>
+	<FC.TipBatch>Batch mode: click or hold left mouse and drag across icons to apply; hold right mouse to apply inverted; click this button again to exit</FC.TipBatch>
+
+	<!-- Debug tools (debug builds only) -->
+	<FC.DbgLog>Debug log (click event chain)</FC.DbgLog>
+	<FC.DbgDraw>Debug visualization (hitboxes &amp; coordinates)</FC.DbgDraw>
 
 	<!-- Option -->
 	<FC.OptRuntimePatch>C# runtime patch (effective when no settings are loaded, turn off for better performance)</FC.OptRuntimePatch>
@@ -74,4 +93,6 @@
 	<FC.CatGeneAssembler>Gene Assemblers</FC.CatGeneAssembler>
 	<FC.CatGravEngine>Grav Engines</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>Holding Platforms</FC.CatHoldingPlatform>
+	<FC.CatLinkedBuilding>Generic building facility group: {0}</FC.CatLinkedBuilding>
+	<FC.CatUnassigned>Unassigned Facilities</FC.CatUnassigned>
 </LanguageData>

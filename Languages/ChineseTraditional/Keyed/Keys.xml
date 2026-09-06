@@ -24,6 +24,18 @@
 	<FC.MsgPastedFiltered>已貼上設定到 [{0}]，{1} 個目標被過濾（類別不符）</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>貼上到 [{0}] 失敗：所有目標均不符合，未做更改</FC.MsgPasteNoMatch>
 
+	<!-- ====== 雙欄設定視窗 ====== -->
+	<FC.UiGlobalMenu>全域操作</FC.UiGlobalMenu>
+	<FC.UiSearch>搜尋:</FC.UiSearch>
+	<FC.UiMain>主設施 ({0})</FC.UiMain>
+	<FC.UiAccessory>附屬設備 ({0})</FC.UiAccessory>
+	<FC.UiMainSide>[主設施]</FC.UiMainSide>
+	<FC.UiAccessorySide>[附屬設備]</FC.UiAccessorySide>
+	<FC.TipLinked>已連接</FC.TipLinked>
+	<FC.TipExcluded>已排除</FC.TipExcluded>
+	<FC.UiSelectedFmt>已選取: {0} → 已連接 {1}/{2}</FC.UiSelectedFmt>
+	<FC.UiNoSelection>點擊任意圖示選取，再點擊另一側圖示切換連接；選取後可用批次按鈕連續設定</FC.UiNoSelection>
+
 	<!-- Top buttons -->
 	<FC.BtnEnableAll>全部兼容（不建議）</FC.BtnEnableAll>
 	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
@@ -49,6 +61,13 @@
 	<FC.BtnReset>重設</FC.BtnReset>
 	<FC.BtnCopy>複製</FC.BtnCopy>
 	<FC.BtnPaste>貼上</FC.BtnPaste>
+	<FC.BtnBatchOn>批次連接</FC.BtnBatchOn>
+	<FC.BtnBatchOff>批次斷開</FC.BtnBatchOff>
+	<FC.TipBatch>批次模式：點擊或按住左鍵拖過對側圖示套用此狀態；按住右鍵拖動套用反向狀態；再次點擊此按鈕退出</FC.TipBatch>
+
+	<!-- 偵錯工具（僅偵錯版顯示） -->
+	<FC.DbgLog>偵錯日誌（點擊事件鏈）</FC.DbgLog>
+	<FC.DbgDraw>偵錯視覺化（命中框與座標）</FC.DbgDraw>
 
 	<!-- 設定選項 -->
 	<FC.OptRuntimePatch>C# 執行階段二次注入（無配置時注入临时补丁，關閉可提升效能）</FC.OptRuntimePatch>
@@ -74,4 +93,6 @@
 	<FC.CatGeneAssembler>基因組裝器</FC.CatGeneAssembler>
 	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
+	<FC.CatLinkedBuilding>普通建築設施組：{0}</FC.CatLinkedBuilding>
+	<FC.CatUnassigned>未分配設施</FC.CatUnassigned>
 </LanguageData>

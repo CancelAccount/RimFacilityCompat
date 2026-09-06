@@ -92,7 +92,8 @@ namespace FacilityCompat
             excludedDefs.Clear();
             copyMode = FacilityMode.All;
         }
-
+        
+        // 获取目标类别下的所有目标设施名称
         private static List<string> GetTargetDefNames(FacilityCompatSettings settings, string category)
         {
             if (settings.categories.TryGetValue(category, out var info))
@@ -100,11 +101,12 @@ namespace FacilityCompat
             return new List<string>();
         }
 
+        // 获取目标类别下的所有设施名称（包含所有子类别）
         private static List<string> GetFacilityNames(FacilityCompatSettings settings, string category)
         {
             var names = new List<string>();
             if (settings.categories.TryGetValue(category, out var info))
-                foreach (var list in info.facilities.Values)
+                foreach (var list in info.facilities.Values)        // 遍历所有子类别下的设施
                     names.AddRange(list);
             return names.Distinct().ToList();
         }

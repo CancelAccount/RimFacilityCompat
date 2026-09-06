@@ -14,6 +14,7 @@ namespace FacilityCompat
         private readonly Action<string> onConfirm;
         private readonly int maxLength;
 
+        //对话框构造函数，最多支持200个字符的路径
         public Dialog_TextInput(string initialText, string title, Action<string> onConfirm, int maxLength = 200)
         {
             this.text = initialText ?? "";
@@ -27,6 +28,7 @@ namespace FacilityCompat
 
         public override Vector2 InitialSize => new Vector2(500f, 150f);
 
+        //绘制对话框
         public override void DoWindowContents(Rect inRect)
         {
             Text.Font = GameFont.Small;
