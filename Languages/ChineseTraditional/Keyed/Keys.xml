@@ -3,23 +3,15 @@
 	<!-- ====== Settings UI ====== -->
 	<FC.SettingsCategory>設施兼容補丁</FC.SettingsCategory>
 	<FC.Title>按建築類別分組的設施兼容</FC.Title>
-	<FC.NoData>尚未掃描或未發現任何設施。請重啟遊戲以完成首次掃描。</FC.NoData>
-	<!-- ====== Log ====== -->
+	<FC.NoData>未發現任何設施。</FC.NoData>
+	<!-- ====== 日誌 ====== -->
 	<FC.LogPrefix>[設施相容]</FC.LogPrefix>
-	<FC.LogNeedRestart>Xpath 補丁已自動生成，重啟遊戲後生效。</FC.LogNeedRestart>
 	<FC.LogNoSettings>設定為空，無法套用補丁。</FC.LogNoSettings>
-	<FC.LogSanitized>已清理 {0} 個目標（合併重複comp + 移除失效條目），覆蓋 {1} 個類別。</FC.LogSanitized>
-	<FC.LogPatched>已調整 {0} 個目標，覆蓋 {1} 個類別。</FC.LogPatched>
+	<FC.LogPatched>已重建 {0} 個目標的設施連結，覆蓋 {1} 個類別。</FC.LogPatched>
 	<FC.LogPatchFailed>設施補丁套用失敗</FC.LogPatchFailed>
-	<FC.LogXpathGenerated>xpath 補丁已生成: {0}</FC.LogXpathGenerated>
-	<FC.LogXpathFailed>xpath 生成失敗</FC.LogXpathFailed>
-	<FC.LogGenStart>XpathGen: 開始，savedCategories={0}，savedFacilities={1}</FC.LogGenStart>
-	<FC.LogGenNoData>XpathGen: 無已儲存資料，跳過</FC.LogGenNoData>
-	<FC.LogGenSkipCat>XpathGen: 跳過類別 [{0}]，原因={1}</FC.LogGenSkipCat>
-	<FC.LogGenFallback>XpathGen: [{0}] 降級建構目標列表，共 {1} 個</FC.LogGenFallback>
-	<FC.LogGenCategory>XpathGen: [{0}] 設施={1}，有comp={2}，無comp={3}</FC.LogGenCategory>
-	<FC.LogGenDone>XpathGen: 完成，{0} 個類別，{1} 個補丁操作</FC.LogGenDone>
+	<FC.LogRelinked>已重連 {0} 個已放置建築。</FC.LogRelinked>
 	<FC.MsgCopied>已複製 [{0}] 的設定（類別: {1}）</FC.MsgCopied>
+	<FC.MsgReset>已重置 [{0}] 的連結配置</FC.MsgReset>
 	<FC.MsgPasted>已貼上設定到 [{0}]</FC.MsgPasted>
 	<FC.MsgPastedFiltered>已貼上設定到 [{0}]，{1} 個目標被過濾（類別不符）</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>貼上到 [{0}] 失敗：所有目標均不符合，未做更改</FC.MsgPasteNoMatch>
@@ -39,10 +31,8 @@
 	<!-- Top buttons -->
 	<FC.BtnEnableAll>全部兼容（不建議）</FC.BtnEnableAll>
 	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
-	<FC.BtnSave>儲存並套用</FC.BtnSave>
 	<FC.BtnExport>匯出</FC.BtnExport>
 	<FC.BtnImport>匯入</FC.BtnImport>
-	<FC.MsgSaved>設施兼容設定已儲存，重啟遊戲後生效。</FC.MsgSaved>
 	<FC.MsgExported>預設已匯出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>沒有可匯入的預設檔案</FC.MsgNoPresets>
 	<FC.MsgImported>已匯入 {0} 條排除設定，跳過 {1} 條（不存在）</FC.MsgImported>
@@ -69,9 +59,6 @@
 	<FC.DbgLog>偵錯日誌（點擊事件鏈）</FC.DbgLog>
 	<FC.DbgDraw>偵錯視覺化（命中框與座標）</FC.DbgDraw>
 
-	<!-- 設定選項 -->
-	<FC.OptRuntimePatch>C# 執行階段二次注入（無配置時注入临时补丁，關閉可提升效能）</FC.OptRuntimePatch>
-
 	<!-- Category header format: {0}=target count {1}=facility count -->
 	<FC.CatTargetCount>{0} 目標</FC.CatTargetCount>
 	<FC.CatFacilityCount>{0} 設施</FC.CatFacilityCount>
@@ -94,5 +81,7 @@
 	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
 	<FC.CatLinkedBuilding>普通建築設施組：{0}</FC.CatLinkedBuilding>
+	<FC.CatLinked.Blackboard>教室</FC.CatLinked.Blackboard>
+	<FC.CatLinked.ShardBeacon>心靈儀式</FC.CatLinked.ShardBeacon>
 	<FC.CatUnassigned>未分配設施</FC.CatUnassigned>
 </LanguageData>

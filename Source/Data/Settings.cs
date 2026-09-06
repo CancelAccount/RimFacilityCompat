@@ -24,17 +24,8 @@ namespace FacilityCompat
         /// <summary>原始链接（修改前状态），不序列化</summary>
         public Dictionary<string, List<string>> originalLinks = new();
 
-        /// <summary>用于 xpath 生成：类别→thingClassName（序列化）</summary>
-        public Dictionary<string, string> savedCategories = new();
-
-        /// <summary>用于 xpath 生成：类别→设施 defName 列表（序列化）</summary>
-        public Dictionary<string, List<string>> savedFacilities = new();
-
-        /// <summary>用于 xpath 生成：类别→目标 defName 列表（序列化）</summary>
-        public Dictionary<string, List<string>> savedTargets = new();
-
-        /// <summary>C# 运行时二次注入开关：默认关闭（仅靠 xpath），开启后首次运行时也生效，但是需要注意二次注入冲突</summary>
-        public bool enableRuntimePatch;
+        /// <summary>是否已完成首次初始化（持久化）：首次为 false 时执行保守语义 ResetToOriginal</summary>
+        public bool initialized;
 
         public bool scanCompleted;
 
@@ -63,6 +54,16 @@ namespace FacilityCompat
                 excludedTargets.Remove(key);
         }
 
+        /// <summary>设置某设施对某目标的注入状态（幂等，已是目标状态时不改动）</summary>
+        public void SetLink(string category, string facilityDefName, string targetDefName, bool linked)
+        {
+            bool currentlyExcluded = excludedTargets.TryGetValue(
+                MakeKey(category, facilityDefName), out var excluded)
+                && excluded.Contains(targetDefName);
+            if (linked == !currentlyExcluded) return; // 已是目标状态
+            ToggleLink(category, facilityDefName, targetDefName);
+        }
+
         /// <summary>该设施对当前类别全部启用</summary>
         public void EnableAllTargets(string category, string facilityDefName)
         {
@@ -83,14 +84,24 @@ namespace FacilityCompat
                     excludedTargets[key].Add(t.defName);
         }
 
-        /// <summary>获取模式</summary>
+        /// <summary>
+        /// 获取模式。None 判定按"当前有效 targets（过滤 mod 卸载后失效的 defName）是否全部被排除"
+        /// ——避免残留条目使 count 虚高导致误判。
+        /// </summary>
         public FacilityMode GetMode(string category, string facilityDefName)
         {
             var key = MakeKey(category, facilityDefName);
             if (!excludedTargets.TryGetValue(key, out var excluded) || excluded.Count == 0)
                 return FacilityMode.All;
-            if (categories.TryGetValue(category, out var info) && excluded.Count >= info.targets.Count)
-                return FacilityMode.None;
+            if (categories.TryGetValue(category, out var info))
+            {
+                var validTargetNames = info.targets
+                    .Select(t => t.defName)
+                    .Where(fn => DefDatabase<ThingDef>.GetNamedSilentFail(fn) != null);
+                if (validTargetNames.Any(excluded.Contains))
+                    return validTargetNames.All(excluded.Contains)
+                        ? FacilityMode.None : FacilityMode.Manual;
+            }
             return FacilityMode.Manual;
         }
 
@@ -132,31 +143,6 @@ namespace FacilityCompat
         public void EnableAll()
         {
             excludedTargets.Clear();
-        }
-
-        /// <summary>
-        /// 保存 xpath 生成所需数据：类别→thingClassName、类别→设施列表、类别→目标defName列表
-        /// </summary>
-        public void SaveForXpath()
-        {
-            savedCategories = new Dictionary<string, string>();
-            savedFacilities = new Dictionary<string, List<string>>();
-            savedTargets = new Dictionary<string, List<string>>();
-            foreach (var kvp in categories)
-            {
-                var category = kvp.Key;
-                savedCategories[category] = kvp.Value.thingClassName;
-                savedFacilities[category] = new List<string>();
-                foreach (var list in kvp.Value.facilities.Values)
-                    foreach (var fn in list)
-                        if (!savedFacilities[category].Contains(fn))
-                            savedFacilities[category].Add(fn);
-
-                savedTargets[category] = kvp.Value.targets
-                    .Select(t => t.defName)
-                    .Distinct()
-                    .ToList();
-            }
         }
 
         /// <summary>
@@ -202,6 +188,71 @@ namespace FacilityCompat
                 DisableAllTargets(category, facilityDefName);
         }
 
+        /// <summary>
+        /// 将单个主设施（目标）重置到原始状态：类别下所有设施与它的连接恢复原始。
+        /// 与 ResetFacilityToOriginal 对称（目标维度）：无设施记录时视为原始无连接 → 全部断开。
+        /// </summary>
+        public void ResetTargetToOriginal(string category, string targetDefName)
+        {
+            if (!categories.TryGetValue(category, out var info)) return;
+            foreach (var fn in info.facilities.Values.SelectMany(l => l).Distinct())
+            {
+                bool original = originalLinks.TryGetValue(MakeKey(category, fn), out var orig)
+                    && orig.Contains(targetDefName);
+                SetLink(category, fn, targetDefName, original);
+            }
+        }
+
+        /// <summary>
+        /// 获取主设施（目标）维度的模式：
+        /// All = 全部设施连接它；None = 无设施连接它；Manual = 部分连接。
+        /// 与 GetMode（设施维度）对称。
+        /// </summary>
+        public FacilityMode GetTargetMode(string category, string targetDefName)
+        {
+            if (!categories.TryGetValue(category, out var info)) return FacilityMode.Manual;
+            int total = 0, linked = 0;
+            foreach (var fn in info.facilities.Values.SelectMany(l => l).Distinct())
+            {
+                total++;
+                if (ShouldLink(category, fn, targetDefName)) linked++;
+            }
+            if (total == 0 || linked == 0) return FacilityMode.None;
+            return linked == total ? FacilityMode.All : FacilityMode.Manual;
+        }
+
+        /// <summary>获取当前连接某主设施（目标）的设施 defName 列表（用于复制）</summary>
+        public List<string> GetTargetLinkedList(string category, string targetDefName)
+        {
+            var result = new List<string>();
+            if (!categories.TryGetValue(category, out var info)) return result;
+            foreach (var fn in info.facilities.Values.SelectMany(l => l).Distinct())
+                if (ShouldLink(category, fn, targetDefName))
+                    result.Add(fn);
+            return result;
+        }
+
+        /// <summary>
+        /// 设置主设施（目标）维度的模式与连接列表（用于粘贴）。
+        /// Manual 时 linked 之外的设施全部断开（与 SetModeAndExcluded 的设施维度语义对称）。
+        /// </summary>
+        public void SetTargetModeAndLinked(string category, string targetDefName,
+            FacilityMode mode, List<string> linked)
+        {
+            if (!categories.TryGetValue(category, out var info)) return;
+            var facilityNames = info.facilities.Values.SelectMany(l => l).Distinct();
+            foreach (var fn in facilityNames)
+            {
+                bool target = mode switch
+                {
+                    FacilityMode.All => true,
+                    FacilityMode.None => false,
+                    _ => linked.Contains(fn),
+                };
+                SetLink(category, fn, targetDefName, target);
+            }
+        }
+
         /// <summary>排除非原始目标</summary>
         private void ExcludeNonOriginal(string key, List<string> originalTargets)
         {
@@ -222,33 +273,14 @@ namespace FacilityCompat
             }
         }
 
-        /// <summary>
-        /// 设置是否已被修改（与原始状态比较）
-        /// </summary>
-        public bool IsModified()
-        {
-            // 如果排除列表为空 → 完全启用状态，即"一键全部启用"
-            // 检查是否与原始状态不同
-            return true; // 简化：总是允许保存
-        }
-
         // 导出数据
         public override void ExposeData()
         {
             Scribe_Collections.Look(ref excludedTargets, "excludedTargets",
                 LookMode.Value, LookMode.Value, ref _keys, ref _values);
-            Scribe_Collections.Look(ref savedCategories, "savedCategories",
-                LookMode.Value, LookMode.Value);
-            Scribe_Collections.Look(ref savedFacilities, "savedFacilities",
-                LookMode.Value, LookMode.Value);
-            Scribe_Collections.Look(ref savedTargets, "savedTargets",
-                LookMode.Value, LookMode.Value);
-            Scribe_Values.Look(ref enableRuntimePatch, "enableRuntimePatch");
+            Scribe_Values.Look(ref initialized, "initialized");
 
             excludedTargets ??= new Dictionary<string, List<string>>();
-            savedCategories ??= new Dictionary<string, string>();
-            savedFacilities ??= new Dictionary<string, List<string>>();
-            savedTargets ??= new Dictionary<string, List<string>>();
         }
 
         private static string MakeKey(string category, string facility) => $"{category}|{facility}";

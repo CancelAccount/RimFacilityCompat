@@ -3,23 +3,16 @@
 	<!-- ====== 设置界面 ====== -->
 	<FC.SettingsCategory>设施兼容补丁</FC.SettingsCategory>
 	<FC.Title>按建筑类别分组的设施兼容</FC.Title>
-	<FC.NoData>尚未扫描或未发现任何设施。请重启游戏以完成首次扫描。</FC.NoData>
+	<FC.NoData>未发现任何设施。</FC.NoData>
+	
 	<!-- ====== 日志 ====== -->
 	<FC.LogPrefix>[设施兼容]</FC.LogPrefix>
-	<FC.LogNeedRestart>Xpath 补丁已自动生成，重启游戏后生效。</FC.LogNeedRestart>
 	<FC.LogNoSettings>设置为空，无法应用补丁。</FC.LogNoSettings>
-	<FC.LogSanitized>已清理 {0} 个目标（合并重复comp + 移除失效条目），覆盖 {1} 个类别。</FC.LogSanitized>
-	<FC.LogPatched>已调整 {0} 个目标，覆盖 {1} 个类别。</FC.LogPatched>
+	<FC.LogPatched>已重建 {0} 个目标的设施链接，覆盖 {1} 个类别。</FC.LogPatched>
 	<FC.LogPatchFailed>设施补丁应用失败</FC.LogPatchFailed>
-	<FC.LogXpathGenerated>xpath 补丁已生成: {0}</FC.LogXpathGenerated>
-	<FC.LogXpathFailed>xpath 生成失败</FC.LogXpathFailed>
-	<FC.LogGenStart>XpathGen: 开始，savedCategories={0}，savedFacilities={1}</FC.LogGenStart>
-	<FC.LogGenNoData>XpathGen: 无已保存数据，跳过生成</FC.LogGenNoData>
-	<FC.LogGenSkipCat>XpathGen: 跳过类别 [{0}]，原因={1}</FC.LogGenSkipCat>
-	<FC.LogGenFallback>XpathGen: [{0}] 降级构建目标列表，共 {1} 个</FC.LogGenFallback>
-	<FC.LogGenCategory>XpathGen: [{0}] 设施={1}，有comp={2}，无comp={3}</FC.LogGenCategory>
-	<FC.LogGenDone>XpathGen: 完成，{0} 个类别，{1} 个补丁操作</FC.LogGenDone>
+	<FC.LogRelinked>已重连 {0} 个已放置建筑。</FC.LogRelinked>
 	<FC.MsgCopied>已复制 [{0}] 的配置（类别: {1}）</FC.MsgCopied>
+	<FC.MsgReset>已重置 [{0}] 的链接</FC.MsgReset>
 	<FC.MsgPasted>已粘贴配置到 [{0}]</FC.MsgPasted>
 	<FC.MsgPastedFiltered>已粘贴配置到 [{0}]，{1} 个目标被过滤（类别不匹配）</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>粘贴到 [{0}] 失败：所有目标均不匹配，未做更改</FC.MsgPasteNoMatch>
@@ -39,10 +32,8 @@
 	<!-- 顶部按钮 -->
 	<FC.BtnEnableAll>全部兼容（不建议）</FC.BtnEnableAll>
 	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
-	<FC.BtnSave>保存并应用</FC.BtnSave>
 	<FC.BtnExport>导出</FC.BtnExport>
 	<FC.BtnImport>导入</FC.BtnImport>
-	<FC.MsgSaved>设施兼容设置已保存，重启游戏后生效。</FC.MsgSaved>
 	<FC.MsgExported>预设已导出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>没有可导入的预设文件</FC.MsgNoPresets>
 	<FC.MsgImported>已导入 {0} 条排除设置，跳过 {1} 条（不存在）</FC.MsgImported>
@@ -69,9 +60,6 @@
 	<FC.DbgLog>调试日志（点击事件链）</FC.DbgLog>
 	<FC.DbgDraw>调试可视化（命中框与坐标）</FC.DbgDraw>
 
-	<!-- 设置选项 -->
-	<FC.OptRuntimePatch>C# 运行时二次注入（无配置时注入临时补丁，关闭可提升性能）</FC.OptRuntimePatch>
-
 	<!-- 类别标题格式：{0}=目标数 {1}=设施数 -->
 	<FC.CatTargetCount>{0} 目标</FC.CatTargetCount>
 	<FC.CatFacilityCount>{0} 设施</FC.CatFacilityCount>
@@ -94,5 +82,7 @@
 	<FC.CatGravEngine>逆重引擎</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>收容平台</FC.CatHoldingPlatform>
 	<FC.CatLinkedBuilding>普通建筑设施组：{0}</FC.CatLinkedBuilding>
+	<FC.CatLinked.Blackboard>教室</FC.CatLinked.Blackboard>
+	<FC.CatLinked.ShardBeacon>心灵仪式</FC.CatLinked.ShardBeacon>
 	<FC.CatUnassigned>未分配设施</FC.CatUnassigned>
 </LanguageData>

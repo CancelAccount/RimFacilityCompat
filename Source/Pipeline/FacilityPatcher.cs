@@ -6,16 +6,31 @@ using Verse;
 namespace FacilityCompat
 {
     /// <summary>
-    /// 设施补丁应用器：按类别和排除列表，将所有发现的设施注入对应目标
+    /// 设施注入应用器：单通道运行时声明式注入。
+    /// 每个目标的最终 linkableFacilities ≡ 配置声明状态（类别下所有设施 ∩ 未被排除的集合），
+    /// 语义为"整体重建"而非"增量追加"：增删皆可（原始链接也可排除）、幂等（重复调用结果一致）、
+    /// 无重复条目、不落盘（每次启动 defs 自动回到 XML 原始状态，扫描基准天然无污染）。
+    /// 设置界面任意操作后可直接调用 ApplyInjection，当次会话即时生效，无需重启。
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FacilityPatcher
     {
+        /// <summary>
+        /// 启动期快照：原版 XML 自带设施 comp 的目标 defName 集合。
+        /// 用于区分"原版 comp"与"本 mod 运行时新建的 comp"——声明状态为空时，
+        /// 原版 comp 仅清空列表（保留结构），自建 comp 整体移除（避免下次启动语义漂移）。
+        /// </summary>
+        private static HashSet<string> targetsWithOriginalComp = new();
+
         static FacilityPatcher()
         {
             LongEventHandler.ExecuteWhenFinished(Apply);
         }
 
+        /// <summary>
+        /// 启动流程（主菜单出现前执行）：
+        /// 阶段一 扫描（干净 defs）→ 阶段二 首次运行初始化 → 阶段三 声明式注入 → 落盘。
+        /// </summary>
         public static void Apply()
         {
             try
@@ -27,69 +42,156 @@ namespace FacilityCompat
                     return;
                 }
 
+                // 阶段一：扫描。运行时注入不落盘，defs 每次启动自动干净，
+                // originalLinks 与连通分量分组天然基于真原始状态
                 settings.categories = FacilityScanner.ScanAll();
                 settings.scanCompleted = true;
                 settings.originalLinks = ScanOriginalLinks(settings.categories);
+                SnapshotOriginalComps(settings.categories);
 
-                // 合并重复 CompProperties_AffectedByFacilities + 清理失效条目
-                int totalSanitized = 0;
-                var sanitizedTargets = new HashSet<string>();
-                foreach (var kvp in settings.categories)
+                // 阶段二：首次运行初始化（保守语义：仅保留原始链接）
+                if (!settings.initialized)
                 {
-                    var info = kvp.Value;
-                    foreach (var targetDef in GetTargetDefs(info))
-                    {
-                        if (sanitizedTargets.Add(targetDef.defName) && CleanupComps(targetDef))
-                            totalSanitized++;
-                    }
-                }
-                if (totalSanitized > 0)
-                    FCLogger.Msg("FC.LogSanitized", totalSanitized, settings.categories.Count);
-
-                // C# 运行时注入（仅在开关开启时执行）
-                if (settings.enableRuntimePatch)
-                {
-                    int totalPatched = 0;
-                    foreach (var kvp in settings.categories)
-                    {
-                        var category = kvp.Key;
-                        var info = kvp.Value;
-
-                        var facilityDefNames = new List<string>();
-                        foreach (var list in info.facilities.Values)
-                            foreach (var fn in list)
-                                facilityDefNames.Add(fn);
-
-                        if (facilityDefNames.Count == 0) continue;
-
-                        foreach (var targetDef in GetTargetDefs(info))
-                        {
-                            if (PatchTarget(targetDef, facilityDefNames, category, settings))
-                                totalPatched++;
-                        }
-                    }
-                    FCLogger.Msg("FC.LogPatched", totalPatched, settings.categories.Count);
+                    settings.ResetToOriginal();
+                    settings.initialized = true;
                 }
 
-                // 确保 xpath 补丁文件存在（首次运行或文件被删时自动生成）
-                var xpathFile = System.IO.Path.Combine(settings.modDir, "1.6", "Patches", "FC_Generated.xml");
-                if (!System.IO.File.Exists(xpathFile))
-                {
-                    if (settings.savedCategories.Count == 0)
-                    {
-                        // 首次运行：扫描并沿用原版链接
-                        settings.ResetToOriginal();
-                        settings.SaveForXpath();
-                    }
-                    settings.Write();
-                    XpathGenerator.Generate(settings);
-                    FCLogger.Warn("FC.LogNeedRestart");
-                }
+                // 阶段三：声明式注入 + 落盘（确保 initialized 持久化）
+                int applied = ApplyInjection(settings);
+                settings.Write();
+                FCLogger.Msg("FC.LogPatched", applied, settings.categories.Count);
             }
             catch (System.Exception ex)
             {
                 FCLogger.Exception("FC.LogPatchFailed".Translate(), ex);
             }
+        }
+
+        /// <summary>
+        /// 对所有目标重建设施链接：目标最终状态 ≡ 配置声明状态。
+        /// 幂等，可反复调用（设置界面每次操作后调用，当次会话即时生效）。
+        /// 返回实际重建（含新建 comp）的目标数。
+        /// 同步维护设施侧反向索引：引擎的 CompProperties_Facility.linkableBuildings（设施 def 上
+        /// "可连接的目标"列表）仅在 def 加载时由 ResolveReferences 反向填充一次，运行时修改目标的
+        /// linkableFacilities 不会自动重算。设施侧全部入口（蓝图预览连线、设施放置/重装的
+        /// CompFacility.LinkToNearbyBuildings）都读该反向索引，若不同步重建，补丁连接对设施侧不可见
+        /// （表现为：放设施蓝图不画线、建成不连接，必须重放主设施才生效）。
+        /// </summary>
+        public static int ApplyInjection(FacilityCompatSettings settings)
+        {
+            int totalApplied = 0;
+            // linkableFacilities 发生变化的目标所涉及的设施 def（旧∪新列表），注入后需重建其反向索引
+            var affectedFacilities = new HashSet<ThingDef>();
+            foreach (var kvp in settings.categories)
+            {
+                var category = kvp.Key;
+                var info = kvp.Value;
+
+                // 类别下全部设施 def（GetNamedSilentFail 过滤 mod 卸载后的失效 defName）
+                var allFacilityDefs = info.facilities.Values
+                    .SelectMany(x => x)
+                    .Distinct()
+                    .Select(fn => DefDatabase<ThingDef>.GetNamedSilentFail(fn))
+                    .Where(def => def != null)
+                    .Cast<ThingDef>()
+                    .ToList();
+
+                foreach (var targetDef in GetTargetDefs(info))
+                {
+                    // 该目标的最终链接 = 类别全部设施 ∩ 未被排除的
+                    var finalList = allFacilityDefs
+                        .Where(f => settings.ShouldLink(category, f.defName, targetDef.defName))
+                        .ToList();
+
+                    var comps = targetDef.comps
+                        .OfType<CompProperties_AffectedByFacilities>()
+                        .ToList();
+                    var comp = comps.FirstOrDefault();
+                    var oldList = comp?.linkableFacilities;
+
+                    if (finalList.Count == 0)
+                    {
+                        // 声明状态为空：原版 comp 仅清空列表（保留结构），自建 comp 整体移除
+                        if (comp != null)
+                        {
+                            if (oldList != null && oldList.Count > 0)
+                                foreach (var f in oldList) affectedFacilities.Add(f); // 旧链接中的设施失去该目标
+                            if (targetsWithOriginalComp.Contains(targetDef.defName))
+                            {
+                                comp.linkableFacilities = new List<ThingDef>();
+                            }
+                            else
+                            {
+                                foreach (var c in comps)
+                                    targetDef.comps.Remove(c);
+                            }
+                        }
+                        continue;
+                    }
+
+                    // 变更检测：内容相同则跳过写入（避免无谓覆盖与反向索引重建）
+                    if (!FacilityListEquals(oldList, finalList))
+                    {
+                        if (oldList != null)
+                            foreach (var f in oldList) affectedFacilities.Add(f);
+                        foreach (var f in finalList) affectedFacilities.Add(f);
+                    }
+
+                    if (comp == null)
+                    {
+                        comp = new CompProperties_AffectedByFacilities();
+                        targetDef.comps.Add(comp);
+                    }
+
+                    comp.linkableFacilities = finalList; // 整体重建，非追加
+                    totalApplied++;
+                }
+            }
+
+            // 重建受影响设施的反向索引：复用引擎 ResolveReferences（全量扫描 defs，
+            // 按"当前所有目标"的 linkableFacilities 反向重建 linkableBuildings，与其他 mod 的声明天然兼容）
+            foreach (var facilityDef in affectedFacilities)
+            {
+                facilityDef.GetCompProperties<CompProperties_Facility>()?.ResolveReferences(facilityDef);
+            }
+            return totalApplied;
+        }
+
+        /// <summary>
+        /// 设施链接列表相等性比较（集合语义，忽略顺序）。
+        /// oldList 为 null 视为空集（此调用点 finalList 保证非空，故 null 必不等）。
+        /// </summary>
+        private static bool FacilityListEquals(List<ThingDef>? oldList, List<ThingDef> newList)
+        {
+            if (oldList == null || oldList.Count != newList.Count) return false;
+            foreach (var f in oldList)
+                if (!newList.Contains(f)) return false;
+            return true;
+        }
+
+        /// <summary>
+        /// 重连当前会话所有地图上受设施影响的建筑（Notify_ThingChanged → RelinkAll）。
+        /// 须在 ApplyInjection 之后调用，使已放置建筑立即应用重建后的 defs；
+        /// 设置界面期间游戏自动暂停，遍历重连无卡顿风险。
+        /// 读档/新游戏/建筑生成时引擎经 PostSpawnSetup 自动重连
+        /// （CompAffectedByFacilities 不持久化 linkedFacilities），本方法仅补"会话中修改配置"入口。
+        /// </summary>
+        public static void RelinkSpawnedThings()
+        {
+            if (Current.Game == null) return; // 主菜单阶段无游戏会话（启动期 Apply 不触发重连）
+            int relinked = 0;
+            foreach (var map in Find.Maps)
+            {
+                foreach (var thing in map.listerThings.AllThings)
+                {
+                    var comp = thing.TryGetComp<CompAffectedByFacilities>();
+                    if (comp == null) continue;
+                    comp.Notify_ThingChanged();
+                    relinked++;
+                }
+            }
+            if (relinked > 0)
+                FCLogger.Msg("FC.LogRelinked", relinked);
         }
 
         /// <summary>
@@ -107,102 +209,19 @@ namespace FacilityCompat
         }
 
         /// <summary>
-        /// 合并重复的 CompProperties_AffectedByFacilities + 移除失效的 null 条目
+        /// 启动期快照：记录原版 XML 自带设施 comp 的目标（注入前调用）。
         /// </summary>
-        private static bool CleanupComps(ThingDef targetDef)
+        private static void SnapshotOriginalComps(Dictionary<string, CategoryInfo> categories)
         {
-            var allFacilityComps = targetDef.comps
-                .OfType<CompProperties_AffectedByFacilities>().ToList();
-            if (allFacilityComps.Count == 0) return false;
-
-            bool changed = false;
-
-            // 合并多个 CompProperties_AffectedByFacilities（xpath 可能追加重复 comp）
-            if (allFacilityComps.Count > 1)
+            targetsWithOriginalComp = new HashSet<string>();
+            foreach (var info in categories.Values)
             {
-                var merged = allFacilityComps[0];
-                if (merged.linkableFacilities == null)
-                    merged.linkableFacilities = new List<ThingDef>();
-                for (int i = 1; i < allFacilityComps.Count; i++)
+                foreach (var targetDef in GetTargetDefs(info))
                 {
-                    if (allFacilityComps[i].linkableFacilities != null)
-                        foreach (var f in allFacilityComps[i].linkableFacilities)
-                            if (f != null && !merged.linkableFacilities.Any(x => x?.defName == f.defName))
-                                merged.linkableFacilities.Add(f);
-                    targetDef.comps.Remove(allFacilityComps[i]);
-                }
-                changed = true;
-                FCLogger.Raw($"[CleanupComps] {targetDef.defName}: merged {allFacilityComps.Count} comps → {merged.linkableFacilities.Count} facilities: [{string.Join(", ", merged.linkableFacilities.Select(f => f?.defName ?? "null"))}]");
-            }
-
-            // 清理失效条目（mod 移除后残留的 null / 无效 defName）
-            var affectedByFacilities = allFacilityComps[0];
-            if (affectedByFacilities.linkableFacilities != null)
-            {
-                for (int i = affectedByFacilities.linkableFacilities.Count - 1; i >= 0; i--)
-                {
-                    if (affectedByFacilities.linkableFacilities[i] == null)
-                    {
-                        affectedByFacilities.linkableFacilities.RemoveAt(i);
-                        changed = true;
-                    }
+                    if (targetDef.comps.Any(c => c is CompProperties_AffectedByFacilities))
+                        targetsWithOriginalComp.Add(targetDef.defName);
                 }
             }
-
-            return changed;
-        }
-
-        private static bool PatchTarget(ThingDef targetDef, List<string> facilityDefNames,
-            string category, FacilityCompatSettings settings)
-        {
-            var affectedByFacilities = targetDef.comps
-                .OfType<CompProperties_AffectedByFacilities>()
-                .FirstOrDefault();
-
-            if (affectedByFacilities == null)
-            {
-                affectedByFacilities = new CompProperties_AffectedByFacilities
-                {
-                    linkableFacilities = new List<ThingDef>()
-                };
-                targetDef.comps.Add(affectedByFacilities);
-            }
-            else if (affectedByFacilities.linkableFacilities == null)
-            {
-                affectedByFacilities.linkableFacilities = new List<ThingDef>();
-            }
-
-            bool changed = false;
-
-            // 移除被用户排除的设施
-            for (int i = affectedByFacilities.linkableFacilities.Count - 1; i >= 0; i--)
-            {
-                var f = affectedByFacilities.linkableFacilities[i];
-                if (f == null) continue;
-                if (!settings.ShouldLink(category, f.defName, targetDef.defName))
-                {
-                    affectedByFacilities.linkableFacilities.RemoveAt(i);
-                    changed = true;
-                }
-            }
-
-            // 添加被用户启用但尚未在列表中的设施
-            foreach (var fn in facilityDefNames)
-            {
-                if (!settings.ShouldLink(category, fn, targetDef.defName))
-                    continue;
-                if (affectedByFacilities.linkableFacilities.Any(f => f.defName == fn))
-                    continue;
-
-                var facilityDef = DefDatabase<ThingDef>.GetNamedSilentFail(fn);
-                if (facilityDef != null)
-                {
-                    affectedByFacilities.linkableFacilities.Add(facilityDef);
-                    changed = true;
-                }
-            }
-
-            return changed;
         }
 
         /// <summary>

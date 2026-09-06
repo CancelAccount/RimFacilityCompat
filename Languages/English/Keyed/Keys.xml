@@ -3,23 +3,15 @@
 	<!-- ====== Settings UI ====== -->
 	<FC.SettingsCategory>FacilityCompat</FC.SettingsCategory>
 	<FC.Title>Facility Compatibility by Building Category</FC.Title>
-	<FC.NoData>No facilities discovered yet. Restart the game to complete the initial scan.</FC.NoData>
+	<FC.NoData>No facilities discovered.</FC.NoData>
 	<!-- ====== Log ====== -->
 	<FC.LogPrefix>[FacilityCompat]</FC.LogPrefix>
-	<FC.LogNeedRestart>Xpath patch auto-generated. Restart the game to work.</FC.LogNeedRestart>
 	<FC.LogNoSettings>Settings not loaded, cannot apply patches.</FC.LogNoSettings>
-	<FC.LogSanitized>Sanitized {0} targets (merged duplicate comps + removed stale entries) across {1} categories.</FC.LogSanitized>
-	<FC.LogPatched>Patched {0} targets across {1} categories.</FC.LogPatched>
+	<FC.LogPatched>Rebuilt facility links on {0} targets across {1} categories.</FC.LogPatched>
 	<FC.LogPatchFailed>Facility patch application failed</FC.LogPatchFailed>
-	<FC.LogXpathGenerated>Xpath patch generated: {0}</FC.LogXpathGenerated>
-	<FC.LogXpathFailed>Xpath generation failed</FC.LogXpathFailed>
-	<FC.LogGenStart>XpathGen: start, savedCategories={0}, savedFacilities={1}</FC.LogGenStart>
-	<FC.LogGenNoData>XpathGen: no saved data, skip</FC.LogGenNoData>
-	<FC.LogGenSkipCat>XpathGen: skip category [{0}], reason={1}</FC.LogGenSkipCat>
-	<FC.LogGenFallback>XpathGen: [{0}] fallback target list, {1} targets</FC.LogGenFallback>
-	<FC.LogGenCategory>XpathGen: [{0}] facilities={1}, withComp={2}, withoutComp={3}</FC.LogGenCategory>
-	<FC.LogGenDone>XpathGen: done, {0} categories, {1} patch ops</FC.LogGenDone>
+	<FC.LogRelinked>Relinked {0} placed buildings.</FC.LogRelinked>
 	<FC.MsgCopied>Copied config of [{0}] (category: {1})</FC.MsgCopied>
+	<FC.MsgReset>Reset [{0}] links</FC.MsgReset>
 	<FC.MsgPasted>Pasted config to [{0}]</FC.MsgPasted>
 	<FC.MsgPastedFiltered>Pasted config to [{0}], {1} targets filtered (category mismatch)</FC.MsgPastedFiltered>
 	<FC.MsgPasteNoMatch>Paste to [{0}] failed: no matching targets, unchanged</FC.MsgPasteNoMatch>
@@ -39,10 +31,8 @@
 	<!-- Top buttons -->
 	<FC.BtnEnableAll>Enable All (not recommended)</FC.BtnEnableAll>
 	<FC.BtnResetAll>Reset All</FC.BtnResetAll>
-	<FC.BtnSave>Save and Apply</FC.BtnSave>
 	<FC.BtnExport>Export</FC.BtnExport>
 	<FC.BtnImport>Import</FC.BtnImport>
-	<FC.MsgSaved>FacilityCompat settings saved. Restart the game for changes to take effect.</FC.MsgSaved>
 	<FC.MsgExported>Preset exported: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>No preset files to import</FC.MsgNoPresets>
 	<FC.MsgImported>Imported {0} exclusions, {1} skipped (not found)</FC.MsgImported>
@@ -69,9 +59,6 @@
 	<FC.DbgLog>Debug log (click event chain)</FC.DbgLog>
 	<FC.DbgDraw>Debug visualization (hitboxes &amp; coordinates)</FC.DbgDraw>
 
-	<!-- Option -->
-	<FC.OptRuntimePatch>C# runtime patch (effective when no settings are loaded, turn off for better performance)</FC.OptRuntimePatch>
-
 	<!-- Category header format: {0}=target count {1}=facility count -->
 	<FC.CatTargetCount>{0} targets</FC.CatTargetCount>
 	<FC.CatFacilityCount>{0} facilities</FC.CatFacilityCount>
@@ -94,5 +81,7 @@
 	<FC.CatGravEngine>Grav Engines</FC.CatGravEngine>
 	<FC.CatHoldingPlatform>Holding Platforms</FC.CatHoldingPlatform>
 	<FC.CatLinkedBuilding>Generic building facility group: {0}</FC.CatLinkedBuilding>
+	<FC.CatLinked.Blackboard>Classroom</FC.CatLinked.Blackboard>
+	<FC.CatLinked.ShardBeacon>Psychic Ritual</FC.CatLinked.ShardBeacon>
 	<FC.CatUnassigned>Unassigned Facilities</FC.CatUnassigned>
 </LanguageData>

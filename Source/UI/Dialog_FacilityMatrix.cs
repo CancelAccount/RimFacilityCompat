@@ -91,6 +91,19 @@ namespace FacilityCompat
         }
 
         /// <summary>
+        /// 应用并保存：声明式重建全部目标的设施链接 → 重连已放置建筑 → 落盘。
+        /// 所有配置改动点（勾选/排除/重置/粘贴/导入）统一走此入口，当次会话即时生效。
+        /// 重连必须在注入后顺序执行（直接调用而非事件，保证时序确定）；
+        /// 设置界面期间游戏自动暂停，重连无卡顿风险。
+        /// </summary>
+        private void ApplyAndSave()
+        {
+            FacilityPatcher.ApplyInjection(settings);
+            FacilityPatcher.RelinkSpawnedThings();
+            settings.Write();
+        }
+
+        /// <summary>
         /// 根级 OnGUI 阶段（无窗口 group 变换）：批量模式激活期间在光标旁绘制游戏内勾/叉图标。
         /// 右键按住时显示反向状态图标（批量连接模式右键 = 批量断开，反之亦然）。
         /// 必须在此调用 GenUI.DrawMouseAttachment——它用 Event.current.mousePosition 定位
@@ -216,7 +229,7 @@ namespace FacilityCompat
                 else
                 {
                     settings.ToggleLink(currentCategory, accessory, main);
-                    settings.Write();
+                    ApplyAndSave();
                 }
                 return;
             }
@@ -496,13 +509,13 @@ namespace FacilityCompat
             draggable = false; // 按钮点击完成后才关闭拖动，彻底避开与 GUI.DragWindow 的时序竞争
         }
 
-        /// <summary>退出批量模式：恢复窗口拖动，批量改动统一落盘</summary>
+        /// <summary>退出批量模式：恢复窗口拖动，批量改动统一应用并落盘</summary>
         private void ExitBatchMode()
         {
             if (!state.BatchActive) return;
             state.ExitBatch();
             draggable = true;
-            settings.Write();
+            ApplyAndSave();
         }
 
         /// <summary>批量应用：把 (附属设备→主设施) 连接设为批量目标状态（inverted = 右键反向；
@@ -554,22 +567,31 @@ namespace FacilityCompat
                 ApplyToSelection(AllOff);
             btnRect.x += step;
 
-            // 重置原始：仅附属设备选中时可用（数据层按附属设备提供重置）
-            if (Widgets.ButtonText(btnRect, "FC.BtnReset".Translate(), active: state.SelSide == Side.Accessory))
+            // 重置原始：按选中侧分派（附属设备 → 恢复其原始链接；主设施 → 恢复所有设施与它的原始连接）
+            if (Widgets.ButtonText(btnRect, "FC.BtnReset".Translate(), active: state.HasSelection))
             {
-                settings.ResetFacilityToOriginal(currentCategory, state.SelDef);
-                settings.Write();
+                if (state.SelSide == Side.Accessory)
+                    settings.ResetFacilityToOriginal(currentCategory, state.SelDef);
+                else
+                    settings.ResetTargetToOriginal(currentCategory, state.SelDef);
+                ApplyAndSave();
+                Messages.Message(
+                    string.Format("FC.MsgReset".Translate(), state.SelDef),
+                    MessageTypeDefOf.NeutralEvent);
             }
             btnRect.x += step;
 
-            // 复制：仅附属设备选中时可用
-            if (Widgets.ButtonText(btnRect, "FC.BtnCopy".Translate(), active: state.SelSide == Side.Accessory))
+            // 复制：按选中侧分派（附属设备 → 排除配置；主设施 → 连接模式）
+            if (Widgets.ButtonText(btnRect, "FC.BtnCopy".Translate(), active: state.HasSelection))
                 CopySelected();
             btnRect.x += step;
 
-            // 粘贴：仅附属设备选中且剪贴板有数据时可用
+            // 粘贴：选中侧与剪贴板维度匹配且有数据时可用（设施配置 ↔ 主设施连接模式互不通用）
             if (Widgets.ButtonText(btnRect, "FC.BtnPaste".Translate(),
-                    active: state.SelSide == Side.Accessory && FacilityClipboard.hasData))
+                    active: state.HasSelection && FacilityClipboard.hasData
+                        && FacilityClipboard.direction == (state.SelSide == Side.Accessory
+                            ? FacilityClipboard.Direction.Facility
+                            : FacilityClipboard.Direction.Target)))
                 PasteToSelected();
             btnRect.x += step;
 
@@ -578,25 +600,15 @@ namespace FacilityCompat
             btnRect.x += step;
             DrawBatchButton(btnRect, false);
 
-            // 保存并应用（右侧对齐）：沿用旧流程（生成 XPath 补丁，重启生效）
-            var saveRect = new Rect(bar.xMax - BtnW * 1.4f, bar.y + StatusH, BtnW * 1.4f, BtnRowH);
-            if (Widgets.ButtonText(saveRect, "FC.BtnSave".Translate()))
-            {
-                settings.SaveForXpath();
-                settings.Write();
-                XpathGenerator.Generate(settings);
-                Messages.Message("FC.MsgSaved".Translate(), MessageTypeDefOf.NeutralEvent);
-            }
-
-            // 全局操作（保存按钮左侧）：全局启用/重置、预设导入导出、运行时开关
-            var globalRect = new Rect(saveRect.x - BtnW - BtnSp, bar.y + StatusH, BtnW, BtnRowH);
+            // 全局操作（右下角）：全局启用/重置、预设导入导出、调试开关
+            var globalRect = new Rect(bar.xMax - BtnW, bar.y + StatusH, BtnW, BtnRowH);
             if (Widgets.ButtonText(globalRect, "FC.UiGlobalMenu".Translate()))
                 Find.WindowStack.Add(BuildGlobalMenu());
         }
 
         // ==================== 全局操作 ====================
 
-        /// <summary>构建全局操作菜单：全局启用/重置、预设导出/导入、运行时注入开关</summary>
+        /// <summary>构建全局操作菜单：全局启用/重置、预设导出/导入、调试工具开关</summary>
         private FloatMenu BuildGlobalMenu()
         {
             var options = new List<FloatMenuOption>
@@ -604,12 +616,12 @@ namespace FacilityCompat
                 new("FC.BtnEnableAll".Translate(), delegate
                 {
                     settings.EnableAll();
-                    settings.Write();
+                    ApplyAndSave();
                 }),
                 new("FC.BtnResetAll".Translate(), delegate
                 {
                     settings.ResetToOriginal();
-                    settings.Write();
+                    ApplyAndSave();
                 }),
                 new("FC.BtnExport".Translate(), delegate
                 {
@@ -620,15 +632,6 @@ namespace FacilityCompat
                     Find.WindowStack.Add(BuildImportMenu());
                 })
             };
-
-            // 运行时注入开关：前缀显示当前状态（✓ 开 / × 关）
-            bool rt = settings.enableRuntimePatch;
-            options.Add(new FloatMenuOption(
-                (rt ? "✓ " : "× ") + "FC.OptRuntimePatch".Translate(), delegate
-                {
-                    settings.enableRuntimePatch = !settings.enableRuntimePatch;
-                    settings.Write();
-                }));
 
             // 调试工具开关（仅调试版显示，由全局版本常量 FCDebug.DebugBuild 定夺）
             if (FCDebug.DebugBuild)
@@ -670,7 +673,7 @@ namespace FacilityCompat
                         path =>
                         {
                             var (imported, skipped) = FacilityPreset.Import(path, settings);
-                            settings.Write();
+                            ApplyAndSave();
                             Messages.Message(
                                 string.Format("FC.MsgImported".Translate(), imported, skipped),
                                 MessageTypeDefOf.NeutralEvent);
@@ -684,7 +687,7 @@ namespace FacilityCompat
                 options.Add(new FloatMenuOption(f.Name, delegate
                 {
                     var (imported, skipped) = FacilityPreset.Import(f.FullName, settings);
-                    settings.Write();
+                    ApplyAndSave();
                     Messages.Message(
                         string.Format("FC.MsgImported".Translate(), imported, skipped),
                         MessageTypeDefOf.NeutralEvent);
@@ -736,10 +739,10 @@ namespace FacilityCompat
             return string.IsNullOrEmpty(def?.label) ? defName : def!.label;
         }
 
-        /// <summary>对当前选中项执行批量操作（委托区分启用/禁用）</summary>
+        /// <summary>对当前选中项执行批量操作（委托区分启用/禁用；有改动则即时应用并落盘）</summary>
         private void ApplyToSelection(Func<bool> operation)
         {
-            if (operation()) settings.Write();
+            if (operation()) ApplyAndSave();
         }
 
         /// <summary>全部启用：按选中侧批量建立连接</summary>
@@ -784,35 +787,66 @@ namespace FacilityCompat
         private static IEnumerable<string> AllFacilityDefNames(CategoryInfo info)
             => info.facilities.Values.SelectMany(l => l).Distinct();
 
-        /// <summary>复制当前选中附属设备的配置（模式 + 排除列表）</summary>
+        /// <summary>复制当前选中项配置：附属设备 → 排除配置；主设施 → 连接模式</summary>
         private void CopySelected()
         {
-            var mode = settings.GetMode(currentCategory, state.SelDef);
-            var excluded = settings.GetExcludedList(currentCategory, state.SelDef);
-            FacilityClipboard.Copy(currentCategory, state.SelDef, mode, excluded);
+            if (state.SelSide == Side.Accessory)
+            {
+                var mode = settings.GetMode(currentCategory, state.SelDef);
+                var excluded = settings.GetExcludedList(currentCategory, state.SelDef);
+                FacilityClipboard.Copy(currentCategory, state.SelDef, mode, excluded);
+            }
+            else
+            {
+                var mode = settings.GetTargetMode(currentCategory, state.SelDef);
+                var linked = settings.GetTargetLinkedList(currentCategory, state.SelDef);
+                FacilityClipboard.CopyTarget(currentCategory, state.SelDef, mode, linked);
+            }
             Messages.Message(
                 string.Format("FC.MsgCopied".Translate(), state.SelDef, currentCategory),
                 MessageTypeDefOf.NeutralEvent);
         }
 
-        /// <summary>粘贴剪贴板配置到当前选中附属设备（沿用剪贴板的跨类别过滤语义）</summary>
+        /// <summary>粘贴剪贴板配置到当前选中项（按选中侧分派；沿用跨类别过滤语义）</summary>
         private void PasteToSelected()
         {
-            var oldMode = settings.GetMode(currentCategory, state.SelDef);
-            int filtered = FacilityClipboard.Paste(currentCategory, state.SelDef, settings,
-                out var pastedMode, out var pastedExcluded);
-
-            // Manual 模式下所有排除项在目标类别中无匹配 → 不做更改
-            if (pastedMode == oldMode && filtered > 0)
+            int filtered;
+            if (state.SelSide == Side.Accessory)
             {
-                Messages.Message(
-                    string.Format("FC.MsgPasteNoMatch".Translate(), state.SelDef),
-                    MessageTypeDefOf.RejectInput);
-                return;
+                var oldMode = settings.GetMode(currentCategory, state.SelDef);
+                filtered = FacilityClipboard.Paste(currentCategory, state.SelDef, settings,
+                    out var pastedMode, out var pastedExcluded);
+
+                // Manual 模式下所有排除项在目标类别中无匹配 → 不做更改
+                if (pastedMode == oldMode && filtered > 0)
+                {
+                    Messages.Message(
+                        string.Format("FC.MsgPasteNoMatch".Translate(), state.SelDef),
+                        MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
+                settings.SetModeAndExcluded(currentCategory, state.SelDef, pastedMode, pastedExcluded);
+            }
+            else
+            {
+                var oldMode = settings.GetTargetMode(currentCategory, state.SelDef);
+                filtered = FacilityClipboard.PasteTarget(currentCategory, state.SelDef, settings,
+                    out var pastedMode, out var pastedLinked);
+
+                // Manual 模式下所有连接项在目标类别中无匹配 → 不做更改
+                if (pastedMode == oldMode && filtered > 0)
+                {
+                    Messages.Message(
+                        string.Format("FC.MsgPasteNoMatch".Translate(), state.SelDef),
+                        MessageTypeDefOf.RejectInput);
+                    return;
+                }
+
+                settings.SetTargetModeAndLinked(currentCategory, state.SelDef, pastedMode, pastedLinked);
             }
 
-            settings.SetModeAndExcluded(currentCategory, state.SelDef, pastedMode, pastedExcluded);
-            settings.Write();
+            ApplyAndSave();
             Messages.Message(
                 filtered > 0
                     ? string.Format("FC.MsgPastedFiltered".Translate(), state.SelDef, filtered)

@@ -76,6 +76,10 @@ namespace FacilityCompat
                 def => def,
                 GetValidLinkedFacilities);
 
+            // 已收录目标登记表（defName）：保证每个目标只归入一个类别，
+            // 防止同族扩展把更具体类别的目标重复收入宽泛类别（如 CryptoBed 再进 Bed）
+            var claimedTargets = new HashSet<string>();
+
             // 已知建筑族和自定义非 Building 类型。
             foreach (var def in affectedDefs.Where(def => def.thingClass != typeof(Building)))
             {
@@ -84,18 +88,21 @@ namespace FacilityCompat
                     category.baseType.Name);
 
                 AddTarget(info, def);
+                claimedTargets.Add(def.defName);
                 foreach (var facilityDef in targetLinks[def])
                     AddFacility(info, facilityDef);
             }
 
             // 已知建筑族需要包含尚未声明设施 comp 的同族目标，才能实现跨 Mod 兼容。
+            // 已被更具体类别收录的目标跳过（claimedTargets.Add 返回 false = 已存在）。
             foreach (var info in result.Values.Where(info => info.thingClassName != typeof(Building).Name))
             {
                 var baseType = ResolveBaseType(info.thingClassName);
                 if (baseType == null) continue;
 
                 foreach (var def in allDefs.Where(def => baseType.IsAssignableFrom(def.thingClass!)))
-                    AddTarget(info, def);
+                    if (claimedTargets.Add(def.defName))
+                        AddTarget(info, def);
             }
 
             // 普通 Building 不能整体扩展；只按已有“目标—设施”关系的连通分量建组。
@@ -231,7 +238,7 @@ namespace FacilityCompat
 
                 var anchor = componentFacilities.Keys.OrderBy(defName => defName).First();
                 var categoryKey = $"Building:{anchor}";
-                var displayName = string.Format("FC.CatLinkedBuilding".Translate(), anchor);
+                var displayName = ResolveBuildingGroupDisplayName(anchor);
                 var info = GetOrCreateCategory(result, categoryKey, displayName, typeof(Building).Name);
 
                 foreach (var target in componentTargets)
@@ -239,6 +246,20 @@ namespace FacilityCompat
                 foreach (var facilityDef in componentFacilities.Values)
                     AddFacility(info, facilityDef);
             }
+        }
+
+        /// <summary>
+        /// 普通建筑组的显示名：优先查专用翻译键 FC.CatLinked.{defName}（如 Blackboard→教室、
+        /// ShardBeacon→心灵仪式），无专用键时回退到通用「普通建筑设施组：{defName}」。
+        /// Translate() 对不存在的 key 原样返回 key 本身，以此判断是否有专用翻译。
+        /// </summary>
+        private static string ResolveBuildingGroupDisplayName(string anchor)
+        {
+            var specificKey = $"FC.CatLinked.{anchor}";
+            var translated = specificKey.Translate();
+            return translated.ToString() != specificKey
+                ? translated
+                : string.Format("FC.CatLinkedBuilding".Translate(), anchor);
         }
 
         private static CategoryInfo GetOrCreateCategory(
