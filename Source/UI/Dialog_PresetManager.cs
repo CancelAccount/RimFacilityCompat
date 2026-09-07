@@ -28,13 +28,10 @@ namespace FacilityCompat
         private const float MidBtnW = 120f;
         private const float ScrollBarW = 16f;
         private const float LabelW = 84f;
-        private const float StatusH = 22f;
 
         // 配色常量
         private static readonly Color TitleColor = new(0.95f, 0.85f, 0.5f);
         private static readonly Color SectionLineColor = new(1f, 1f, 1f, 0.25f);
-        private static readonly Color OkColor = new(0.55f, 0.9f, 0.5f);
-        private static readonly Color ErrColor = new(0.95f, 0.5f, 0.45f);
         private static readonly Color DimColor = new(0.7f, 0.7f, 0.7f);
 
         private readonly FacilityCompatSettings settings;
@@ -44,11 +41,9 @@ namespace FacilityCompat
         private readonly HashSet<string> selected = new();
         private bool allSelected = true;
 
-        // 文件名（导出）与状态
+        // 文件名（导出）
         private string fileNameText = "";
         private string lastAutoName = "";
-        private string statusText = "";
-        private Color statusColor = Color.white;
 
         // 导入列表
         private List<FileInfo> recommended = new();
@@ -139,13 +134,6 @@ namespace FacilityCompat
             OnSourceChanged();
         }
 
-        /// <summary>设置底部状态行（颜色区分成功/失败）</summary>
-        private void SetStatus(string text, bool ok)
-        {
-            statusText = text;
-            statusColor = ok ? OkColor : ErrColor;
-        }
-
         /// <summary>应用并保存：声明式重建 → 重连已放置建筑 → 落盘（与主窗口入口同构，供导入后即时生效）</summary>
         private void ApplyAndSave()
         {
@@ -160,11 +148,14 @@ namespace FacilityCompat
             var path = FacilityPreset.Export(settings, ChosenSources(), fileNameText);
             if (string.IsNullOrEmpty(path))
             {
-                SetStatus("FC.MsgExportEmpty".Translate(), false);
+                Messages.Message("FC.MsgExportEmpty".Translate(), MessageTypeDefOf.RejectInput);
+                FCLogger.Warn("FC.MsgExportEmpty");
                 return;
             }
             RefreshPresetLists(); // 新文件出现在用户列表
-            SetStatus(string.Format("FC.MsgExported".Translate(), path), true);
+            Messages.Message(string.Format("FC.MsgExported".Translate(), path),
+                MessageTypeDefOf.NeutralEvent);
+            FCLogger.Msg("FC.MsgExported", path);
         }
 
         /// <summary>导入指定预设文件（缺 def 的组合自动跳过）</summary>
@@ -172,12 +163,16 @@ namespace FacilityCompat
         {
             if (!File.Exists(filePath))
             {
-                SetStatus("FC.MsgFileMissing".Translate(filePath), false);
+                Messages.Message("FC.MsgFileMissing".Translate(filePath),
+                    MessageTypeDefOf.RejectInput);
+                FCLogger.Warn("FC.MsgFileMissing", filePath);
                 return;
             }
             var (imported, skipped) = FacilityPreset.Import(filePath, settings);
             ApplyAndSave();
-            SetStatus(string.Format("FC.MsgImported".Translate(), imported, skipped), true);
+            Messages.Message(string.Format("FC.MsgImported".Translate(), imported, skipped),
+                MessageTypeDefOf.NeutralEvent);
+            FCLogger.Msg("FC.MsgImported", imported, skipped);
         }
 
         /// <summary>删除用户预设（先弹确认）</summary>
@@ -189,7 +184,9 @@ namespace FacilityCompat
                 {
                     File.Delete(file.FullName);
                     RefreshPresetLists();
-                    SetStatus(string.Format("FC.MsgDeleted".Translate(), file.Name), true);
+                    Messages.Message(string.Format("FC.MsgDeleted".Translate(), file.Name),
+                        MessageTypeDefOf.NeutralEvent);
+                    FCLogger.Msg("FC.MsgDeleted", file.Name);
                 }));
         }
 
@@ -198,7 +195,8 @@ namespace FacilityCompat
         {
             settings.ResetToOriginal();
             ApplyAndSave();
-            SetStatus("FC.MsgResetAllDone".Translate(), true);
+            Messages.Message("FC.MsgResetAllDone".Translate(), MessageTypeDefOf.NeutralEvent);
+            FCLogger.Msg("FC.MsgResetAllDone");
         }
 
         /// <summary>打开预设文件夹</summary>
@@ -299,16 +297,16 @@ namespace FacilityCompat
             }
             y += BtnH + RowGap;
 
-            // 预览行
+            // 预览行（高度用 Text.LineHeight，避免文字下半被裁剪）
             var prev = GUI.color;
             GUI.color = DimColor;
-            Widgets.Label(new Rect(x, y, w, RowGap + 14f),
+            Widgets.Label(new Rect(x, y, w, Text.LineHeight),
                 string.Format("FC.PresetPreviewFmt".Translate(),
                     previewLinks,
                     (allSelected ? settings.categories.Values.Sum(i => i.targets.Count)
                         : settings.categories.Values.Sum(i => i.targets.Count(t => selected.Contains(t.sourceMod))))));
             GUI.color = prev;
-            y += 26f;
+            y += Text.LineHeight + RowGap;
 
             // 分隔
             y += RowGap;
@@ -317,9 +315,8 @@ namespace FacilityCompat
             DrawSectionTitle(new Rect(x, y, w, SectionTitleH), "FC.PresetImportTitle".Translate());
             y += SectionTitleH;
 
-            // 两分区滚动列表高度：至底部全局行上方
-            float globalRowH = BtnH;
-            float listBottom = inRect.yMax - (globalRowH + StatusH + Gap * 2f);
+            // 两分区滚动列表高度：至底部全局行上方（预留标题 + 按钮行 + 三段行距，避免全局工具被挤出窗口）
+            float listBottom = inRect.yMax - (SectionTitleH + BtnH + RowGap * 3f);
             float listH = listBottom - y;
             var listRect = new Rect(x, y, w, listH);
             DrawImportList(listRect);
@@ -347,13 +344,6 @@ namespace FacilityCompat
                     FCDebug.EnableDraw = !FCDebug.EnableDraw;
             }
             y += BtnH + RowGap;
-
-            // ---- 状态行（底部） ----
-            var statusRect = new Rect(x, inRect.yMax - StatusH, w, StatusH);
-            prev = GUI.color;
-            GUI.color = statusColor;
-            Widgets.Label(statusRect, statusText);
-            GUI.color = prev;
         }
 
         /// <summary>预设文件展示名：省略 FC_Recommended_ / FC_Preset_ 前缀（完整路径仍由 tooltip 提供）</summary>
@@ -448,7 +438,9 @@ namespace FacilityCompat
             if (pendingAction == null)
             {
                 y += Gap;
-                var manualBtnRect = new Rect(0f, y, SmallBtnW * 1.4f, BtnH);
+                // 按钮宽度随文字自适应，避免「手动输入路径…」被截断
+                float manualBtnW = Text.CalcSize("FC.ImportManual".Translate()).x + 24f;
+                var manualBtnRect = new Rect(0f, y, manualBtnW, BtnH);
                 if (Widgets.ButtonText(manualBtnRect, "FC.ImportManual".Translate())
                     && !string.IsNullOrEmpty(manualPathText))
                 {

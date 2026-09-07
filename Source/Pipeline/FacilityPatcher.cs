@@ -7,10 +7,10 @@ namespace FacilityCompat
 {
     /// <summary>
     /// 设施注入应用器：单通道运行时声明式注入。
-    /// 每个目标的最终 linkableFacilities ≡ 配置声明状态（类别下所有设施 ∩ 白名单启用的集合），
-    /// 语义为"整体重建"而非"增量追加"：增删皆可（原始链接也可断开）、幂等（重复调用结果一致）、
-    /// 无重复条目、不落盘（每次启动 defs 自动回到 XML 原始状态，扫描基准天然无污染）。
-    /// 设置界面任意操作后可直接调用 ApplyInjection，当次会话即时生效，无需重启。
+    /// 每个目标的最终 linkableFacilities ≡ 配置声明状态（类别下所有设施 ∩ ShouldLink 判定的集合，
+    /// 未配置的设施回退到原始链接），语义为"整体重建"而非"增量追加"：增删皆可（原始链接也可断开）、
+    /// 幂等（重复调用结果一致）、无重复条目、不落盘（每次启动 defs 自动回到 XML 原始状态，
+    /// 扫描基准天然无污染）。设置界面任意操作后可直接调用 ApplyInjection，当次会话即时生效，无需重启。
     /// </summary>
     [StaticConstructorOnStartup]
     public static class FacilityPatcher
@@ -48,7 +48,7 @@ namespace FacilityCompat
                 settings.originalLinks = ScanOriginalLinks(settings.categories);
                 SnapshotOriginalComps(settings.categories);
 
-                // 阶段二：首次运行初始化（保守语义：仅保留原始链接）
+                // 阶段二：首次运行初始化（清空覆盖表，原始链接由 ShouldLink 兜底保留）
                 if (!settings.initialized)
                 {
                     settings.ResetToOriginal();
@@ -97,7 +97,7 @@ namespace FacilityCompat
 
                 foreach (var targetDef in GetTargetDefs(info))
                 {
-                    // 该目标的最终链接 = 类别全部设施 ∩ 白名单启用的
+                    // 该目标的最终链接 = 类别全部设施 ∩ ShouldLink 判定的
                     var finalList = allFacilityDefs
                         .Where(f => settings.ShouldLink(category, f.defName, targetDef.defName))
                         .ToList();
@@ -113,34 +113,45 @@ namespace FacilityCompat
                         // 声明状态为空：原版 comp 仅清空列表（保留结构），自建 comp 整体移除
                         if (comp != null)
                         {
-                            if (oldList != null && oldList.Count > 0)
-                                foreach (var f in oldList) affectedFacilities.Add(f); // 旧链接中的设施失去该目标
+                            bool hadLinks = oldList != null && oldList.Count > 0;
+
                             if (targetsWithOriginalComp.Contains(targetDef.defName))
                             {
-                                comp.linkableFacilities = new List<ThingDef>();
+                                // 原版 comp：仅当原本有链接时才清空（原本无链接则无变化）
+                                if (hadLinks)
+                                {
+                                    foreach (var f in oldList!) affectedFacilities.Add(f);
+                                    comp.linkableFacilities = new List<ThingDef>();
+                                    totalApplied++;
+                                }
                             }
                             else
                             {
+                                // 自建 comp：整体移除（移除本身即变更）
+                                if (hadLinks)
+                                    foreach (var f in oldList!) affectedFacilities.Add(f);
                                 foreach (var c in comps)
                                     targetDef.comps.Remove(c);
+                                totalApplied++;
                             }
                         }
                         continue;
                     }
 
-                    // 变更检测：内容相同则跳过写入（避免无谓覆盖与反向索引重建）
-                    if (!FacilityListEquals(oldList, finalList))
-                    {
-                        if (oldList != null)
-                            foreach (var f in oldList) affectedFacilities.Add(f);
-                        foreach (var f in finalList) affectedFacilities.Add(f);
-                    }
-
+                    // 变更检测：内容未变化且非新建 comp 时跳过写入与计数
+                    bool changed = !FacilityListEquals(oldList, finalList);
                     if (comp == null)
                     {
                         comp = new CompProperties_AffectedByFacilities();
                         targetDef.comps.Add(comp);
+                        changed = true;
                     }
+
+                    if (!changed) continue;
+
+                    if (oldList != null)
+                        foreach (var f in oldList) affectedFacilities.Add(f);
+                    foreach (var f in finalList) affectedFacilities.Add(f);
 
                     comp.linkableFacilities = finalList; // 整体重建，非追加
                     totalApplied++;

@@ -5,9 +5,10 @@ using Verse;
 namespace FacilityCompat
 {
     /// <summary>
-    /// 设施兼容补丁的持久化设置
-    /// 白名单模式：默认不注入任何跨 mod 连接，仅当用户/预设显式启用时才建立连接。
-    /// originalLinks 记录修改前的原始链接（每次启动扫描），"全部重置"即回到该状态。
+    /// 设施兼容补丁的持久化设置。
+    /// 三态覆盖表：linkedTargets 无 key = 未配置（回退保留原始链接 originalLinks）；
+    /// 有 key 且空列表 = 显式全部断开；有 key 且非空 = 显式启用集合。
+    /// 这样新增 mod 自带的原始连接不会被清空，同时用户仍可显式断开或启用。
     /// </summary>
     public class FacilityCompatSettings : ModSettings
     {
@@ -17,49 +18,57 @@ namespace FacilityCompat
         public Dictionary<string, CategoryInfo> categories = new();
 
         /// <summary>
-        /// 白名单：key = "类别|设施defName"，value = 启用的目标 defName 集合。
-        /// 无 key 或空 = 该设施不连接任何目标（含原始链接也可断开，见 ResetToOriginal）。
+        /// 覆盖表：key = "类别|设施defName"，value = 显式启用的目标 defName 集合。
+        /// 无 key = 未配置（回退原始链接）；空列表 = 显式全部断开；非空 = 显式启用集合。
         /// </summary>
         public Dictionary<string, List<string>> linkedTargets = new();
 
         /// <summary>原始链接（修改前状态），每次启动扫描</summary>
         public Dictionary<string, List<string>> originalLinks = new();
 
-        /// <summary>是否已完成首次初始化（持久化）：首次为 false 时执行 ResetToOriginal 保留原始链接</summary>
+        /// <summary>是否已完成首次初始化（持久化）：首次为 false 时清空覆盖表，让三态语义从干净状态生效</summary>
         public bool initialized;
 
-        /// <summary>检查某设施是否应注入某目标（白名单：默认 false）</summary>
+        /// <summary>
+        /// 检查某设施是否应注入某目标。三态语义：
+        /// linkedTargets 有 key → 按列表（空列表 = 显式全部断开）；
+        /// 无 key（未配置）→ 回退到原始链接（originalLinks），保留 mod 自带的连接声明。
+        /// </summary>
         public bool ShouldLink(string category, string facilityDefName, string targetDefName)
         {
             var key = MakeKey(category, facilityDefName);
-            if (!linkedTargets.TryGetValue(key, out var linked))
-                return false;
-            return linked.Contains(targetDefName);
+            if (linkedTargets.TryGetValue(key, out var linked))
+                return linked.Contains(targetDefName);
+            return originalLinks.TryGetValue(key, out var orig) && orig.Contains(targetDefName);
         }
 
-        /// <summary>切换某设施对某目标的注入状态</summary>
+        /// <summary>
+        /// 切换某设施对某目标的注入状态。
+        /// 首次操作某设施时先「物化」其当前生效状态（未配置 = 原始链接）为显式列表，
+        /// 再应用切换；切换后列表为空时保留空 key，表示「显式全部断开」（区别于未配置）。
+        /// </summary>
         public void ToggleLink(string category, string facilityDefName, string targetDefName)
         {
             var key = MakeKey(category, facilityDefName);
-            if (!linkedTargets.ContainsKey(key))
-                linkedTargets[key] = new List<string>();
+            if (!linkedTargets.TryGetValue(key, out var list))
+            {
+                list = originalLinks.TryGetValue(key, out var orig)
+                    ? new List<string>(orig)
+                    : new List<string>();
+                linkedTargets[key] = list;
+            }
 
-            if (linkedTargets[key].Contains(targetDefName))
-                linkedTargets[key].Remove(targetDefName);
+            if (list.Contains(targetDefName))
+                list.Remove(targetDefName);
             else
-                linkedTargets[key].Add(targetDefName);
-
-            if (linkedTargets[key].Count == 0)
-                linkedTargets.Remove(key);
+                list.Add(targetDefName);
         }
 
-        /// <summary>设置某设施对某目标的注入状态（幂等，已是目标状态时不改动）</summary>
+        /// <summary>设置某设施对某目标的注入状态（幂等，已是目标状态时不改动）。
+        /// 当前状态经 ShouldLink 判断（含原始链接兜底），避免把「未配置但原始已连」误当作断开。</summary>
         public void SetLink(string category, string facilityDefName, string targetDefName, bool linked)
         {
-            bool currentlyLinked = linkedTargets.TryGetValue(
-                MakeKey(category, facilityDefName), out var list)
-                && list.Contains(targetDefName);
-            if (linked == currentlyLinked) return; // 已是目标状态
+            if (linked == ShouldLink(category, facilityDefName, targetDefName)) return;
             ToggleLink(category, facilityDefName, targetDefName);
         }
 
@@ -69,93 +78,46 @@ namespace FacilityCompat
             var key = MakeKey(category, facilityDefName);
             if (!categories.TryGetValue(category, out var info))
             {
-                linkedTargets.Remove(key);
+                linkedTargets[key] = new List<string>(); // 类别失效：显式断开，避免兜底原始链接
                 return;
             }
             linkedTargets[key] = info.targets.Select(t => t.defName).ToList();
         }
 
-        /// <summary>该设施对当前类别全部禁用</summary>
+        /// <summary>该设施对当前类别全部禁用（显式空列表，区别于「未配置」）</summary>
         public void DisableAllTargets(string category, string facilityDefName)
         {
-            linkedTargets.Remove(MakeKey(category, facilityDefName));
+            linkedTargets[MakeKey(category, facilityDefName)] = new List<string>();
         }
 
-        /// <summary>
-        /// 获取模式。None 判定按"无白名单记录或记录为空"；
-        /// All = 全部有效目标（过滤 mod 卸载后失效的 defName）均启用；Manual = 部分启用。
-        /// </summary>
-        public FacilityMode GetMode(string category, string facilityDefName)
-        {
-            var key = MakeKey(category, facilityDefName);
-            if (!linkedTargets.TryGetValue(key, out var linked) || linked.Count == 0)
-                return FacilityMode.None;
-            if (categories.TryGetValue(category, out var info))
-            {
-                var validTargetNames = info.targets
-                    .Select(t => t.defName)
-                    .Where(fn => DefDatabase<ThingDef>.GetNamedSilentFail(fn) != null)
-                    .ToList();
-                if (validTargetNames.Count == 0) return FacilityMode.None;
-                return validTargetNames.All(linked.Contains)
-                    ? FacilityMode.All : FacilityMode.Manual;
-            }
-            return FacilityMode.Manual;
-        }
-
-        /// <summary>获取启用列表的副本（用于复制）</summary>
+        /// <summary>获取当前生效连接列表的副本（用于复制）：未配置时回退原始链接</summary>
         public List<string> GetLinkedList(string category, string facilityDefName)
         {
             var key = MakeKey(category, facilityDefName);
             if (linkedTargets.TryGetValue(key, out var linked))
                 return new List<string>(linked);
+            if (originalLinks.TryGetValue(key, out var orig))
+                return new List<string>(orig);
             return new List<string>();
         }
 
-        /// <summary>设置模式和启用列表（用于粘贴）</summary>
-        public void SetModeAndLinked(string category, string facilityDefName,
-            FacilityMode mode, List<string> linked)
+        /// <summary>设置某设施的启用目标列表（覆盖表，用于粘贴）</summary>
+        public void SetLinkedList(string category, string facilityDefName, List<string> linked)
         {
-            switch (mode)
-            {
-                case FacilityMode.All:
-                    EnableAllTargets(category, facilityDefName);
-                    break;
-                case FacilityMode.None:
-                    DisableAllTargets(category, facilityDefName);
-                    break;
-                case FacilityMode.Manual:
-                    var key = MakeKey(category, facilityDefName);
-                    if (linked == null || linked.Count == 0)
-                        linkedTargets.Remove(key);
-                    else
-                        linkedTargets[key] = new List<string>(linked);
-                    break;
-            }
+            linkedTargets[MakeKey(category, facilityDefName)] =
+                linked == null ? new List<string>() : new List<string>(linked);
         }
 
-        /// <summary>
-        /// 回到原始状态：白名单 = 原始链接（originalLinks 每次启动扫描的真原始状态）。
-        /// 新设施（originalLinks 无记录）自然无白名单记录 → 不连接任何目标。
-        /// </summary>
+        /// <summary>回到原始状态：清空所有显式覆盖（linkedTargets），由 ShouldLink 兜底返回原始链接</summary>
         public void ResetToOriginal()
         {
             linkedTargets.Clear();
-            foreach (var kvp in originalLinks)
-                linkedTargets[kvp.Key] = new List<string>(kvp.Value);
         }
 
-        /// <summary>
-        /// 将单个设施重置到原始状态：白名单 = 该设施的原始链接；
-        /// 无原始链接记录 → 移除白名单（不连接任何目标）。
-        /// </summary>
+        /// <summary>将单个设施重置到原始状态：移除其显式覆盖，由 ShouldLink 兜底返回原始链接</summary>
         public void ResetFacilityToOriginal(string category, string facilityDefName)
         {
-            var key = MakeKey(category, facilityDefName);
-            if (originalLinks.TryGetValue(key, out var originalTargets))
-                linkedTargets[key] = new List<string>(originalTargets);
-            else
-                linkedTargets.Remove(key);
+            linkedTargets.Remove(MakeKey(category, facilityDefName));
         }
 
         /// <summary>
@@ -173,24 +135,6 @@ namespace FacilityCompat
             }
         }
 
-        /// <summary>
-        /// 获取主设施（目标）维度的模式：
-        /// All = 全部设施连接它；None = 无设施连接它；Manual = 部分连接。
-        /// 与 GetMode（设施维度）对称。
-        /// </summary>
-        public FacilityMode GetTargetMode(string category, string targetDefName)
-        {
-            if (!categories.TryGetValue(category, out var info)) return FacilityMode.Manual;
-            int total = 0, linked = 0;
-            foreach (var fn in info.facilities.Values.SelectMany(l => l).Distinct())
-            {
-                total++;
-                if (ShouldLink(category, fn, targetDefName)) linked++;
-            }
-            if (total == 0 || linked == 0) return FacilityMode.None;
-            return linked == total ? FacilityMode.All : FacilityMode.Manual;
-        }
-
         /// <summary>获取当前连接某主设施（目标）的设施 defName 列表（用于复制）</summary>
         public List<string> GetTargetLinkedList(string category, string targetDefName)
         {
@@ -202,35 +146,24 @@ namespace FacilityCompat
             return result;
         }
 
-        /// <summary>
-        /// 设置主设施（目标）维度的模式与连接列表（用于粘贴）。
-        /// Manual 时 linked 之外的设施全部断开（与 SetModeAndLinked 的设施维度语义对称）。
-        /// </summary>
-        public void SetTargetModeAndLinked(string category, string targetDefName,
-            FacilityMode mode, List<string> linked)
+        /// <summary>设置连接某主设施的设施列表（覆盖表，用于粘贴；列表外的设施全部断开）</summary>
+        public void SetTargetLinkedList(string category, string targetDefName, List<string> linked)
         {
             if (!categories.TryGetValue(category, out var info)) return;
+            linked ??= new List<string>();
             var facilityNames = info.facilities.Values.SelectMany(l => l).Distinct();
             foreach (var fn in facilityNames)
-            {
-                bool target = mode switch
-                {
-                    FacilityMode.All => true,
-                    FacilityMode.None => false,
-                    _ => linked.Contains(fn),
-                };
-                SetLink(category, fn, targetDefName, target);
-            }
+                SetLink(category, fn, targetDefName, linked.Contains(fn));
         }
 
         // 导出数据
         public override void ExposeData()
         {
-            // 字段名 "linkedTargets" 与旧版黑名单 "excludedTargets" 不同：旧存档读不到则保持空，
-            // 配合下方 initializedV2（旧存档无此键 → false）触发一次 ResetToOriginal 重建白名单。
+            // 字段名 initialized 与旧版 initializedV2/V3 不同：旧存档读不到 → false，
+            // 触发一次 ResetToOriginal（清空覆盖表），让三态语义从干净状态生效。
             Scribe_Collections.Look(ref linkedTargets, "linkedTargets",
                 LookMode.Value, LookMode.Value, ref _keys, ref _values);
-            Scribe_Values.Look(ref initialized, "initializedV2");
+            Scribe_Values.Look(ref initialized, "initialized");
 
             linkedTargets ??= new Dictionary<string, List<string>>();
         }
@@ -263,6 +196,4 @@ namespace FacilityCompat
             this.sourceMod = sourceMod;
         }
     }
-
-    public enum FacilityMode { All, None, Manual }
 }

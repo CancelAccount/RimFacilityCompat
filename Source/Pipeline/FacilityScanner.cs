@@ -175,7 +175,8 @@ namespace FacilityCompat
             if (known != null)
             {
                 var displayName = known.translationKey.Translate().ToString();
-                return (displayName, displayName, ResolveType(known.typeName)!);
+                // key 用稳定的类名标识（不随语言变化），displayName 仅用于 UI 展示
+                return (known.typeName, displayName, ResolveType(known.typeName)!);
             }
 
             // 未知自定义类型维持原有按类名分组行为。

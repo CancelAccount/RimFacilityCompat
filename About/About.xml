@@ -10,10 +10,12 @@
 扫描所有已安装模组中的各类建筑，收集其声明的可链接设施（如各个mod中定义的衣柜、梳妆台等）。
 首次启动默认不进行注入，首次启动请在设置界面配置。
 配置界面有作者整理的预设，目前收录模组：鼠族（含金鸢尾兰扩展），绮罗，米莉拉，萌螈，原版扩展，边缘宜家，边缘仙路。
+注：生物科技DLC中的死眠建筑使用独立的绑定机制（连接的是正在死眠的pawn，而非建筑），不属于本模组的设施兼容范畴，不会被扫描或修改。
 
 Scans buildings across all installed mods and collects the linkable facilities they declare (such as the wardrobes, dressers, etc. defined by each mod).
 No injection is performed by default; please configure the presets in the in-game settings on first launch.
 The settings screen ships with presets curated by the author, currently covering: Ratkin (incl. the Iris Expansion), Kiiro, Milira, Moelotl, Vanilla Expanded, Rimkea and RimImmortal.
+Note: Deathrest buildings from the Biotech DLC use a separate binding system that connects to a deathresting pawn rather than a building, so they are outside the scope of this mod and are not scanned or modified.
 	</description>
 
 	<modDependencies>

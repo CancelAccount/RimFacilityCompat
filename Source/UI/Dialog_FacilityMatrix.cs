@@ -690,70 +690,51 @@ namespace FacilityCompat
         private static IEnumerable<string> AllFacilityDefNames(CategoryInfo info)
             => info.facilities.Values.SelectMany(l => l).Distinct();
 
-        /// <summary>复制当前选中项配置：附属设备 → 连接配置；主设施 → 连接模式</summary>
+        /// <summary>复制当前选中项配置：附属设备 → 连接配置；主设施 → 连接模式（只记录连接列表）</summary>
         private void CopySelected()
         {
             if (state.SelSide == Side.Accessory)
             {
-                var mode = settings.GetMode(currentCategory, state.SelDef);
                 var linked = settings.GetLinkedList(currentCategory, state.SelDef);
-                FacilityClipboard.Copy(mode, linked);
+                FacilityClipboard.Copy(currentCategory, linked);
             }
             else
             {
-                var mode = settings.GetTargetMode(currentCategory, state.SelDef);
                 var linked = settings.GetTargetLinkedList(currentCategory, state.SelDef);
-                FacilityClipboard.CopyTarget(mode, linked);
+                FacilityClipboard.CopyTarget(currentCategory, linked);
             }
             Messages.Message(
                 string.Format("FC.MsgCopied".Translate(), state.SelDef, currentCategory),
                 MessageTypeDefOf.NeutralEvent);
         }
 
-        /// <summary>粘贴剪贴板配置到当前选中项（按选中侧分派；沿用跨类别过滤语义）</summary>
+        /// <summary>粘贴剪贴板配置到当前选中项（仅限同类别，跨类别拦截）</summary>
         private void PasteToSelected()
         {
-            int filtered;
+            bool ok;
+            List<string> pastedLinked;
             if (state.SelSide == Side.Accessory)
-            {
-                var oldMode = settings.GetMode(currentCategory, state.SelDef);
-                filtered = FacilityClipboard.Paste(currentCategory, state.SelDef, settings,
-                    out var pastedMode, out var pastedLinked);
-
-                // Manual 模式下所有连接项在目标类别中无匹配 → 不做更改
-                if (pastedMode == oldMode && filtered > 0)
-                {
-                    Messages.Message(
-                        string.Format("FC.MsgPasteNoMatch".Translate(), state.SelDef),
-                        MessageTypeDefOf.RejectInput);
-                    return;
-                }
-
-                settings.SetModeAndLinked(currentCategory, state.SelDef, pastedMode, pastedLinked);
-            }
+                ok = FacilityClipboard.Paste(currentCategory, settings, out pastedLinked);
             else
+                ok = FacilityClipboard.PasteTarget(currentCategory, settings, out pastedLinked);
+
+            // 跨类别粘贴一律拦截（含原本可跨类别的全选/全空）
+            if (!ok)
             {
-                var oldMode = settings.GetTargetMode(currentCategory, state.SelDef);
-                filtered = FacilityClipboard.PasteTarget(currentCategory, state.SelDef, settings,
-                    out var pastedMode, out var pastedLinked);
-
-                // Manual 模式下所有连接项在目标类别中无匹配 → 不做更改
-                if (pastedMode == oldMode && filtered > 0)
-                {
-                    Messages.Message(
-                        string.Format("FC.MsgPasteNoMatch".Translate(), state.SelDef),
-                        MessageTypeDefOf.RejectInput);
-                    return;
-                }
-
-                settings.SetTargetModeAndLinked(currentCategory, state.SelDef, pastedMode, pastedLinked);
+                Messages.Message(
+                    string.Format("FC.MsgPasteCrossCategory".Translate(), state.SelDef),
+                    MessageTypeDefOf.RejectInput);
+                return;
             }
+
+            if (state.SelSide == Side.Accessory)
+                settings.SetLinkedList(currentCategory, state.SelDef, pastedLinked);
+            else
+                settings.SetTargetLinkedList(currentCategory, state.SelDef, pastedLinked);
 
             ApplyAndSave();
             Messages.Message(
-                filtered > 0
-                    ? string.Format("FC.MsgPastedFiltered".Translate(), state.SelDef, filtered)
-                    : string.Format("FC.MsgPasted".Translate(), state.SelDef),
+                string.Format("FC.MsgPasted".Translate(), state.SelDef),
                 MessageTypeDefOf.NeutralEvent);
         }
     }

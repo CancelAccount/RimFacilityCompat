@@ -14,8 +14,7 @@
 	<FC.MsgCopied>已复制 [{0}] 的配置（类别: {1}）</FC.MsgCopied>
 	<FC.MsgReset>已重置 [{0}] 的链接</FC.MsgReset>
 	<FC.MsgPasted>已粘贴配置到 [{0}]</FC.MsgPasted>
-	<FC.MsgPastedFiltered>已粘贴配置到 [{0}]，{1} 个目标被过滤（类别不匹配）</FC.MsgPastedFiltered>
-	<FC.MsgPasteNoMatch>粘贴到 [{0}] 失败：所有目标均不匹配，未做更改</FC.MsgPasteNoMatch>
+	<FC.MsgPasteCrossCategory>粘贴到 [{0}] 失败：只能在同一类别内粘贴</FC.MsgPasteCrossCategory>
 
 	<!-- ====== 双栏配置窗口 ====== -->
 	<FC.UiGlobalMenu>全局操作</FC.UiGlobalMenu>

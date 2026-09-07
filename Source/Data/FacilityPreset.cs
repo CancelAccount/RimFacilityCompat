@@ -10,10 +10,9 @@ namespace FacilityCompat
 {
     /// <summary>
     /// 配置预设的导入导出（v2 语义表，统一格式）。
-    /// 预设只含 <Link Target="目标defName" Facility="设施defName"/> 的声明式白名单：
+    /// 预设只含 <Link Target="目标defName" Facility="设施defName"/> 的声明式启用连接：
     /// 一条 Link = "该目标应当连接该设施"。导出按来源过滤当前启用连接；导入对每条 Link
-    /// 增量启用（SetLink true），缺 def / 无设施 comp / 无类别归属的组合自动跳过，
-    /// 避免在缺少对应 mod 时尝试连接不存在的 def。
+    /// 增量启用（SetLink true），缺 def / 无设施 comp / 无类别归属的组合自动跳过，避免在缺少对应 mod 时尝试连接不存在的 def。
     /// </summary>
     public static class FacilityPreset
     {

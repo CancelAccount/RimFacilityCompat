@@ -13,8 +13,7 @@
 	<FC.MsgCopied>Copied config of [{0}] (category: {1})</FC.MsgCopied>
 	<FC.MsgReset>Reset [{0}] links</FC.MsgReset>
 	<FC.MsgPasted>Pasted config to [{0}]</FC.MsgPasted>
-	<FC.MsgPastedFiltered>Pasted config to [{0}], {1} targets filtered (category mismatch)</FC.MsgPastedFiltered>
-	<FC.MsgPasteNoMatch>Paste to [{0}] failed: no matching targets, unchanged</FC.MsgPasteNoMatch>
+	<FC.MsgPasteCrossCategory>Paste to [{0}] failed: paste is only allowed within the same category</FC.MsgPasteCrossCategory>
 
 	<!-- ====== Dual-panel config window ====== -->
 	<FC.UiGlobalMenu>Global Actions</FC.UiGlobalMenu>
