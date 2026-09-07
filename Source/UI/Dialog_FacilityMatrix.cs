@@ -92,7 +92,7 @@ namespace FacilityCompat
 
         /// <summary>
         /// 应用并保存：声明式重建全部目标的设施链接 → 重连已放置建筑 → 落盘。
-        /// 所有配置改动点（勾选/排除/重置/粘贴/导入）统一走此入口，当次会话即时生效。
+        /// 所有配置改动点（勾选/断开/重置/粘贴/导入）统一走此入口，当次会话即时生效。
         /// 重连必须在注入后顺序执行（直接调用而非事件，保证时序确定）；
         /// 设置界面期间游戏自动暂停，重连无卡顿风险。
         /// </summary>
@@ -368,7 +368,7 @@ namespace FacilityCompat
                 // 附属设备已选中 → 主设施图标显示其与选中附属设备的连接状态
                 e => state.SelSide == Side.Accessory
                     ? (settings.ShouldLink(currentCategory, state.SelDef, e.defName)
-                        ? GridMark.Linked : GridMark.Excluded)
+                        ? GridMark.Linked : GridMark.Unlinked)
                     : GridMark.None,
                 state.SelSide == Side.Main ? state.SelDef : null,
                 (e, mark) => BuildTip(e, mark, "FC.UiMainSide".Translate()));
@@ -402,7 +402,7 @@ namespace FacilityCompat
                 // 主设施已选中 → 附属设备图标显示其与选中主设施的连接状态
                 e => state.SelSide == Side.Main
                     ? (settings.ShouldLink(currentCategory, e.defName, state.SelDef)
-                        ? GridMark.Linked : GridMark.Excluded)
+                        ? GridMark.Linked : GridMark.Unlinked)
                     : GridMark.None,
                 state.SelSide == Side.Accessory ? state.SelDef : null,
                 (e, mark) => BuildTip(e, mark, "FC.UiAccessorySide".Translate()));
@@ -496,7 +496,7 @@ namespace FacilityCompat
                 sideLabel
             };
             if (mark == GridMark.Linked) lines.Add("FC.TipLinked".Translate());
-            else if (mark == GridMark.Excluded) lines.Add("FC.TipExcluded".Translate());
+            else if (mark == GridMark.Unlinked) lines.Add("FC.TipUnlinked".Translate());
             return string.Join("\n", lines);
         }
 
@@ -581,7 +581,7 @@ namespace FacilityCompat
             }
             btnRect.x += step;
 
-            // 复制：按选中侧分派（附属设备 → 排除配置；主设施 → 连接模式）
+            // 复制：按选中侧分派（附属设备 → 连接配置；主设施 → 连接模式）
             if (Widgets.ButtonText(btnRect, "FC.BtnCopy".Translate(), active: state.HasSelection))
                 CopySelected();
             btnRect.x += step;
@@ -600,113 +600,16 @@ namespace FacilityCompat
             btnRect.x += step;
             DrawBatchButton(btnRect, false);
 
-            // 全局操作（右下角）：全局启用/重置、预设导入导出、调试开关
+            // 全局操作（右下角）：预设导入/导出、全部重置、调试开关（独立对话框承载，替代原多层菜单）
             var globalRect = new Rect(bar.xMax - BtnW, bar.y + StatusH, BtnW, BtnRowH);
             if (Widgets.ButtonText(globalRect, "FC.UiGlobalMenu".Translate()))
-                Find.WindowStack.Add(BuildGlobalMenu());
+                Find.WindowStack.Add(new Dialog_PresetManager(settings));
         }
 
         // ==================== 全局操作 ====================
-
-        /// <summary>构建全局操作菜单：全局启用/重置、预设导出/导入、调试工具开关</summary>
-        private FloatMenu BuildGlobalMenu()
-        {
-            var options = new List<FloatMenuOption>
-            {
-                new("FC.BtnEnableAll".Translate(), delegate
-                {
-                    settings.EnableAll();
-                    ApplyAndSave();
-                }),
-                new("FC.BtnResetAll".Translate(), delegate
-                {
-                    settings.ResetToOriginal();
-                    ApplyAndSave();
-                }),
-                new("FC.BtnExport".Translate(), delegate
-                {
-                    Find.WindowStack.Add(BuildExportDialog());
-                }),
-                new("FC.BtnImport".Translate(), delegate
-                {
-                    Find.WindowStack.Add(BuildImportMenu());
-                })
-            };
-
-            // 调试工具开关（仅调试版显示，由全局版本常量 FCDebug.DebugBuild 定夺）
-            if (FCDebug.DebugBuild)
-            {
-                options.Add(new FloatMenuOption(
-                    (FCDebug.EnableLog ? "✓ " : "× ") + "FC.DbgLog".Translate(),
-                    () => FCDebug.EnableLog = !FCDebug.EnableLog));
-                options.Add(new FloatMenuOption(
-                    (FCDebug.EnableDraw ? "✓ " : "× ") + "FC.DbgDraw".Translate(),
-                    () => FCDebug.EnableDraw = !FCDebug.EnableDraw));
-            }
-
-            return new FloatMenu(options);
-        }
-
-        /// <summary>构建导出对话框（输入预设名 → 导出到 Presets 目录）</summary>
-        private Dialog_TextInput BuildExportDialog()
-        {
-            var defaultName = $"FC_Preset_{System.DateTime.Now:yyyyMMdd_HHmmss}";
-            return new Dialog_TextInput(defaultName,
-                "FC.DlgExportMsg".Translate(),
-                name =>
-                {
-                    var path = FacilityPreset.Export(settings, name);
-                    Messages.Message(string.Format("FC.MsgExported".Translate(), path),
-                        MessageTypeDefOf.NeutralEvent);
-                }, 60);
-        }
-
-        /// <summary>构建导入菜单（手动输入路径 / 预设文件列表 / 打开预设文件夹）</summary>
-        private FloatMenu BuildImportMenu()
-        {
-            var options = new List<FloatMenuOption>
-            {
-                new("FC.ImportManual".Translate(), delegate
-                {
-                    Find.WindowStack.Add(new Dialog_TextInput("",
-                        "FC.DlgImportMsg".Translate(),
-                        path =>
-                        {
-                            var (imported, skipped) = FacilityPreset.Import(path, settings);
-                            ApplyAndSave();
-                            Messages.Message(
-                                string.Format("FC.MsgImported".Translate(), imported, skipped),
-                                MessageTypeDefOf.NeutralEvent);
-                        }, 200));
-                })
-            };
-
-            foreach (var file in FacilityPreset.ListPresets(settings.modDir))
-            {
-                var f = file;
-                options.Add(new FloatMenuOption(f.Name, delegate
-                {
-                    var (imported, skipped) = FacilityPreset.Import(f.FullName, settings);
-                    ApplyAndSave();
-                    Messages.Message(
-                        string.Format("FC.MsgImported".Translate(), imported, skipped),
-                        MessageTypeDefOf.NeutralEvent);
-                }));
-            }
-
-            options.Add(new FloatMenuOption("FC.ImportOpenFolder".Translate(), delegate
-            {
-                var dir = System.IO.Path.Combine(settings.modDir, "Presets");
-                System.IO.Directory.CreateDirectory(dir);
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
-                {
-                    FileName = dir,
-                    UseShellExecute = true
-                });
-            }));
-
-            return new FloatMenu(options);
-        }
+        // 全部全局操作已迁移至 Dialog_PresetManager（预设导入/导出/全部重置/调试开关），
+        // 由右下「全局操作」按钮打开，替代原 BuildGlobalMenu/BuildExportMenu/BuildImportMenu
+        // 多层 FloatMenu 链（选项多时挤在右下角不美观）。
 
         /// <summary>构建状态行文本：选中项名称 + 已连接/总数；无选中时给出操作引导</summary>
         private string BuildStatusText()
@@ -787,20 +690,20 @@ namespace FacilityCompat
         private static IEnumerable<string> AllFacilityDefNames(CategoryInfo info)
             => info.facilities.Values.SelectMany(l => l).Distinct();
 
-        /// <summary>复制当前选中项配置：附属设备 → 排除配置；主设施 → 连接模式</summary>
+        /// <summary>复制当前选中项配置：附属设备 → 连接配置；主设施 → 连接模式</summary>
         private void CopySelected()
         {
             if (state.SelSide == Side.Accessory)
             {
                 var mode = settings.GetMode(currentCategory, state.SelDef);
-                var excluded = settings.GetExcludedList(currentCategory, state.SelDef);
-                FacilityClipboard.Copy(currentCategory, state.SelDef, mode, excluded);
+                var linked = settings.GetLinkedList(currentCategory, state.SelDef);
+                FacilityClipboard.Copy(mode, linked);
             }
             else
             {
                 var mode = settings.GetTargetMode(currentCategory, state.SelDef);
                 var linked = settings.GetTargetLinkedList(currentCategory, state.SelDef);
-                FacilityClipboard.CopyTarget(currentCategory, state.SelDef, mode, linked);
+                FacilityClipboard.CopyTarget(mode, linked);
             }
             Messages.Message(
                 string.Format("FC.MsgCopied".Translate(), state.SelDef, currentCategory),
@@ -815,9 +718,9 @@ namespace FacilityCompat
             {
                 var oldMode = settings.GetMode(currentCategory, state.SelDef);
                 filtered = FacilityClipboard.Paste(currentCategory, state.SelDef, settings,
-                    out var pastedMode, out var pastedExcluded);
+                    out var pastedMode, out var pastedLinked);
 
-                // Manual 模式下所有排除项在目标类别中无匹配 → 不做更改
+                // Manual 模式下所有连接项在目标类别中无匹配 → 不做更改
                 if (pastedMode == oldMode && filtered > 0)
                 {
                     Messages.Message(
@@ -826,7 +729,7 @@ namespace FacilityCompat
                     return;
                 }
 
-                settings.SetModeAndExcluded(currentCategory, state.SelDef, pastedMode, pastedExcluded);
+                settings.SetModeAndLinked(currentCategory, state.SelDef, pastedMode, pastedLinked);
             }
             else
             {

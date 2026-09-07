@@ -23,8 +23,8 @@ namespace FacilityCompat
         }
     }
 
-    /// <summary>图标角标状态：无标记（未选中对侧时）/ 已连接 / 已排除</summary>
-    public enum GridMark { None, Linked, Excluded }
+    /// <summary>图标角标状态：无标记（未选中对侧时）/ 已连接 / 未连接</summary>
+    public enum GridMark { None, Linked, Unlinked }
 
     /// <summary>
     /// 图标网格节控件（纯绘制，被动视图）：
@@ -51,8 +51,8 @@ namespace FacilityCompat
         private static readonly Color SectionLineColor = new(0.95f, 0.75f, 0.4f, 0.35f);
         private static readonly Color SelectedBorderColor = new(1f, 0.82f, 0.25f);
         private static readonly Color LinkedMarkColor = new(0.3f, 0.9f, 0.4f);
-        private static readonly Color ExcludedMarkColor = new(0.95f, 0.3f, 0.3f);
-        private static readonly Color ExcludedIconColor = new(0.45f, 0.45f, 0.45f, 0.65f);
+        private static readonly Color UnlinkedMarkColor = new(0.95f, 0.3f, 0.3f);
+        private static readonly Color UnlinkedIconColor = new(0.45f, 0.45f, 0.45f, 0.65f);
         private static readonly Color MissingDefColor = new(0.22f, 0.22f, 0.22f);
         private const float MarkSize = 9f;   // 角标方块边长
         private const float MarkMargin = 2f; // 角标与图标边缘间距
@@ -127,11 +127,11 @@ namespace FacilityCompat
         {
             var iconRect = new Rect(cell.x, cell.y, IconSize, IconSize);
 
-            // 图标：排除态灰度渲染；失效 defName（def == null）画深灰占位块
+            // 图标：未连接态灰度渲染；失效 defName（def == null）画深灰占位块
             if (entry.def != null)
             {
                 var prev = GUI.color;
-                if (mark == GridMark.Excluded) GUI.color = ExcludedIconColor;
+                if (mark == GridMark.Unlinked) GUI.color = UnlinkedIconColor;
                 Widgets.DefIcon(iconRect, entry.def);
                 GUI.color = prev;
             }
@@ -153,13 +153,13 @@ namespace FacilityCompat
             Text.Font = prevFont;
             Text.Anchor = prevAnchor;
 
-            // 状态角标：右上角色块（绿 = 已连接，红 = 已排除）
+            // 状态角标：右上角色块（绿 = 已连接，红 = 未连接）
             var markRect = new Rect(iconRect.xMax - MarkSize - MarkMargin,
                 iconRect.y + MarkMargin, MarkSize, MarkSize);
             if (mark == GridMark.Linked)
                 Widgets.DrawBoxSolid(markRect, LinkedMarkColor);
-            else if (mark == GridMark.Excluded)
-                Widgets.DrawBoxSolid(markRect, ExcludedMarkColor);
+            else if (mark == GridMark.Unlinked)
+                Widgets.DrawBoxSolid(markRect, UnlinkedMarkColor);
 
             // 悬停高亮与选中描边
             if (Mouse.IsOver(iconRect))

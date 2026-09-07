@@ -24,24 +24,39 @@
 	<FC.UiMainSide>[Main Building]</FC.UiMainSide>
 	<FC.UiAccessorySide>[Accessory]</FC.UiAccessorySide>
 	<FC.TipLinked>Linked</FC.TipLinked>
-	<FC.TipExcluded>Excluded</FC.TipExcluded>
+	<FC.TipUnlinked>Unlinked</FC.TipUnlinked>
 	<FC.UiSelectedFmt>Selected: {0} → {1}/{2} linked</FC.UiSelectedFmt>
 	<FC.UiNoSelection>Click an icon to select, then click the other side to toggle links; use batch buttons for continuous painting</FC.UiNoSelection>
 
 	<!-- Top buttons -->
-	<FC.BtnEnableAll>Enable All (not recommended)</FC.BtnEnableAll>
 	<FC.BtnResetAll>Reset All</FC.BtnResetAll>
 	<FC.BtnExport>Export</FC.BtnExport>
 	<FC.BtnImport>Import</FC.BtnImport>
+	<FC.ExportAllSources>All Sources</FC.ExportAllSources>
 	<FC.MsgExported>Preset exported: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>No preset files to import</FC.MsgNoPresets>
-	<FC.MsgImported>Imported {0} exclusions, {1} skipped (not found)</FC.MsgImported>
+	<FC.MsgImported>Imported {0} links, {1} skipped (missing or invalid)</FC.MsgImported>
+	<FC.MsgExportEmpty>No enabled links to export, configure first</FC.MsgExportEmpty>
 	<FC.DlgExportTitle>Export Preset</FC.DlgExportTitle>
 	<FC.DlgExportMsg>Enter preset file name:</FC.DlgExportMsg>
 	<FC.DlgImportTitle>Import Preset</FC.DlgImportTitle>
 	<FC.DlgImportMsg>Enter full path to preset XML file:</FC.DlgImportMsg>
 	<FC.ImportManual>Enter file path...</FC.ImportManual>
 	<FC.ImportOpenFolder>Open Presets Folder</FC.ImportOpenFolder>
+	<FC.ImportOfficialHeader>— Author Presets —</FC.ImportOfficialHeader>
+	<FC.ImportUserHeader>— My Presets —</FC.ImportUserHeader>
+	<FC.PresetExportTitle>Export Links</FC.PresetExportTitle>
+	<FC.PresetImportTitle>Import Links</FC.PresetImportTitle>
+	<FC.PresetGlobalTitle>Global Tools</FC.PresetGlobalTitle>
+	<FC.PresetFileNameLabel>File name:</FC.PresetFileNameLabel>
+	<FC.PresetPreviewFmt>Will export {0} links ({1} targets)</FC.PresetPreviewFmt>
+	<FC.PresetEmptyAll>No presets to import (export one from the matrix, or drop XML files into the Presets folder)</FC.PresetEmptyAll>
+	<FC.BtnDelete>Delete</FC.BtnDelete>
+	<FC.MsgDeleteConfirm>Delete preset "{0}"? This cannot be undone.</FC.MsgDeleteConfirm>
+	<FC.MsgDeleted>Deleted preset "{0}"</FC.MsgDeleted>
+	<FC.MsgFileMissing>File not found: {0}</FC.MsgFileMissing>
+	<FC.MsgResetAllDone>Reset everything to original state</FC.MsgResetAllDone>
+	<FC.ExportAllSourcesTip>Full backup: exports currently enabled links of all sources (including original links). To build a single-source recommendation pack, tick only that source.</FC.ExportAllSourcesTip>
 
 	<!-- Facility row buttons -->
 	<FC.BtnAllOn>Enable All</FC.BtnAllOn>

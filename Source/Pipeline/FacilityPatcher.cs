@@ -7,8 +7,8 @@ namespace FacilityCompat
 {
     /// <summary>
     /// 设施注入应用器：单通道运行时声明式注入。
-    /// 每个目标的最终 linkableFacilities ≡ 配置声明状态（类别下所有设施 ∩ 未被排除的集合），
-    /// 语义为"整体重建"而非"增量追加"：增删皆可（原始链接也可排除）、幂等（重复调用结果一致）、
+    /// 每个目标的最终 linkableFacilities ≡ 配置声明状态（类别下所有设施 ∩ 白名单启用的集合），
+    /// 语义为"整体重建"而非"增量追加"：增删皆可（原始链接也可断开）、幂等（重复调用结果一致）、
     /// 无重复条目、不落盘（每次启动 defs 自动回到 XML 原始状态，扫描基准天然无污染）。
     /// 设置界面任意操作后可直接调用 ApplyInjection，当次会话即时生效，无需重启。
     /// </summary>
@@ -45,7 +45,6 @@ namespace FacilityCompat
                 // 阶段一：扫描。运行时注入不落盘，defs 每次启动自动干净，
                 // originalLinks 与连通分量分组天然基于真原始状态
                 settings.categories = FacilityScanner.ScanAll();
-                settings.scanCompleted = true;
                 settings.originalLinks = ScanOriginalLinks(settings.categories);
                 SnapshotOriginalComps(settings.categories);
 
@@ -98,7 +97,7 @@ namespace FacilityCompat
 
                 foreach (var targetDef in GetTargetDefs(info))
                 {
-                    // 该目标的最终链接 = 类别全部设施 ∩ 未被排除的
+                    // 该目标的最终链接 = 类别全部设施 ∩ 白名单启用的
                     var finalList = allFacilityDefs
                         .Where(f => settings.ShouldLink(category, f.defName, targetDef.defName))
                         .ToList();
@@ -186,6 +185,21 @@ namespace FacilityCompat
                 {
                     var comp = thing.TryGetComp<CompAffectedByFacilities>();
                     if (comp == null) continue;
+
+                    // def 层 comp 已被还原（ApplyInjection 移除了本 mod 自建的 comp）→ 实例 comp 成为孤儿。
+                    // 直接走引擎 RelinkAll 会崩：PotentialThingsToLinkTo 对 def.GetCompProperties
+                    // 的结果不判空即访问 linkableFacilities，def 已无该 comp → NullReferenceException。
+                    // 这里手动解除残留双向登记并从实例移除，使实例与 def 声明一致（此后引擎按普通建筑处理）。
+                    if (thing.def.GetCompProperties<CompProperties_AffectedByFacilities>() == null)
+                    {
+                        foreach (var f in comp.LinkedFacilitiesListForReading)
+                            f.TryGetComp<CompFacility>()?.Notify_LinkRemoved(thing);
+                        comp.LinkedFacilitiesListForReading.Clear();
+                        if (thing is ThingWithComps twc) // 有 comp 实例必为 ThingWithComps
+                            twc.AllComps.Remove(comp);
+                        continue;
+                    }
+
                     comp.Notify_ThingChanged();
                     relinked++;
                 }

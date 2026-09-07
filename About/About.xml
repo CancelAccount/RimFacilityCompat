@@ -1,13 +1,27 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
-	<name>设施兼容补丁</name>
+	<name>设施兼容补丁 RimFacilityCompat</name>
 	<author>Cancelation</author>
 	<packageId>Cancelation.FacilityCompat</packageId>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>
 	<description>
-		扫描所有已安装模组中的各类建筑，收集其声明的可链接设施（如各个mod中定义的衣柜、梳妆台等）
-		在设置界面中进行配置，注入到对应建筑的设施链接列表中。
-		</description>
+扫描所有已安装模组中的各类建筑，收集其声明的可链接设施（如各个mod中定义的衣柜、梳妆台等）。
+首次启动默认不进行注入，首次启动请在设置界面配置。
+配置界面有作者整理的预设，目前收录模组：鼠族（含金鸢尾兰扩展），绮罗，米莉拉，萌螈，原版扩展，边缘宜家，边缘仙路。
+
+Scans buildings across all installed mods and collects the linkable facilities they declare (such as the wardrobes, dressers, etc. defined by each mod).
+No injection is performed by default; please configure the presets in the in-game settings on first launch.
+The settings screen ships with presets curated by the author, currently covering: Ratkin (incl. the Iris Expansion), Kiiro, Milira, Moelotl, Vanilla Expanded, Rimkea and RimImmortal.
+	</description>
+
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
 </ModMetaData>

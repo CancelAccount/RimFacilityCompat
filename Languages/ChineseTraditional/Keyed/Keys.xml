@@ -24,24 +24,39 @@
 	<FC.UiMainSide>[主設施]</FC.UiMainSide>
 	<FC.UiAccessorySide>[附屬設備]</FC.UiAccessorySide>
 	<FC.TipLinked>已連接</FC.TipLinked>
-	<FC.TipExcluded>已排除</FC.TipExcluded>
+	<FC.TipUnlinked>未連接</FC.TipUnlinked>
 	<FC.UiSelectedFmt>已選取: {0} → 已連接 {1}/{2}</FC.UiSelectedFmt>
 	<FC.UiNoSelection>點擊任意圖示選取，再點擊另一側圖示切換連接；選取後可用批次按鈕連續設定</FC.UiNoSelection>
 
 	<!-- Top buttons -->
-	<FC.BtnEnableAll>全部兼容（不建議）</FC.BtnEnableAll>
 	<FC.BtnResetAll>全部重置</FC.BtnResetAll>
 	<FC.BtnExport>匯出</FC.BtnExport>
 	<FC.BtnImport>匯入</FC.BtnImport>
+	<FC.ExportAllSources>全部來源</FC.ExportAllSources>
 	<FC.MsgExported>預設已匯出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>沒有可匯入的預設檔案</FC.MsgNoPresets>
-	<FC.MsgImported>已匯入 {0} 條排除設定，跳過 {1} 條（不存在）</FC.MsgImported>
+	<FC.MsgImported>已匯入 {0} 條連結，跳過 {1} 條（缺失或無效）</FC.MsgImported>
+	<FC.MsgExportEmpty>沒有可匯出的連結，請先設定連結</FC.MsgExportEmpty>
 	<FC.DlgExportTitle>匯出預設</FC.DlgExportTitle>
 	<FC.DlgExportMsg>請輸入預設檔案名稱：</FC.DlgExportMsg>
 	<FC.DlgImportTitle>匯入預設</FC.DlgImportTitle>
 	<FC.DlgImportMsg>請輸入預設檔案的完整路徑：</FC.DlgImportMsg>
 	<FC.ImportManual>手動輸入路徑...</FC.ImportManual>
 	<FC.ImportOpenFolder>開啟預設資料夾</FC.ImportOpenFolder>
+	<FC.ImportOfficialHeader>—— 作者的預設 ——</FC.ImportOfficialHeader>
+	<FC.ImportUserHeader>—— 我的預設 ——</FC.ImportUserHeader>
+	<FC.PresetExportTitle>匯出連接</FC.PresetExportTitle>
+	<FC.PresetImportTitle>匯入連接</FC.PresetImportTitle>
+	<FC.PresetGlobalTitle>全域工具</FC.PresetGlobalTitle>
+	<FC.PresetFileNameLabel>檔名:</FC.PresetFileNameLabel>
+	<FC.PresetPreviewFmt>將匯出 {0} 條連接（{1} 個目標）</FC.PresetPreviewFmt>
+	<FC.PresetEmptyAll>沒有可匯入的預設（先在主介面設定後匯出，或放入 Presets 資料夾）</FC.PresetEmptyAll>
+	<FC.BtnDelete>刪除</FC.BtnDelete>
+	<FC.MsgDeleteConfirm>刪除預設「{0}」？此操作無法復原。</FC.MsgDeleteConfirm>
+	<FC.MsgDeleted>已刪除預設「{0}」</FC.MsgDeleted>
+	<FC.MsgFileMissing>檔案不存在：{0}</FC.MsgFileMissing>
+	<FC.MsgResetAllDone>已全部重設為原始狀態</FC.MsgResetAllDone>
+	<FC.ExportAllSourcesTip>全量備份：匯出所有來源目標目前啟用的連接（含原始連接）。要製作單一來源推薦包請只勾選該來源。</FC.ExportAllSourcesTip>
 
 	<!-- Facility row buttons -->
 	<FC.BtnAllOn>全部啟用</FC.BtnAllOn>
