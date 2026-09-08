@@ -21,13 +21,4 @@ P.S. Deathrest buildings from the Biotech DLC use a separate binding system that
 If you encounter any bugs, please report them in the workshop.
 The author's preset package is currently covering: Ratkin (incl. Oberonia aurea), Kiiro, Milira, Moelotl, Vanilla Expanded, Rimkea and RimImmortal.
 	</description>
-
-	<modDependencies>
-		<li>
-			<packageId>brrainz.harmony</packageId>
-			<displayName>Harmony</displayName>
-			<steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
-			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
-		</li>
-	</modDependencies>
 </ModMetaData>
