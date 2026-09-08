@@ -91,20 +91,21 @@ namespace FacilityCompat
         }
 
         /// <summary>
-        /// 应用并保存：声明式重建全部目标的设施链接 → 重连已放置建筑 → 落盘。
-        /// 所有配置改动点（勾选/断开/重置/粘贴/导入）统一走此入口，当次会话即时生效。
+        /// 应用并保存：按作用域声明式重建目标链接 → 重连实际变化的已放置建筑 → 落盘。
+        /// 所有配置改动点统一走此入口，当次会话即时生效；范围参数把注入收敛到受影响类别/目标（null = 全量）。
         /// 重连必须在注入后顺序执行（直接调用而非事件，保证时序确定）；
         /// 设置界面期间游戏自动暂停，重连无卡顿风险。
         /// </summary>
-        private void ApplyAndSave()
+        private void ApplyAndSave(string? onlyCategory = null, string? onlyTarget = null)
         {
+            FacilityPatcher.InjectionResult result;
             using (FCDebug.TimeScope("UI操作·声明式注入 ApplyInjection"))
             {
-                FacilityPatcher.ApplyInjection(settings);
+                result = FacilityPatcher.ApplyInjection(settings, onlyCategory, onlyTarget);
             }
             using (FCDebug.TimeScope("UI操作·重连已放置建筑 RelinkSpawnedThings"))
             {
-                FacilityPatcher.RelinkSpawnedThings();
+                FacilityPatcher.RelinkSpawnedThings(result.ChangedTargets);
             }
             using (FCDebug.TimeScope("UI操作·设置落盘 Write"))
             {
@@ -238,7 +239,7 @@ namespace FacilityCompat
                 else
                 {
                     settings.ToggleLink(currentCategory, accessory, main);
-                    ApplyAndSave();
+                    ApplyAndSave(currentCategory, main); // 单条切换仅波及该主设施
                 }
                 return;
             }
@@ -524,7 +525,7 @@ namespace FacilityCompat
             if (!state.BatchActive) return;
             state.ExitBatch();
             draggable = true;
-            ApplyAndSave();
+            ApplyAndSave(currentCategory);
         }
 
         /// <summary>批量应用：把 (附属设备→主设施) 连接设为批量目标状态（inverted = 右键反向；
@@ -580,10 +581,15 @@ namespace FacilityCompat
             if (Widgets.ButtonText(btnRect, "FC.BtnReset".Translate(), active: state.HasSelection))
             {
                 if (state.SelSide == Side.Accessory)
+                {
                     settings.ResetFacilityToOriginal(currentCategory, state.SelDef);
+                    ApplyAndSave(currentCategory); // 设施侧重置波及类别下多个目标
+                }
                 else
+                {
                     settings.ResetTargetToOriginal(currentCategory, state.SelDef);
-                ApplyAndSave();
+                    ApplyAndSave(currentCategory, state.SelDef); // 主设施侧重置仅波及该主设施
+                }
                 Messages.Message(
                     string.Format("FC.MsgReset".Translate(), state.SelDef),
                     MessageTypeDefOf.NeutralEvent);
@@ -651,10 +657,13 @@ namespace FacilityCompat
             return string.IsNullOrEmpty(def?.label) ? defName : def!.label;
         }
 
-        /// <summary>对当前选中项执行批量操作（委托区分启用/禁用；有改动则即时应用并落盘）</summary>
+        /// <summary>对当前选中项执行批量操作（委托区分启用/禁用；有改动则按选中侧限定作用域应用并落盘）</summary>
         private void ApplyToSelection(Func<bool> operation)
         {
-            if (operation()) ApplyAndSave();
+            if (!operation()) return;
+            // 选中主设施：全部启用/禁用只改该主设施的连接 → 限定到该主设施；
+            // 选中附属设备：该设备连接类别下多个目标 → 仅限定类别
+            ApplyAndSave(currentCategory, state.SelSide == Side.Main ? state.SelDef : null);
         }
 
         /// <summary>全部启用：按选中侧批量建立连接</summary>
@@ -737,11 +746,16 @@ namespace FacilityCompat
             }
 
             if (state.SelSide == Side.Accessory)
+            {
                 settings.SetLinkedList(currentCategory, state.SelDef, pastedLinked);
+                ApplyAndSave(currentCategory); // 设施侧粘贴波及类别下多个目标
+            }
             else
+            {
                 settings.SetTargetLinkedList(currentCategory, state.SelDef, pastedLinked);
+                ApplyAndSave(currentCategory, state.SelDef); // 主设施侧粘贴仅波及该主设施
+            }
 
-            ApplyAndSave();
             Messages.Message(
                 string.Format("FC.MsgPasted".Translate(), state.SelDef),
                 MessageTypeDefOf.NeutralEvent);

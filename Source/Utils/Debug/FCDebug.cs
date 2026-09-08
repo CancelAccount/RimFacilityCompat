@@ -9,7 +9,7 @@ namespace FacilityCompat
     /// “全局操作”菜单开关；false 时 EnableLog/EnableDraw 恒为 false，所有插桩短路为零开销。
     /// 判定链打点针对 ButtonInvisibleDraggable：其内部用 Input 轮询判定，
     /// 悬停高亮/批量涂抹/单击三条路径坐标系若不一致，日志与边框颜色会直接暴露。
-    /// 另含 TimeScope 性能计时工具（P7 可量化验证）：using 包裹待测代码段，Dispose 输出毫秒耗时。
+    /// 另含 TimeScope 性能计时工具：using 包裹待测代码段，Dispose 输出毫秒耗时。
     /// </summary>
     public static class FCDebug
     {
@@ -44,7 +44,7 @@ namespace FacilityCompat
         private static readonly IDisposable noopScope = new NoopScope();
 
         /// <summary>全局版本标志：true = 调试版（含日志与可视化工具）。发版时记得改为 false。</summary>
-        public const bool DebugBuild = true;
+        public static readonly bool DebugBuild = true;
 
         private static bool enableLog;  // 菜单开关的实际存储（发行版下 getter 短路，此字段不生效）
         private static bool enableDraw;
@@ -64,7 +64,7 @@ namespace FacilityCompat
         }
 
         /// <summary>
-        /// 性能计时作用域（P7 可量化验证）：using (FCDebug.TimeScope("标签")) 包裹待测代码段，
+        /// 性能计时作用域：using (FCDebug.TimeScope("标签")) 包裹待测代码段，
         /// 作用域结束输出耗时。挂编译期 DebugBuild 门控（而非运行时 EnableLog）：
         /// 启动计时发生在主菜单出现前，用户无法打开菜单开关，须调试版即输出；
         /// 发行版（DebugBuild=false）返回空单例，零开销。启动计时与 UI 单击计时统一走本入口。
