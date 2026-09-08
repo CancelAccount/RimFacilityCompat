@@ -7,8 +7,6 @@ namespace FacilityCompat
     /// 设施配置剪贴板：支持两个维度各复制/粘贴（仅限同类别，跨类别一律拦截）：
     /// - Facility：复制某附属设备的连接配置，粘贴到其他附属设备；
     /// - Target：复制某主设施的连接模式（哪些设施连接它），粘贴到其他主设施。
-    /// 复制只记录「连接列表」，All/None 由列表内容自然表达（全列表 = All、空列表 = None），
-    /// 无需单独模式；粘贴时源类别与目标类别不同则拦截，避免全选/全空跨类别造成误连接或误断开。
     /// </summary>
     public static class FacilityClipboard
     {

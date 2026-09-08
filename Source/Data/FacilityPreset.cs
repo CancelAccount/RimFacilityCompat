@@ -22,7 +22,7 @@ namespace FacilityCompat
         public const string UserPrefix = "FC_Preset_";
 
         /// <summary>
-        /// 导出当前启用连接为 v2 语义表。
+        /// 导出持久化预设
         /// sources 为 null/空 = 全量；否则仅导出目标来源 ∈ sources 的目标当前启用连接。
         /// 无任何可导出连接时返回空串，由调用方提示。
         /// </summary>
@@ -91,7 +91,7 @@ namespace FacilityCompat
             return result;
         }
 
-        /// <summary>预设根元素 Name 属性（单一来源记其名，其余记 All，仅人类可读元数据）</summary>
+        /// <summary>预设根元素 Name 属性（单一来源记其名，其余记 All）</summary>
         private static string NameAttribute(ICollection<string>? sources)
         {
             if (sources != null && sources.Count == 1)

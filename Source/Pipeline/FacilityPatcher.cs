@@ -72,8 +72,7 @@ namespace FacilityCompat
         /// 返回实际重建（含新建 comp）的目标数。
         /// 同步维护设施侧反向索引：引擎的 CompProperties_Facility.linkableBuildings（设施 def 上
         /// "可连接的目标"列表）仅在 def 加载时由 ResolveReferences 反向填充一次，运行时修改目标的
-        /// linkableFacilities 不会自动重算。设施侧全部入口（蓝图预览连线、设施放置/重装的
-        /// CompFacility.LinkToNearbyBuildings）都读该反向索引，若不同步重建，补丁连接对设施侧不可见
+        /// linkableFacilities 不会自动重算。设施侧全部入口（蓝图预览连线、设施放置/重装的CompFacility.LinkToNearbyBuildings）都读该反向索引，若不同步重建，补丁连接对设施侧不可见
         /// （表现为：放设施蓝图不画线、建成不连接，必须重放主设施才生效）。
         /// </summary>
         public static int ApplyInjection(FacilityCompatSettings settings)
@@ -234,7 +233,7 @@ namespace FacilityCompat
         }
 
         /// <summary>
-        /// 启动期快照：记录原版 XML 自带设施 comp 的目标（注入前调用）。
+        /// 启动期快照：记录原版 XML 自带设施 comp 的目标（注入前调用）,全局重置时就用的它。
         /// </summary>
         private static void SnapshotOriginalComps(Dictionary<string, CategoryInfo> categories)
         {
