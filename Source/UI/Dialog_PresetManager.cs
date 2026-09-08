@@ -134,12 +134,22 @@ namespace FacilityCompat
             OnSourceChanged();
         }
 
-        /// <summary>应用并保存：声明式重建 → 重连已放置建筑 → 落盘（与主窗口入口同构，供导入后即时生效）</summary>
+        /// <summary>应用并保存：声明式重建 → 重连已放置建筑 → 落盘（与主窗口入口同构，供导入后即时生效）。
+        /// 各阶段埋 P7 计时点（导入/全局重置为一次性全量操作，耗时与单击路径分开观察）</summary>
         private void ApplyAndSave()
         {
-            FacilityPatcher.ApplyInjection(settings);
-            FacilityPatcher.RelinkSpawnedThings();
-            settings.Write();
+            using (FCDebug.TimeScope("预设窗口·声明式注入 ApplyInjection"))
+            {
+                FacilityPatcher.ApplyInjection(settings);
+            }
+            using (FCDebug.TimeScope("预设窗口·重连已放置建筑 RelinkSpawnedThings"))
+            {
+                FacilityPatcher.RelinkSpawnedThings();
+            }
+            using (FCDebug.TimeScope("预设窗口·设置落盘 Write"))
+            {
+                settings.Write();
+            }
         }
 
         /// <summary>导出当前勾选来源的启用连接到用户预设文件</summary>

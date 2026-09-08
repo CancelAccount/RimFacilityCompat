@@ -44,9 +44,18 @@ namespace FacilityCompat
 
                 // 阶段一：扫描。运行时注入不落盘，defs 每次启动自动干净，
                 // originalLinks 与连通分量分组天然基于真原始状态
-                settings.categories = FacilityScanner.ScanAll();
-                settings.originalLinks = ScanOriginalLinks(settings.categories);
-                SnapshotOriginalComps(settings.categories);
+                using (FCDebug.TimeScope("启动·扫描 ScanAll"))
+                {
+                    settings.categories = FacilityScanner.ScanAll();
+                }
+                using (FCDebug.TimeScope("启动·原始链接扫描 ScanOriginalLinks"))
+                {
+                    settings.originalLinks = ScanOriginalLinks(settings.categories);
+                }
+                using (FCDebug.TimeScope("启动·原版comp快照 SnapshotOriginalComps"))
+                {
+                    SnapshotOriginalComps(settings.categories);
+                }
 
                 // 阶段二：首次运行初始化（清空覆盖表，原始链接由 ShouldLink 兜底保留）
                 if (!settings.initialized)
@@ -56,8 +65,15 @@ namespace FacilityCompat
                 }
 
                 // 阶段三：声明式注入 + 落盘（确保 initialized 持久化）
-                int applied = ApplyInjection(settings);
-                settings.Write();
+                int applied;
+                using (FCDebug.TimeScope("启动·声明式注入 ApplyInjection"))
+                {
+                    applied = ApplyInjection(settings);
+                }
+                using (FCDebug.TimeScope("启动·设置落盘 Write"))
+                {
+                    settings.Write();
+                }
                 FCLogger.Msg("FC.LogPatched", applied, settings.categories.Count);
             }
             catch (System.Exception ex)

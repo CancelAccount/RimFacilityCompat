@@ -98,9 +98,18 @@ namespace FacilityCompat
         /// </summary>
         private void ApplyAndSave()
         {
-            FacilityPatcher.ApplyInjection(settings);
-            FacilityPatcher.RelinkSpawnedThings();
-            settings.Write();
+            using (FCDebug.TimeScope("UI操作·声明式注入 ApplyInjection"))
+            {
+                FacilityPatcher.ApplyInjection(settings);
+            }
+            using (FCDebug.TimeScope("UI操作·重连已放置建筑 RelinkSpawnedThings"))
+            {
+                FacilityPatcher.RelinkSpawnedThings();
+            }
+            using (FCDebug.TimeScope("UI操作·设置落盘 Write"))
+            {
+                settings.Write();
+            }
         }
 
         /// <summary>
