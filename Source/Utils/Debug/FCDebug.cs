@@ -13,6 +13,27 @@ namespace FacilityCompat
     /// </summary>
     public static class FCDebug
     {
+        /// <summary>全局版本标志：true = 调试版（含日志与可视化工具）。发版时记得改为 false。</summary>
+        public static readonly bool DebugBuild = false;
+        /// <summary>日志关闭时复用的空作用域单例（避免每次分配）</summary>
+        private static readonly IDisposable noopScope = new NoopScope();
+        private static bool enableLog;  // 菜单开关的实际存储（发行版下 getter 短路，此字段不生效）
+        private static bool enableDraw;
+
+        /// <summary>日志开关：读取受 DebugBuild 保护，发行版恒 false</summary>
+        public static bool EnableLog
+        {
+            get => DebugBuild && enableLog;
+            set => enableLog = value;
+        }
+
+        /// <summary>可视化开关：读取受 DebugBuild 保护，发行版恒 false</summary>
+        public static bool EnableDraw
+        {
+            get => DebugBuild && enableDraw;
+            set => enableDraw = value;
+        }
+        
         /// <summary>计时空作用域：日志关闭时 TimeScope 返回此单例，using 零开销</summary>
         private sealed class NoopScope : IDisposable
         {
@@ -38,29 +59,6 @@ namespace FacilityCompat
                 stopwatch.Stop();
                 Verse.Log.Message($"[FC-Dbg] [计时] {label}：{stopwatch.Elapsed.TotalMilliseconds:F1} ms");
             }
-        }
-
-        /// <summary>日志关闭时复用的空作用域单例（避免每次分配）</summary>
-        private static readonly IDisposable noopScope = new NoopScope();
-
-        /// <summary>全局版本标志：true = 调试版（含日志与可视化工具）。发版时记得改为 false。</summary>
-        public static readonly bool DebugBuild = true;
-
-        private static bool enableLog;  // 菜单开关的实际存储（发行版下 getter 短路，此字段不生效）
-        private static bool enableDraw;
-
-        /// <summary>日志开关：读取受 DebugBuild 保护，发行版恒 false</summary>
-        public static bool EnableLog
-        {
-            get => DebugBuild && enableLog;
-            set => enableLog = value;
-        }
-
-        /// <summary>可视化开关：读取受 DebugBuild 保护，发行版恒 false</summary>
-        public static bool EnableDraw
-        {
-            get => DebugBuild && enableDraw;
-            set => enableDraw = value;
         }
 
         /// <summary>
