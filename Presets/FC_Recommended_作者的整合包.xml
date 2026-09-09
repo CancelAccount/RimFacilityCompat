@@ -10,7 +10,19 @@
   <Link Target="Bed_DoubleErgonomic" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_DoubleErgonomic" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_DoubleErgonomic" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_DoubleErgonomic" Facility="PFK_Dresser" />
+  <Link Target="Bed_DoubleErgonomic" Facility="PFK_EndTable" />
   <Link Target="Bed_DoubleErgonomic" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_DoubleErgonomic" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_DoubleErgonomic" Facility="PFS_DresserA" />
+  <Link Target="Bed_DoubleErgonomic" Facility="PFS_DresserB" />
+  <Link Target="Bed_DoubleErgonomic" Facility="PFS_EndTable" />
   <Link Target="Bed_Ergonomic" Facility="Dresser" />
   <Link Target="Bed_Ergonomic" Facility="EndTable" />
   <Link Target="Bed_Ergonomic" Facility="SleepAccelerator" />
@@ -21,7 +33,135 @@
   <Link Target="Bed_Ergonomic" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_Ergonomic" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_Ergonomic" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_Ergonomic" Facility="PFK_Dresser" />
+  <Link Target="Bed_Ergonomic" Facility="PFK_EndTable" />
   <Link Target="Bed_Ergonomic" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_Ergonomic" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_Ergonomic" Facility="PFS_DresserA" />
+  <Link Target="Bed_Ergonomic" Facility="PFS_DresserB" />
+  <Link Target="Bed_Ergonomic" Facility="PFS_EndTable" />
+  <Link Target="PFK_BedAa" Facility="Dresser" />
+  <Link Target="PFK_BedAa" Facility="EndTable" />
+  <Link Target="PFK_BedAa" Facility="SleepAccelerator" />
+  <Link Target="PFK_BedAa" Facility="Table_RoyalDresser" />
+  <Link Target="PFK_BedAa" Facility="Table_RoyalEndTable" />
+  <Link Target="PFK_BedAa" Facility="Table_Wardrobe" />
+  <Link Target="PFK_BedAa" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFK_BedAa" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFK_BedAa" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFK_BedAa" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFK_BedAa" Facility="PFK_Dresser" />
+  <Link Target="PFK_BedAa" Facility="PFK_EndTable" />
+  <Link Target="PFK_BedAa" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_Bookcase" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_Doormat" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFK_BedAa" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFK_BedAa" Facility="PFS_DresserA" />
+  <Link Target="PFK_BedAa" Facility="PFS_DresserB" />
+  <Link Target="PFK_BedAa" Facility="PFS_EndTable" />
+  <Link Target="PFK_BedAb" Facility="Dresser" />
+  <Link Target="PFK_BedAb" Facility="EndTable" />
+  <Link Target="PFK_BedAb" Facility="SleepAccelerator" />
+  <Link Target="PFK_BedAb" Facility="Table_RoyalDresser" />
+  <Link Target="PFK_BedAb" Facility="Table_RoyalEndTable" />
+  <Link Target="PFK_BedAb" Facility="Table_Wardrobe" />
+  <Link Target="PFK_BedAb" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFK_BedAb" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFK_BedAb" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFK_BedAb" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFK_BedAb" Facility="PFK_Dresser" />
+  <Link Target="PFK_BedAb" Facility="PFK_EndTable" />
+  <Link Target="PFK_BedAb" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_Bookcase" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_Doormat" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFK_BedAb" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFK_BedAb" Facility="PFS_DresserA" />
+  <Link Target="PFK_BedAb" Facility="PFS_DresserB" />
+  <Link Target="PFK_BedAb" Facility="PFS_EndTable" />
+  <Link Target="PFK_DoubleBed" Facility="Dresser" />
+  <Link Target="PFK_DoubleBed" Facility="EndTable" />
+  <Link Target="PFK_DoubleBed" Facility="SleepAccelerator" />
+  <Link Target="PFK_DoubleBed" Facility="Table_RoyalDresser" />
+  <Link Target="PFK_DoubleBed" Facility="Table_RoyalEndTable" />
+  <Link Target="PFK_DoubleBed" Facility="Table_Wardrobe" />
+  <Link Target="PFK_DoubleBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFK_DoubleBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFK_DoubleBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFK_DoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFK_DoubleBed" Facility="PFK_Dresser" />
+  <Link Target="PFK_DoubleBed" Facility="PFK_EndTable" />
+  <Link Target="PFK_DoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFK_DoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFK_DoubleBed" Facility="PFS_DresserA" />
+  <Link Target="PFK_DoubleBed" Facility="PFS_DresserB" />
+  <Link Target="PFK_DoubleBed" Facility="PFS_EndTable" />
+  <Link Target="PFK_Cradle" Facility="SleepAccelerator" />
+  <Link Target="PFK_Bedroll" Facility="Dresser" />
+  <Link Target="PFK_Bedroll" Facility="EndTable" />
+  <Link Target="PFK_Bedroll" Facility="SleepAccelerator" />
+  <Link Target="PFK_Bedroll" Facility="Table_RoyalDresser" />
+  <Link Target="PFK_Bedroll" Facility="Table_RoyalEndTable" />
+  <Link Target="PFK_Bedroll" Facility="Table_Wardrobe" />
+  <Link Target="PFK_Bedroll" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFK_Bedroll" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFK_Bedroll" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFK_Bedroll" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFK_Bedroll" Facility="PFK_Dresser" />
+  <Link Target="PFK_Bedroll" Facility="PFK_EndTable" />
+  <Link Target="PFK_Bedroll" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_Bookcase" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_Doormat" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFK_Bedroll" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFK_Bedroll" Facility="PFS_DresserA" />
+  <Link Target="PFK_Bedroll" Facility="PFS_DresserB" />
+  <Link Target="PFK_Bedroll" Facility="PFS_EndTable" />
+  <Link Target="PFK_RoyalBed" Facility="Dresser" />
+  <Link Target="PFK_RoyalBed" Facility="EndTable" />
+  <Link Target="PFK_RoyalBed" Facility="SleepAccelerator" />
+  <Link Target="PFK_RoyalBed" Facility="Table_RoyalDresser" />
+  <Link Target="PFK_RoyalBed" Facility="Table_RoyalEndTable" />
+  <Link Target="PFK_RoyalBed" Facility="Table_Wardrobe" />
+  <Link Target="PFK_RoyalBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFK_RoyalBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFK_RoyalBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFK_RoyalBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFK_RoyalBed" Facility="PFK_Dresser" />
+  <Link Target="PFK_RoyalBed" Facility="PFK_EndTable" />
+  <Link Target="PFK_RoyalBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_Bookcase" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_Doormat" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFK_RoyalBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFK_RoyalBed" Facility="PFS_DresserA" />
+  <Link Target="PFK_RoyalBed" Facility="PFS_DresserB" />
+  <Link Target="PFK_RoyalBed" Facility="PFS_EndTable" />
   <Link Target="HospitalBed" Facility="Dresser" />
   <Link Target="HospitalBed" Facility="EndTable" />
   <Link Target="HospitalBed" Facility="VitalsMonitor" />
@@ -33,9 +173,22 @@
   <Link Target="HospitalBed" Facility="Table_IlluminatedDresser" />
   <Link Target="HospitalBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="HospitalBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="HospitalBed" Facility="PFK_Dresser" />
+  <Link Target="HospitalBed" Facility="PFK_EndTable" />
   <Link Target="HospitalBed" Facility="Facility_IVDrip" />
   <Link Target="HospitalBed" Facility="Facility_VitalsCentre" />
   <Link Target="HospitalBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="HospitalBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="HospitalBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="HospitalBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="HospitalBed" Facility="Wolfein_Bookcase" />
+  <Link Target="HospitalBed" Facility="Wolfein_Doormat" />
+  <Link Target="HospitalBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="HospitalBed" Facility="Wolfein_MedicalControlPanel" />
+  <Link Target="HospitalBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="HospitalBed" Facility="PFS_DresserA" />
+  <Link Target="HospitalBed" Facility="PFS_DresserB" />
+  <Link Target="HospitalBed" Facility="PFS_EndTable" />
   <Link Target="Bed" Facility="Dresser" />
   <Link Target="Bed" Facility="EndTable" />
   <Link Target="Bed" Facility="SleepAccelerator" />
@@ -46,7 +199,19 @@
   <Link Target="Bed" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed" Facility="PFK_Dresser" />
+  <Link Target="Bed" Facility="PFK_EndTable" />
   <Link Target="Bed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed" Facility="Wolfein_Doormat" />
+  <Link Target="Bed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed" Facility="PFS_DresserA" />
+  <Link Target="Bed" Facility="PFS_DresserB" />
+  <Link Target="Bed" Facility="PFS_EndTable" />
   <Link Target="SlabDoubleBed" Facility="Dresser" />
   <Link Target="SlabDoubleBed" Facility="EndTable" />
   <Link Target="SlabDoubleBed" Facility="SleepAccelerator" />
@@ -57,7 +222,19 @@
   <Link Target="SlabDoubleBed" Facility="Table_IlluminatedDresser" />
   <Link Target="SlabDoubleBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="SlabDoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="SlabDoubleBed" Facility="PFK_Dresser" />
+  <Link Target="SlabDoubleBed" Facility="PFK_EndTable" />
   <Link Target="SlabDoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="SlabDoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="SlabDoubleBed" Facility="PFS_DresserA" />
+  <Link Target="SlabDoubleBed" Facility="PFS_DresserB" />
+  <Link Target="SlabDoubleBed" Facility="PFS_EndTable" />
   <Link Target="DoubleBed" Facility="Dresser" />
   <Link Target="DoubleBed" Facility="EndTable" />
   <Link Target="DoubleBed" Facility="SleepAccelerator" />
@@ -68,7 +245,19 @@
   <Link Target="DoubleBed" Facility="Table_IlluminatedDresser" />
   <Link Target="DoubleBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="DoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="DoubleBed" Facility="PFK_Dresser" />
+  <Link Target="DoubleBed" Facility="PFK_EndTable" />
   <Link Target="DoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="DoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="DoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="DoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="DoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="DoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="DoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="DoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="DoubleBed" Facility="PFS_DresserA" />
+  <Link Target="DoubleBed" Facility="PFS_DresserB" />
+  <Link Target="DoubleBed" Facility="PFS_EndTable" />
   <Link Target="BedrollDouble" Facility="Dresser" />
   <Link Target="BedrollDouble" Facility="EndTable" />
   <Link Target="BedrollDouble" Facility="SleepAccelerator" />
@@ -79,10 +268,42 @@
   <Link Target="BedrollDouble" Facility="Table_IlluminatedDresser" />
   <Link Target="BedrollDouble" Facility="Table_IlluminatedEndTable" />
   <Link Target="BedrollDouble" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="BedrollDouble" Facility="PFK_Dresser" />
+  <Link Target="BedrollDouble" Facility="PFK_EndTable" />
   <Link Target="BedrollDouble" Facility="RI_Building_StorageShelf" />
+  <Link Target="BedrollDouble" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="BedrollDouble" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="BedrollDouble" Facility="Wolfein_BedsideTable" />
+  <Link Target="BedrollDouble" Facility="Wolfein_Bookcase" />
+  <Link Target="BedrollDouble" Facility="Wolfein_Doormat" />
+  <Link Target="BedrollDouble" Facility="Wolfein_LowCabinet" />
+  <Link Target="BedrollDouble" Facility="Wolfein_Wardrobe" />
+  <Link Target="BedrollDouble" Facility="PFS_DresserA" />
+  <Link Target="BedrollDouble" Facility="PFS_DresserB" />
+  <Link Target="BedrollDouble" Facility="PFS_EndTable" />
   <Link Target="PILFURBed" Facility="Dresser" />
   <Link Target="PILFURBed" Facility="EndTable" />
   <Link Target="PILFURBed" Facility="SleepAccelerator" />
+  <Link Target="PILFURBed" Facility="Table_RoyalDresser" />
+  <Link Target="PILFURBed" Facility="Table_RoyalEndTable" />
+  <Link Target="PILFURBed" Facility="Table_Wardrobe" />
+  <Link Target="PILFURBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PILFURBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PILFURBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PILFURBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PILFURBed" Facility="PFK_Dresser" />
+  <Link Target="PILFURBed" Facility="PFK_EndTable" />
+  <Link Target="PILFURBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PILFURBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PILFURBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PILFURBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PILFURBed" Facility="Wolfein_Bookcase" />
+  <Link Target="PILFURBed" Facility="Wolfein_Doormat" />
+  <Link Target="PILFURBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PILFURBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PILFURBed" Facility="PFS_DresserA" />
+  <Link Target="PILFURBed" Facility="PFS_DresserB" />
+  <Link Target="PILFURBed" Facility="PFS_EndTable" />
   <Link Target="Crib" Facility="SleepAccelerator" />
   <Link Target="SlabBed" Facility="Dresser" />
   <Link Target="SlabBed" Facility="EndTable" />
@@ -94,11 +315,24 @@
   <Link Target="SlabBed" Facility="Table_IlluminatedDresser" />
   <Link Target="SlabBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="SlabBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="SlabBed" Facility="PFK_Dresser" />
+  <Link Target="SlabBed" Facility="PFK_EndTable" />
   <Link Target="SlabBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="SlabBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="SlabBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="SlabBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="SlabBed" Facility="Wolfein_Bookcase" />
+  <Link Target="SlabBed" Facility="Wolfein_Doormat" />
+  <Link Target="SlabBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="SlabBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="SlabBed" Facility="PFS_DresserA" />
+  <Link Target="SlabBed" Facility="PFS_DresserB" />
+  <Link Target="SlabBed" Facility="PFS_EndTable" />
   <Link Target="Bed_OperatingTable" Facility="VitalsMonitor" />
   <Link Target="Bed_OperatingTable" Facility="SleepAccelerator" />
   <Link Target="Bed_OperatingTable" Facility="Facility_IVDrip" />
   <Link Target="Bed_OperatingTable" Facility="Facility_VitalsCentre" />
+  <Link Target="Bed_OperatingTable" Facility="Wolfein_MedicalControlPanel" />
   <Link Target="RI_Building_MingDoubleBed" Facility="Dresser" />
   <Link Target="RI_Building_MingDoubleBed" Facility="EndTable" />
   <Link Target="RI_Building_MingDoubleBed" Facility="SleepAccelerator" />
@@ -109,7 +343,115 @@
   <Link Target="RI_Building_MingDoubleBed" Facility="Table_IlluminatedDresser" />
   <Link Target="RI_Building_MingDoubleBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="RI_Building_MingDoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="PFK_Dresser" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="PFK_EndTable" />
   <Link Target="RI_Building_MingDoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="PFS_DresserA" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="PFS_DresserB" />
+  <Link Target="RI_Building_MingDoubleBed" Facility="PFS_EndTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="Dresser" />
+  <Link Target="Wolfein_MedicalBed" Facility="EndTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="VitalsMonitor" />
+  <Link Target="Wolfein_MedicalBed" Facility="SleepAccelerator" />
+  <Link Target="Wolfein_MedicalBed" Facility="Table_RoyalDresser" />
+  <Link Target="Wolfein_MedicalBed" Facility="Table_RoyalEndTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="Table_Wardrobe" />
+  <Link Target="Wolfein_MedicalBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="Wolfein_MedicalBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="Wolfein_MedicalBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Wolfein_MedicalBed" Facility="PFK_Dresser" />
+  <Link Target="Wolfein_MedicalBed" Facility="PFK_EndTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="Facility_IVDrip" />
+  <Link Target="Wolfein_MedicalBed" Facility="Facility_VitalsCentre" />
+  <Link Target="Wolfein_MedicalBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_Bookcase" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_Doormat" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_MedicalControlPanel" />
+  <Link Target="Wolfein_MedicalBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Wolfein_MedicalBed" Facility="PFS_DresserA" />
+  <Link Target="Wolfein_MedicalBed" Facility="PFS_DresserB" />
+  <Link Target="Wolfein_MedicalBed" Facility="PFS_EndTable" />
+  <Link Target="Wolfein_SingleBed" Facility="Dresser" />
+  <Link Target="Wolfein_SingleBed" Facility="EndTable" />
+  <Link Target="Wolfein_SingleBed" Facility="SleepAccelerator" />
+  <Link Target="Wolfein_SingleBed" Facility="Table_RoyalDresser" />
+  <Link Target="Wolfein_SingleBed" Facility="Table_RoyalEndTable" />
+  <Link Target="Wolfein_SingleBed" Facility="Table_Wardrobe" />
+  <Link Target="Wolfein_SingleBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="Wolfein_SingleBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="Wolfein_SingleBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="Wolfein_SingleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Wolfein_SingleBed" Facility="PFK_Dresser" />
+  <Link Target="Wolfein_SingleBed" Facility="PFK_EndTable" />
+  <Link Target="Wolfein_SingleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_Doormat" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Wolfein_SingleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Wolfein_SingleBed" Facility="PFS_DresserA" />
+  <Link Target="Wolfein_SingleBed" Facility="PFS_DresserB" />
+  <Link Target="Wolfein_SingleBed" Facility="PFS_EndTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="Dresser" />
+  <Link Target="Wolfein_DoubleBed" Facility="EndTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="SleepAccelerator" />
+  <Link Target="Wolfein_DoubleBed" Facility="Table_RoyalDresser" />
+  <Link Target="Wolfein_DoubleBed" Facility="Table_RoyalEndTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="Table_Wardrobe" />
+  <Link Target="Wolfein_DoubleBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="Wolfein_DoubleBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="Wolfein_DoubleBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Wolfein_DoubleBed" Facility="PFK_Dresser" />
+  <Link Target="Wolfein_DoubleBed" Facility="PFK_EndTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Wolfein_DoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Wolfein_DoubleBed" Facility="PFS_DresserA" />
+  <Link Target="Wolfein_DoubleBed" Facility="PFS_DresserB" />
+  <Link Target="Wolfein_DoubleBed" Facility="PFS_EndTable" />
+  <Link Target="Wolfein_Crib" Facility="Dresser" />
+  <Link Target="Wolfein_Crib" Facility="EndTable" />
+  <Link Target="Wolfein_Crib" Facility="SleepAccelerator" />
+  <Link Target="Wolfein_Crib" Facility="Table_RoyalDresser" />
+  <Link Target="Wolfein_Crib" Facility="Table_RoyalEndTable" />
+  <Link Target="Wolfein_Crib" Facility="Table_Wardrobe" />
+  <Link Target="Wolfein_Crib" Facility="VFE_RoyalWardrobe" />
+  <Link Target="Wolfein_Crib" Facility="Table_IlluminatedDresser" />
+  <Link Target="Wolfein_Crib" Facility="Table_IlluminatedEndTable" />
+  <Link Target="Wolfein_Crib" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Wolfein_Crib" Facility="PFK_Dresser" />
+  <Link Target="Wolfein_Crib" Facility="PFK_EndTable" />
+  <Link Target="Wolfein_Crib" Facility="RI_Building_StorageShelf" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_BedsideTable" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_Bookcase" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_Doormat" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_LowCabinet" />
+  <Link Target="Wolfein_Crib" Facility="Wolfein_Wardrobe" />
+  <Link Target="Wolfein_Crib" Facility="PFS_DresserA" />
+  <Link Target="Wolfein_Crib" Facility="PFS_DresserB" />
+  <Link Target="Wolfein_Crib" Facility="PFS_EndTable" />
   <Link Target="Bedroll" Facility="Dresser" />
   <Link Target="Bedroll" Facility="EndTable" />
   <Link Target="Bedroll" Facility="SleepAccelerator" />
@@ -120,7 +462,19 @@
   <Link Target="Bedroll" Facility="Table_IlluminatedDresser" />
   <Link Target="Bedroll" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bedroll" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bedroll" Facility="PFK_Dresser" />
+  <Link Target="Bedroll" Facility="PFK_EndTable" />
   <Link Target="Bedroll" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bedroll" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bedroll" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bedroll" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bedroll" Facility="Wolfein_Bookcase" />
+  <Link Target="Bedroll" Facility="Wolfein_Doormat" />
+  <Link Target="Bedroll" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bedroll" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bedroll" Facility="PFS_DresserA" />
+  <Link Target="Bedroll" Facility="PFS_DresserB" />
+  <Link Target="Bedroll" Facility="PFS_EndTable" />
   <Link Target="SLABNEPPDouble" Facility="Dresser" />
   <Link Target="SLABNEPPDouble" Facility="EndTable" />
   <Link Target="SLABNEPPDouble" Facility="SleepAccelerator" />
@@ -131,7 +485,158 @@
   <Link Target="SLABNEPPDouble" Facility="Table_IlluminatedDresser" />
   <Link Target="SLABNEPPDouble" Facility="Table_IlluminatedEndTable" />
   <Link Target="SLABNEPPDouble" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="SLABNEPPDouble" Facility="PFK_Dresser" />
+  <Link Target="SLABNEPPDouble" Facility="PFK_EndTable" />
   <Link Target="SLABNEPPDouble" Facility="RI_Building_StorageShelf" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_BedsideTable" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_Bookcase" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_Doormat" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_LowCabinet" />
+  <Link Target="SLABNEPPDouble" Facility="Wolfein_Wardrobe" />
+  <Link Target="SLABNEPPDouble" Facility="PFS_DresserA" />
+  <Link Target="SLABNEPPDouble" Facility="PFS_DresserB" />
+  <Link Target="SLABNEPPDouble" Facility="PFS_EndTable" />
+  <Link Target="PFS_Bed" Facility="Dresser" />
+  <Link Target="PFS_Bed" Facility="EndTable" />
+  <Link Target="PFS_Bed" Facility="SleepAccelerator" />
+  <Link Target="PFS_Bed" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_Bed" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_Bed" Facility="Table_Wardrobe" />
+  <Link Target="PFS_Bed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_Bed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_Bed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_Bed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_Bed" Facility="PFK_Dresser" />
+  <Link Target="PFS_Bed" Facility="PFK_EndTable" />
+  <Link Target="PFS_Bed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_Bed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_Bed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_Bed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_Bed" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_Bed" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_Bed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_Bed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_Bed" Facility="PFS_DresserA" />
+  <Link Target="PFS_Bed" Facility="PFS_DresserB" />
+  <Link Target="PFS_Bed" Facility="PFS_EndTable" />
+  <Link Target="PFS_BedB" Facility="Dresser" />
+  <Link Target="PFS_BedB" Facility="EndTable" />
+  <Link Target="PFS_BedB" Facility="SleepAccelerator" />
+  <Link Target="PFS_BedB" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_BedB" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_BedB" Facility="Table_Wardrobe" />
+  <Link Target="PFS_BedB" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_BedB" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_BedB" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_BedB" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_BedB" Facility="PFK_Dresser" />
+  <Link Target="PFS_BedB" Facility="PFK_EndTable" />
+  <Link Target="PFS_BedB" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_BedB" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_BedB" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_BedB" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_BedB" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_BedB" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_BedB" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_BedB" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_BedB" Facility="PFS_DresserA" />
+  <Link Target="PFS_BedB" Facility="PFS_DresserB" />
+  <Link Target="PFS_BedB" Facility="PFS_EndTable" />
+  <Link Target="PFS_DoubleBed" Facility="Dresser" />
+  <Link Target="PFS_DoubleBed" Facility="EndTable" />
+  <Link Target="PFS_DoubleBed" Facility="SleepAccelerator" />
+  <Link Target="PFS_DoubleBed" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_DoubleBed" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_DoubleBed" Facility="Table_Wardrobe" />
+  <Link Target="PFS_DoubleBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_DoubleBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_DoubleBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_DoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_DoubleBed" Facility="PFK_Dresser" />
+  <Link Target="PFS_DoubleBed" Facility="PFK_EndTable" />
+  <Link Target="PFS_DoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_DoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_DoubleBed" Facility="PFS_DresserA" />
+  <Link Target="PFS_DoubleBed" Facility="PFS_DresserB" />
+  <Link Target="PFS_DoubleBed" Facility="PFS_EndTable" />
+  <Link Target="PFS_DoubleBedB" Facility="Dresser" />
+  <Link Target="PFS_DoubleBedB" Facility="EndTable" />
+  <Link Target="PFS_DoubleBedB" Facility="SleepAccelerator" />
+  <Link Target="PFS_DoubleBedB" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_DoubleBedB" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_DoubleBedB" Facility="Table_Wardrobe" />
+  <Link Target="PFS_DoubleBedB" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_DoubleBedB" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_DoubleBedB" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_DoubleBedB" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_DoubleBedB" Facility="PFK_Dresser" />
+  <Link Target="PFS_DoubleBedB" Facility="PFK_EndTable" />
+  <Link Target="PFS_DoubleBedB" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_DoubleBedB" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_DoubleBedB" Facility="PFS_DresserA" />
+  <Link Target="PFS_DoubleBedB" Facility="PFS_DresserB" />
+  <Link Target="PFS_DoubleBedB" Facility="PFS_EndTable" />
+  <Link Target="PFS_Crib" Facility="SleepAccelerator" />
+  <Link Target="PFS_Bedroll" Facility="Dresser" />
+  <Link Target="PFS_Bedroll" Facility="EndTable" />
+  <Link Target="PFS_Bedroll" Facility="SleepAccelerator" />
+  <Link Target="PFS_Bedroll" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_Bedroll" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_Bedroll" Facility="Table_Wardrobe" />
+  <Link Target="PFS_Bedroll" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_Bedroll" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_Bedroll" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_Bedroll" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_Bedroll" Facility="PFK_Dresser" />
+  <Link Target="PFS_Bedroll" Facility="PFK_EndTable" />
+  <Link Target="PFS_Bedroll" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_Bedroll" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_Bedroll" Facility="PFS_DresserA" />
+  <Link Target="PFS_Bedroll" Facility="PFS_DresserB" />
+  <Link Target="PFS_Bedroll" Facility="PFS_EndTable" />
+  <Link Target="PFS_RoyalBed" Facility="Dresser" />
+  <Link Target="PFS_RoyalBed" Facility="EndTable" />
+  <Link Target="PFS_RoyalBed" Facility="SleepAccelerator" />
+  <Link Target="PFS_RoyalBed" Facility="Table_RoyalDresser" />
+  <Link Target="PFS_RoyalBed" Facility="Table_RoyalEndTable" />
+  <Link Target="PFS_RoyalBed" Facility="Table_Wardrobe" />
+  <Link Target="PFS_RoyalBed" Facility="VFE_RoyalWardrobe" />
+  <Link Target="PFS_RoyalBed" Facility="Table_IlluminatedDresser" />
+  <Link Target="PFS_RoyalBed" Facility="Table_IlluminatedEndTable" />
+  <Link Target="PFS_RoyalBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="PFS_RoyalBed" Facility="PFK_Dresser" />
+  <Link Target="PFS_RoyalBed" Facility="PFK_EndTable" />
+  <Link Target="PFS_RoyalBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_Bookcase" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_Doormat" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="PFS_RoyalBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="PFS_RoyalBed" Facility="PFS_DresserA" />
+  <Link Target="PFS_RoyalBed" Facility="PFS_DresserB" />
+  <Link Target="PFS_RoyalBed" Facility="PFS_EndTable" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="Dresser" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="EndTable" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="SleepAccelerator" />
@@ -142,7 +647,19 @@
   <Link Target="VFE_Bed_SimpleDouble" Facility="Table_IlluminatedDresser" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="Table_IlluminatedEndTable" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="PFK_Dresser" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="PFK_EndTable" />
   <Link Target="VFE_Bed_SimpleDouble" Facility="RI_Building_StorageShelf" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_BedsideTable" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_Bookcase" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_Doormat" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_LowCabinet" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="Wolfein_Wardrobe" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="PFS_DresserA" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="PFS_DresserB" />
+  <Link Target="VFE_Bed_SimpleDouble" Facility="PFS_EndTable" />
   <Link Target="Bed_Simple" Facility="Dresser" />
   <Link Target="Bed_Simple" Facility="EndTable" />
   <Link Target="Bed_Simple" Facility="SleepAccelerator" />
@@ -153,7 +670,19 @@
   <Link Target="Bed_Simple" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_Simple" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_Simple" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_Simple" Facility="PFK_Dresser" />
+  <Link Target="Bed_Simple" Facility="PFK_EndTable" />
   <Link Target="Bed_Simple" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_Simple" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_Simple" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_Simple" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_Simple" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_Simple" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_Simple" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_Simple" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_Simple" Facility="PFS_DresserA" />
+  <Link Target="Bed_Simple" Facility="PFS_DresserB" />
+  <Link Target="Bed_Simple" Facility="PFS_EndTable" />
   <Link Target="RI_Building_SleepingBed" Facility="Dresser" />
   <Link Target="RI_Building_SleepingBed" Facility="EndTable" />
   <Link Target="RI_Building_SleepingBed" Facility="SleepAccelerator" />
@@ -164,7 +693,19 @@
   <Link Target="RI_Building_SleepingBed" Facility="Table_IlluminatedDresser" />
   <Link Target="RI_Building_SleepingBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="RI_Building_SleepingBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="RI_Building_SleepingBed" Facility="PFK_Dresser" />
+  <Link Target="RI_Building_SleepingBed" Facility="PFK_EndTable" />
   <Link Target="RI_Building_SleepingBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_Bookcase" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_Doormat" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="RI_Building_SleepingBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="RI_Building_SleepingBed" Facility="PFS_DresserA" />
+  <Link Target="RI_Building_SleepingBed" Facility="PFS_DresserB" />
+  <Link Target="RI_Building_SleepingBed" Facility="PFS_EndTable" />
   <Link Target="SNOREGGSingle" Facility="Dresser" />
   <Link Target="SNOREGGSingle" Facility="EndTable" />
   <Link Target="SNOREGGSingle" Facility="SleepAccelerator" />
@@ -175,7 +716,19 @@
   <Link Target="SNOREGGSingle" Facility="Table_IlluminatedDresser" />
   <Link Target="SNOREGGSingle" Facility="Table_IlluminatedEndTable" />
   <Link Target="SNOREGGSingle" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="SNOREGGSingle" Facility="PFK_Dresser" />
+  <Link Target="SNOREGGSingle" Facility="PFK_EndTable" />
   <Link Target="SNOREGGSingle" Facility="RI_Building_StorageShelf" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_BedsideTable" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_Bookcase" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_Doormat" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_LowCabinet" />
+  <Link Target="SNOREGGSingle" Facility="Wolfein_Wardrobe" />
+  <Link Target="SNOREGGSingle" Facility="PFS_DresserA" />
+  <Link Target="SNOREGGSingle" Facility="PFS_DresserB" />
+  <Link Target="SNOREGGSingle" Facility="PFS_EndTable" />
   <Link Target="SNOREGGDouble" Facility="Dresser" />
   <Link Target="SNOREGGDouble" Facility="EndTable" />
   <Link Target="SNOREGGDouble" Facility="SleepAccelerator" />
@@ -186,7 +739,19 @@
   <Link Target="SNOREGGDouble" Facility="Table_IlluminatedDresser" />
   <Link Target="SNOREGGDouble" Facility="Table_IlluminatedEndTable" />
   <Link Target="SNOREGGDouble" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="SNOREGGDouble" Facility="PFK_Dresser" />
+  <Link Target="SNOREGGDouble" Facility="PFK_EndTable" />
   <Link Target="SNOREGGDouble" Facility="RI_Building_StorageShelf" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_BedsideTable" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_Bookcase" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_Doormat" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_LowCabinet" />
+  <Link Target="SNOREGGDouble" Facility="Wolfein_Wardrobe" />
+  <Link Target="SNOREGGDouble" Facility="PFS_DresserA" />
+  <Link Target="SNOREGGDouble" Facility="PFS_DresserB" />
+  <Link Target="SNOREGGDouble" Facility="PFS_EndTable" />
   <Link Target="RoyalBed" Facility="Dresser" />
   <Link Target="RoyalBed" Facility="EndTable" />
   <Link Target="RoyalBed" Facility="SleepAccelerator" />
@@ -197,7 +762,19 @@
   <Link Target="RoyalBed" Facility="Table_IlluminatedDresser" />
   <Link Target="RoyalBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="RoyalBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="RoyalBed" Facility="PFK_Dresser" />
+  <Link Target="RoyalBed" Facility="PFK_EndTable" />
   <Link Target="RoyalBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="RoyalBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="RoyalBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="RoyalBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="RoyalBed" Facility="Wolfein_Bookcase" />
+  <Link Target="RoyalBed" Facility="Wolfein_Doormat" />
+  <Link Target="RoyalBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="RoyalBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="RoyalBed" Facility="PFS_DresserA" />
+  <Link Target="RoyalBed" Facility="PFS_DresserB" />
+  <Link Target="RoyalBed" Facility="PFS_EndTable" />
   <Link Target="Bed_Kingsize" Facility="Dresser" />
   <Link Target="Bed_Kingsize" Facility="EndTable" />
   <Link Target="Bed_Kingsize" Facility="SleepAccelerator" />
@@ -208,7 +785,19 @@
   <Link Target="Bed_Kingsize" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_Kingsize" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_Kingsize" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_Kingsize" Facility="PFK_Dresser" />
+  <Link Target="Bed_Kingsize" Facility="PFK_EndTable" />
   <Link Target="Bed_Kingsize" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_Kingsize" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_Kingsize" Facility="PFS_DresserA" />
+  <Link Target="Bed_Kingsize" Facility="PFS_DresserB" />
+  <Link Target="Bed_Kingsize" Facility="PFS_EndTable" />
   <Link Target="KRUDNEPPSingle" Facility="Dresser" />
   <Link Target="KRUDNEPPSingle" Facility="EndTable" />
   <Link Target="KRUDNEPPSingle" Facility="SleepAccelerator" />
@@ -219,7 +808,19 @@
   <Link Target="KRUDNEPPSingle" Facility="Table_IlluminatedDresser" />
   <Link Target="KRUDNEPPSingle" Facility="Table_IlluminatedEndTable" />
   <Link Target="KRUDNEPPSingle" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="KRUDNEPPSingle" Facility="PFK_Dresser" />
+  <Link Target="KRUDNEPPSingle" Facility="PFK_EndTable" />
   <Link Target="KRUDNEPPSingle" Facility="RI_Building_StorageShelf" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_BedsideTable" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_Bookcase" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_Doormat" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_LowCabinet" />
+  <Link Target="KRUDNEPPSingle" Facility="Wolfein_Wardrobe" />
+  <Link Target="KRUDNEPPSingle" Facility="PFS_DresserA" />
+  <Link Target="KRUDNEPPSingle" Facility="PFS_DresserB" />
+  <Link Target="KRUDNEPPSingle" Facility="PFS_EndTable" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="Dresser" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="EndTable" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="SleepAccelerator" />
@@ -230,7 +831,19 @@
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="Table_IlluminatedDresser" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="Table_IlluminatedEndTable" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="PFK_Dresser" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="PFK_EndTable" />
   <Link Target="VFE_Bed_StoneSlabDouble" Facility="RI_Building_StorageShelf" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_BedsideTable" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_Bookcase" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_Doormat" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_LowCabinet" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="Wolfein_Wardrobe" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="PFS_DresserA" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="PFS_DresserB" />
+  <Link Target="VFE_Bed_StoneSlabDouble" Facility="PFS_EndTable" />
   <Link Target="Bed_StoneSlab" Facility="Dresser" />
   <Link Target="Bed_StoneSlab" Facility="EndTable" />
   <Link Target="Bed_StoneSlab" Facility="SleepAccelerator" />
@@ -241,7 +854,19 @@
   <Link Target="Bed_StoneSlab" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_StoneSlab" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_StoneSlab" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_StoneSlab" Facility="PFK_Dresser" />
+  <Link Target="Bed_StoneSlab" Facility="PFK_EndTable" />
   <Link Target="Bed_StoneSlab" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_StoneSlab" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_StoneSlab" Facility="PFS_DresserA" />
+  <Link Target="Bed_StoneSlab" Facility="PFS_DresserB" />
+  <Link Target="Bed_StoneSlab" Facility="PFS_EndTable" />
   <Link Target="Bed_AdvDoubleBed" Facility="Dresser" />
   <Link Target="Bed_AdvDoubleBed" Facility="EndTable" />
   <Link Target="Bed_AdvDoubleBed" Facility="SleepAccelerator" />
@@ -252,7 +877,19 @@
   <Link Target="Bed_AdvDoubleBed" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_AdvDoubleBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_AdvDoubleBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_AdvDoubleBed" Facility="PFK_Dresser" />
+  <Link Target="Bed_AdvDoubleBed" Facility="PFK_EndTable" />
   <Link Target="Bed_AdvDoubleBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_AdvDoubleBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_AdvDoubleBed" Facility="PFS_DresserA" />
+  <Link Target="Bed_AdvDoubleBed" Facility="PFS_DresserB" />
+  <Link Target="Bed_AdvDoubleBed" Facility="PFS_EndTable" />
   <Link Target="Bed_AdvBed" Facility="Dresser" />
   <Link Target="Bed_AdvBed" Facility="EndTable" />
   <Link Target="Bed_AdvBed" Facility="SleepAccelerator" />
@@ -263,7 +900,21 @@
   <Link Target="Bed_AdvBed" Facility="Table_IlluminatedDresser" />
   <Link Target="Bed_AdvBed" Facility="Table_IlluminatedEndTable" />
   <Link Target="Bed_AdvBed" Facility="VFES_Table_IlluminatedWardrobe" />
+  <Link Target="Bed_AdvBed" Facility="PFK_Dresser" />
+  <Link Target="Bed_AdvBed" Facility="PFK_EndTable" />
   <Link Target="Bed_AdvBed" Facility="RI_Building_StorageShelf" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_2x3_Carpet" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_3x3_Carpet" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_BedsideTable" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_Bookcase" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_Doormat" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_LowCabinet" />
+  <Link Target="Bed_AdvBed" Facility="Wolfein_Wardrobe" />
+  <Link Target="Bed_AdvBed" Facility="PFS_DresserA" />
+  <Link Target="Bed_AdvBed" Facility="PFS_DresserB" />
+  <Link Target="Bed_AdvBed" Facility="PFS_EndTable" />
+  <Link Target="TableBionics" Facility="VFE_FabricationCabinet" />
+  <Link Target="TableBionics" Facility="TableOrgans" />
   <Link Target="TableStonecutter" Facility="ToolCabinet" />
   <Link Target="VFE_TableStonecutterElectric" Facility="ToolCabinet" />
   <Link Target="VBE_EspressoMachineBuilding" Facility="ToolCabinet" />
@@ -283,6 +934,22 @@
   <Link Target="VFE_TableMachiningLarge" Facility="VFE_MachiningCabinet" />
   <Link Target="TableMachining" Facility="ToolCabinet" />
   <Link Target="TableMachining" Facility="VFE_MachiningCabinet" />
+  <Link Target="Wolfein_TableMachining" Facility="ToolCabinet" />
+  <Link Target="Wolfein_TableMachining" Facility="Wolfein_OfficeDesk" />
+  <Link Target="Wolfein_TableMachining" Facility="Wolfein_SurveillanceCamera" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="ToolCabinet" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="VFE_TailorCabinet" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="OA_RK_Cloth_Processing" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="OA_RK_Cloth_Processing_B" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="Wolfein_OfficeDesk" />
+  <Link Target="Wolfein_Electric_TailoringBench" Facility="Wolfein_SurveillanceCamera" />
+  <Link Target="Wolfein_MechGestatorCivil" Facility="VFE_MachiningCabinet" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="ToolCabinet" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="VFE_FabricationCabinet" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="TableBionics" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="TableOrgans" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="Wolfein_OfficeDesk" />
+  <Link Target="Wolfein_ReverseResearchBench" Facility="Wolfein_SurveillanceCamera" />
   <Link Target="BioferriteShaper" Facility="ToolCabinet" />
   <Link Target="RI_Building_CookTable" Facility="VFE_KitchenSinkCabinet" />
   <Link Target="RI_Building_CookTable" Facility="RI_Building_KitchenCabinet" />
@@ -300,6 +967,8 @@
   <Link Target="RI_Building_StoneMile" Facility="RI_Building_KitchenCabinet" />
   <Link Target="VFE_ComponentFabricationBench" Facility="ToolCabinet" />
   <Link Target="VFE_ComponentFabricationBench" Facility="VFE_FabricationCabinet" />
+  <Link Target="VFE_ComponentFabricationBench" Facility="TableBionics" />
+  <Link Target="VFE_ComponentFabricationBench" Facility="TableOrgans" />
   <Link Target="Milira_ComponentBench" Facility="VFE_MachiningCabinet" />
   <Link Target="Milira_DroneBench" Facility="ToolCabinet" />
   <Link Target="Milira_DroneBench" Facility="VFE_MachiningCabinet" />
@@ -310,8 +979,14 @@
   <Link Target="Milira_UniversalBench" Facility="ToolCabinet" />
   <Link Target="Milira_UniversalBench" Facility="VFE_FabricationCabinet" />
   <Link Target="Milira_UniversalBench" Facility="VFE_MachiningCabinet" />
+  <Link Target="Milira_UniversalBench" Facility="TableBionics" />
+  <Link Target="Milira_UniversalBench" Facility="TableOrgans" />
   <Link Target="FabricationBench" Facility="ToolCabinet" />
   <Link Target="FabricationBench" Facility="VFE_FabricationCabinet" />
+  <Link Target="FabricationBench" Facility="TableBionics" />
+  <Link Target="FabricationBench" Facility="TableOrgans" />
+  <Link Target="TableOrgans" Facility="VFE_FabricationCabinet" />
+  <Link Target="TableOrgans" Facility="TableBionics" />
   <Link Target="Kiiro_HandleTailoringBench" Facility="ToolCabinet" />
   <Link Target="Kiiro_HandleTailoringBench" Facility="VFE_TailorCabinet" />
   <Link Target="Kiiro_HandleTailoringBench" Facility="OA_RK_Cloth_Processing" />
@@ -359,11 +1034,14 @@
   <Link Target="ElectricTailoringBench" Facility="OA_RK_Cloth_Processing" />
   <Link Target="ElectricTailoringBench" Facility="OA_RK_Cloth_Processing_B" />
   <Link Target="VBE_Bar" Facility="VFE_KitchenSinkCabinet" />
+  <Link Target="VBE_Bar" Facility="RI_Building_KitchenCabinet" />
   <Link Target="RI_Building_TofuPressingBox" Facility="RI_Building_KitchenCabinet" />
   <Link Target="OA_RK_Tailor" Facility="ToolCabinet" />
   <Link Target="OA_RK_Tailor" Facility="VFE_TailorCabinet" />
   <Link Target="OA_RK_Tailor" Facility="OA_RK_Cloth_Processing" />
   <Link Target="OA_RK_Tailor" Facility="OA_RK_Cloth_Processing_B" />
+  <Link Target="OA_OberoniaCakeProducter" Facility="VFE_KitchenSinkCabinet" />
+  <Link Target="OA_OberoniaCakeProducter" Facility="RI_Building_KitchenCabinet" />
   <Link Target="RI_Building_FuPot" Facility="VFE_KitchenSinkCabinet" />
   <Link Target="RI_Building_FuPot" Facility="RI_Building_KitchenCabinet" />
   <Link Target="RI_Building_SawHorse" Facility="ToolCabinet" />
@@ -443,4 +1121,29 @@
   <Link Target="PsychicRitualSpot" Facility="ShardBeacon" />
   <Link Target="PsychicRitualSpot" Facility="VoidSculpture" />
   <Link Target="Milira_SunLightGatheringTower" Facility="Milira_Heliostat" />
+  <Link Target="Wolfein_OfficeDesk" Facility="Wolfein_OfficeChair" />
+  <Link Target="Wolfein_OfficeDesk" Facility="Armchair" />
+  <Link Target="Wolfein_OfficeDesk" Facility="Couch" />
+  <Link Target="Wolfein_OfficeDesk" Facility="DiningChair" />
+  <Link Target="Wolfein_OfficeDesk" Facility="Stool" />
+  <Link Target="Wolfein_1x2_Table" Facility="Wolfein_OfficeChair" />
+  <Link Target="Wolfein_1x2_Table" Facility="Armchair" />
+  <Link Target="Wolfein_1x2_Table" Facility="Couch" />
+  <Link Target="Wolfein_1x2_Table" Facility="DiningChair" />
+  <Link Target="Wolfein_1x2_Table" Facility="Stool" />
+  <Link Target="Wolfein_2x2_Table" Facility="Wolfein_OfficeChair" />
+  <Link Target="Wolfein_2x2_Table" Facility="Armchair" />
+  <Link Target="Wolfein_2x2_Table" Facility="Couch" />
+  <Link Target="Wolfein_2x2_Table" Facility="DiningChair" />
+  <Link Target="Wolfein_2x2_Table" Facility="Stool" />
+  <Link Target="Wolfein_2x3_Table" Facility="Wolfein_OfficeChair" />
+  <Link Target="Wolfein_2x3_Table" Facility="Armchair" />
+  <Link Target="Wolfein_2x3_Table" Facility="Couch" />
+  <Link Target="Wolfein_2x3_Table" Facility="DiningChair" />
+  <Link Target="Wolfein_2x3_Table" Facility="Stool" />
+  <Link Target="Wolfein_3x3_Table" Facility="Wolfein_OfficeChair" />
+  <Link Target="Wolfein_3x3_Table" Facility="Armchair" />
+  <Link Target="Wolfein_3x3_Table" Facility="Couch" />
+  <Link Target="Wolfein_3x3_Table" Facility="DiningChair" />
+  <Link Target="Wolfein_3x3_Table" Facility="Stool" />
 </FacilityCompatPreset>

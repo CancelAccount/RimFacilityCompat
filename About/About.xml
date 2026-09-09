@@ -12,13 +12,13 @@
 配置界面可导入\导出预设，模组自带作者整理的预设（未订阅整合包内模组会静默忽略）。
 注：生物科技DLC中的死眠建筑使用独立的绑定机制（连接的是正在死眠的pawn，而非建筑），不属于本模组的设施兼容范畴，不会被扫描或修改。
 如果在使用过程中遇到bug，请在创意工坊中反馈。
-作者的整合包目前收录模组：鼠族（含金鸢尾兰扩展），绮罗，米莉拉，萌螈，原版扩展，边缘宜家，边缘仙路。
+作者的整合包目前收录模组：鼠族（含金鸢尾兰扩展），绮罗，米莉拉，萌螈，沃芬，原版扩展VFE系列，边缘宜家，边缘仙路，假体与器官扩展改良版，PonPeco's Furniture：Kid's Room，PonPeco's Furniture：Sci-Fi。
 
 Scans buildings across all installed mods and collects the linkable facilities they declare (such as the wardrobes, dressers, etc. defined by each mod) for player customization.
 No injection is performed by default; please configure the presets in the in-game settings on first launch. Both primary buildings (e.g. workbenches, beds) and their attached facilities (e.g. nightstands) can be configured.
 The settings screen supports importing and exporting presets. It also ships with presets curated by the author (mods that are not installed are silently skipped).
 P.S. Deathrest buildings from the Biotech DLC use a separate binding system that connects to a deathresting pawn rather than a building, so they are outside the scope of this mod and are not scanned or modified.
 If you encounter any bugs, please report them in the workshop.
-The author's preset package is currently covering: Ratkin (incl. Oberonia aurea), Kiiro, Milira, Moelotl, Vanilla Expanded, Rimkea and RimImmortal.
+The author's preset package is currently covering: Ratkin (incl. the Oberonia aurea expansion), Kiiro, Milira, Moelotl, Wolfein, the Vanilla Expanded (VFE) series, Rimkea, RimImmortal, Expanded Prosthetics and Organ Engineering (Forked), PonPeco's Furniture: Kid's Room, and PonPeco's Furniture: Sci-Fi.
 	</description>
 </ModMetaData>
