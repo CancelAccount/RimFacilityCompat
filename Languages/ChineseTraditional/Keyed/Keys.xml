@@ -32,6 +32,9 @@
 	<FC.BtnExport>匯出</FC.BtnExport>
 	<FC.BtnImport>匯入</FC.BtnImport>
 	<FC.ExportAllSources>全部來源</FC.ExportAllSources>
+	<FC.ExportExpand>展開 ▸</FC.ExportExpand>
+	<FC.ExportCollapse>收起 ▾</FC.ExportCollapse>
+	<FC.ExportPartialFmt>已選 {0} 個來源</FC.ExportPartialFmt>
 	<FC.MsgExported>預設已匯出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>沒有可匯入的預設檔案</FC.MsgNoPresets>
 	<FC.MsgImported>已匯入 {0} 條連結，跳過 {1} 條（缺失或無效）</FC.MsgImported>

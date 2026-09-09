@@ -32,6 +32,9 @@
 	<FC.BtnExport>Export</FC.BtnExport>
 	<FC.BtnImport>Import</FC.BtnImport>
 	<FC.ExportAllSources>All Sources</FC.ExportAllSources>
+	<FC.ExportExpand>Expand ▸</FC.ExportExpand>
+	<FC.ExportCollapse>Collapse ▾</FC.ExportCollapse>
+	<FC.ExportPartialFmt>{0} sources selected</FC.ExportPartialFmt>
 	<FC.MsgExported>Preset exported: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>No preset files to import</FC.MsgNoPresets>
 	<FC.MsgImported>Imported {0} links, {1} skipped (missing or invalid)</FC.MsgImported>

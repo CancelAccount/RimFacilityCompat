@@ -33,6 +33,9 @@
 	<FC.BtnExport>导出</FC.BtnExport>
 	<FC.BtnImport>导入</FC.BtnImport>
 	<FC.ExportAllSources>全部来源</FC.ExportAllSources>
+	<FC.ExportExpand>展开 ▸</FC.ExportExpand>
+	<FC.ExportCollapse>收起 ▾</FC.ExportCollapse>
+	<FC.ExportPartialFmt>已选 {0} 个来源</FC.ExportPartialFmt>
 	<FC.MsgExported>预设已导出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>没有可导入的预设文件</FC.MsgNoPresets>
 	<FC.MsgImported>已导入 {0} 条连接，跳过 {1} 条（缺失或无效）</FC.MsgImported>

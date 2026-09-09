@@ -24,6 +24,8 @@ namespace FacilityCompat
         private const float BtnH = 30f;
         private const float SourceBtnH = 28f;
         private const float SourceBtnGap = 6f;
+        /// <summary>展开态来源按钮滚动区高度（约 5 行按钮 + 行距），导出区高度因此有界</summary>
+        private const float SourceAreaH = SourceBtnH * 5f + RowGap * 2f;
         private const float SmallBtnW = 64f;
         private const float MidBtnW = 120f;
         private const float ScrollBarW = 16f;
@@ -40,6 +42,10 @@ namespace FacilityCompat
         private readonly List<string> allSources = new();
         private readonly HashSet<string> selected = new();
         private bool allSelected = true;
+        /// <summary>来源细分区是否展开（默认折叠，聚焦高频的全量导出；会话级 UI 状态，不落盘）</summary>
+        private bool sourceExpanded;
+        /// <summary>展开态来源按钮滚动视图的滚动位置</summary>
+        private Vector2 sourceScroll = Vector2.zero;
 
         // 文件名（导出）
         private string fileNameText = "";
@@ -249,16 +255,16 @@ namespace FacilityCompat
             DrawSectionTitle(new Rect(x, y, w, SectionTitleH), "FC.PresetExportTitle".Translate());
             y += SectionTitleH + RowGap;
 
-            // 来源选择（wrap 按钮行：首钮「全部来源」开关，其后为各 mod 来源；按钮宽度按文本自适应）
-            float srcX = x;
-            float srcRowBaseY = y;
-            float srcRowH = SourceBtnH;
-
-            // 「全部来源」开关
-            float allBtnW = Text.CalcSize("FC.ExportAllSources".Translate()).x + 24f;
-            var allRect = new Rect(srcX, srcRowBaseY, allBtnW, SourceBtnH);
-            if (Widgets.ButtonText(allRect, "FC.ExportAllSources".Translate(),
-                    active: !allSelected))
+            // 来源选择：默认折叠（高频全量导出零额外点击）；展开后各 mod 来源按钮置于限高滚动区，
+            // 导出区高度因此有界，来源再多也不会向下挤压导入区/全局工具行
+            // 首钮为「全部来源」状态钮：全量时高亮；部分选择时文案显示已选数量，点击一键回到全量
+            string allLabel = allSelected
+                ? "FC.ExportAllSources".Translate()
+                : string.Format("FC.ExportPartialFmt".Translate(), selected.Count);
+            float headX = x;
+            float allBtnW = Text.CalcSize(allLabel).x + 24f;
+            var allRect = new Rect(headX, y, allBtnW, SourceBtnH);
+            if (Widgets.ButtonText(allRect, allLabel, active: !allSelected))
             {
                 SelectAllSources();
                 return;
@@ -266,29 +272,51 @@ namespace FacilityCompat
             if (allSelected)
                 Widgets.DrawBox(allRect, 2);
             TooltipHandler.TipRegion(allRect, "FC.ExportAllSourcesTip".Translate());
-            srcX += allBtnW + SourceBtnGap;
+            headX += allBtnW + SourceBtnGap;
 
-            foreach (var source in allSources)
+            if (!sourceExpanded)
             {
-                // 按钮宽度随 mod 名长度自适应，避免长名被截断
-                float btnW = Text.CalcSize(source).x + 24f;
-                if (srcX + btnW > x + w - ScrollBarW && srcX > x)
+                // 折叠态：来源区仅占固定一行，右侧为「展开」按钮
+                float expandW = Text.CalcSize("FC.ExportExpand".Translate()).x + 24f;
+                if (Widgets.ButtonText(new Rect(headX, y, expandW, SourceBtnH),
+                        "FC.ExportExpand".Translate()))
                 {
-                    srcX = x;
-                    srcRowBaseY += SourceBtnH + RowGap;
-                    srcRowH += SourceBtnH + RowGap;
+                    sourceExpanded = true;
+                    return;
                 }
-                // 来源按钮始终可点：点击即从「全部」切换为该来源（或多选增删）
-                if (Widgets.ButtonText(new Rect(srcX, srcRowBaseY, btnW, SourceBtnH), source))
-                {
-                    ToggleSource(source);
-                    return; // 触发后立即结束本帧绘制，避免状态变更后继续用旧值布局
-                }
-                if (!allSelected && selected.Contains(source))
-                    Widgets.DrawBox(new Rect(srcX, srcRowBaseY, btnW, SourceBtnH), 2);
-                srcX += btnW + SourceBtnGap;
+                y += SourceBtnH + RowGap;
             }
-            y = srcRowBaseY + srcRowH + RowGap;
+            else
+            {
+                // 展开态：首行右侧「收起」按钮在滚动区之外，点击可立即结束本帧
+                float collapseW = Text.CalcSize("FC.ExportCollapse".Translate()).x + 24f;
+                if (Widgets.ButtonText(new Rect(headX, y, collapseW, SourceBtnH),
+                        "FC.ExportCollapse".Translate()))
+                {
+                    sourceExpanded = false;
+                    return;
+                }
+
+                float areaY = y + SourceBtnH + RowGap;
+                var areaRect = new Rect(x, areaY, w, SourceAreaH);
+                float contentW = w - ScrollBarW;
+                float contentH = Mathf.Max(CalcSourceContentHeight(contentW), SourceAreaH);
+
+                // 滚动区内点击不得提前 return（否则跳过 EndScrollView，Begin/End 不配对）：
+                // 先收集动作，EndScrollView 之后再执行
+                Action? pendingSourceAction = null;
+                Widgets.BeginScrollView(areaRect, ref sourceScroll,
+                    new Rect(0f, 0f, contentW, contentH));
+                DrawSourceButtons(contentW, ref pendingSourceAction);
+                Widgets.EndScrollView();
+
+                if (pendingSourceAction != null)
+                {
+                    pendingSourceAction();
+                    return; // 状态已变更，结束本帧（此时 EndScrollView 已配对，返回安全）
+                }
+                y = areaY + SourceAreaH + RowGap;
+            }
 
             // 文件名行：标签 + 输入 + 导出按钮
             var nameLabelRect = new Rect(x, y, LabelW, BtnH);
@@ -365,6 +393,55 @@ namespace FacilityCompat
             if (fileName.StartsWith(FacilityPreset.UserPrefix, StringComparison.OrdinalIgnoreCase))
                 return fileName.Substring(FacilityPreset.UserPrefix.Length);
             return fileName;
+        }
+
+        /// <summary>计算来源按钮在给定内容宽度内 wrap 排版的总高度（行数 × 按钮高 + 行距），用于滚动内容矩形</summary>
+        private float CalcSourceContentHeight(float contentWidth)
+        {
+            float sx = 0f;
+            float rows = 1f;
+            foreach (var source in allSources)
+            {
+                // 按钮宽度随 mod 名长度自适应，与实际绘制保持同一算法
+                float btnW = Text.CalcSize(source).x + 24f;
+                if (sx + btnW > contentWidth && sx > 0f)
+                {
+                    sx = 0f;
+                    rows += 1f;
+                }
+                sx += btnW + SourceBtnGap;
+            }
+            return rows * SourceBtnH + (rows - 1f) * RowGap;
+        }
+
+        /// <summary>在滚动内容坐标系（原点 0,0）内绘制来源按钮 wrap 流；
+        /// 点击仅收集到 pendingAction，由调用方在 EndScrollView 之后执行，
+        /// 避免在 BeginScrollView 内提前 return 导致 Begin/End 不配对</summary>
+        private void DrawSourceButtons(float contentWidth, ref Action? pendingAction)
+        {
+            float sx = 0f;
+            float sy = 0f;
+            foreach (var source in allSources)
+            {
+                float btnW = Text.CalcSize(source).x + 24f;
+                if (sx + btnW > contentWidth && sx > 0f)
+                {
+                    sx = 0f;
+                    sy += SourceBtnH + RowGap;
+                }
+
+                var btnRect = new Rect(sx, sy, btnW, SourceBtnH);
+                // 来源按钮始终可点：点击即从「全部」切换为该来源（或多选增删）
+                if (Widgets.ButtonText(btnRect, source))
+                {
+                    var chosen = source; // 局部拷贝，避免闭包捕获循环变量
+                    pendingAction = () => ToggleSource(chosen);
+                    break; // 与导入列表一致：命中点击后停止本帧后续绘制
+                }
+                if (!allSelected && selected.Contains(source))
+                    Widgets.DrawBox(btnRect, 2);
+                sx += btnW + SourceBtnGap;
+            }
         }
 
         /// <summary>绘制导入列表（官方推荐 / 用户预设分区，行内 [导入]，用户行追加 [删除]）</summary>
