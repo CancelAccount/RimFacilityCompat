@@ -92,9 +92,14 @@ namespace FacilityCompat
                 .Where(HasAffectedByFacilitiesComp)
                 .ToList();
 
+            // 合法设施 defName 集合（与 HasFacilityComp 同源）：目标 linkableFacilities 中的死引用
+            // （被引用 def 不存在或不带 CompProperties_Facility）按此 O(1) 过滤，不进任何类别设施池
+            var validFacilityNames = new HashSet<string>(
+                facilityDefs.Select(def => def.defName));
+
             var targetLinks = affectedDefs.ToDictionary(
                 def => def,
-                GetValidLinkedFacilities);
+                def => GetValidLinkedFacilities(def, validFacilityNames));
 
             // 已收录目标登记表（defName）：保证每个目标只归入一个类别，
             // 防止同族扩展把更具体类别的目标重复收入宽泛类别（如 CryptoBed 再进 Bed）
@@ -171,13 +176,17 @@ namespace FacilityCompat
         private static bool HasAffectedByFacilitiesComp(ThingDef def)
             => def.comps?.Any(comp => comp is CompProperties_AffectedByFacilities) == true;
 
-        private static List<ThingDef> GetValidLinkedFacilities(ThingDef def)
+        /// <summary>收集目标声明引用的设施中「真实可连接」的部分：
+        /// 除 null 外，还须在合法设施集合内（def 存在且带 CompProperties_Facility），
+        /// 过滤各 mod linkableFacilities 中的误引用/死引用，保证设施池与导入校验同一标准</summary>
+        private static List<ThingDef> GetValidLinkedFacilities(ThingDef def, HashSet<string> validFacilityNames)
         {
             return def.comps?
                 .OfType<CompProperties_AffectedByFacilities>()
                 .Where(comp => comp.linkableFacilities != null)
                 .SelectMany(comp => comp.linkableFacilities)
-                .Where(facilityDef => facilityDef != null)
+                .Where(facilityDef => facilityDef != null
+                    && validFacilityNames.Contains(facilityDef.defName))
                 .GroupBy(facilityDef => facilityDef.defName)
                 .Select(group => group.First())
                 .ToList()

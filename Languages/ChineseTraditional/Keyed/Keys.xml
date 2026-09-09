@@ -38,6 +38,17 @@
 	<FC.MsgExported>預設已匯出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>沒有可匯入的預設檔案</FC.MsgNoPresets>
 	<FC.MsgImported>已匯入 {0} 條連結，跳過 {1} 條（缺失或無效）</FC.MsgImported>
+	<FC.LogImportSkipNoTarget>匯入跳過：預設條目的目標 defName 為空（Facility={0}）</FC.LogImportSkipNoTarget>
+	<FC.LogImportSkipTargetMissing>匯入跳過：目標 def 不存在，可能未安裝對應 mod（Target={0}）</FC.LogImportSkipTargetMissing>
+	<FC.LogImportSkipFacilityMissing>匯入跳過：設施 def 不存在，可能未安裝對應 mod（Facility={0}，Target={1}）</FC.LogImportSkipFacilityMissing>
+	<FC.LogImportSkipFacilityNotFacility>匯入跳過：設施 def 存在但不帶 CompProperties_Facility，不是可連接設施（Facility={0}，Target={1}）</FC.LogImportSkipFacilityNotFacility>
+	<FC.LogImportSkipNoCategory>匯入跳過：目標與設施無共同設施類別，注入引擎無法處理（Target={0}，Facility={1}）</FC.LogImportSkipNoCategory>
+	<FC.LogImportSkipSummary>匯入跳過彙總：共跳過 {0} 條（{1}）。</FC.LogImportSkipSummary>
+	<FC.LogImportReasonNoTarget>條目目標為空 {0} 條</FC.LogImportReasonNoTarget>
+	<FC.LogImportReasonTargetMissing>目標 def 缺失（可能未安裝對應 mod）{0} 條</FC.LogImportReasonTargetMissing>
+	<FC.LogImportReasonFacilityMissing>設施 def 缺失（可能未安裝對應 mod）{0} 條</FC.LogImportReasonFacilityMissing>
+	<FC.LogImportReasonFacilityNotFacility>設施非可連接設施（引用方向寫反或誤宣告）{0} 條</FC.LogImportReasonFacilityNotFacility>
+	<FC.LogImportReasonNoCategory>目標與設施無共同類別 {0} 條</FC.LogImportReasonNoCategory>
 	<FC.MsgExportEmpty>沒有可匯出的連結，請先設定連結</FC.MsgExportEmpty>
 	<FC.DlgExportTitle>匯出預設</FC.DlgExportTitle>
 	<FC.DlgExportMsg>請輸入預設檔案名稱：</FC.DlgExportMsg>

@@ -38,6 +38,17 @@
 	<FC.MsgExported>Preset exported: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>No preset files to import</FC.MsgNoPresets>
 	<FC.MsgImported>Imported {0} links, {1} skipped (missing or invalid)</FC.MsgImported>
+	<FC.LogImportSkipNoTarget>Import skipped: preset entry has empty target defName (Facility={0})</FC.LogImportSkipNoTarget>
+	<FC.LogImportSkipTargetMissing>Import skipped: target def not found, the corresponding mod may be missing (Target={0})</FC.LogImportSkipTargetMissing>
+	<FC.LogImportSkipFacilityMissing>Import skipped: facility def not found, the corresponding mod may be missing (Facility={0}, Target={1})</FC.LogImportSkipFacilityMissing>
+	<FC.LogImportSkipFacilityNotFacility>Import skipped: facility def exists but has no CompProperties_Facility, so it is not a connectable facility (Facility={0}, Target={1})</FC.LogImportSkipFacilityNotFacility>
+	<FC.LogImportSkipNoCategory>Import skipped: target and facility share no facility category (Target={0}, Facility={1})</FC.LogImportSkipNoCategory>
+	<FC.LogImportSkipSummary>Import skip summary: {0} entries skipped ({1}).</FC.LogImportSkipSummary>
+	<FC.LogImportReasonNoTarget>{0} with empty target</FC.LogImportReasonNoTarget>
+	<FC.LogImportReasonTargetMissing>{0} with missing target def (mod may be absent)</FC.LogImportReasonTargetMissing>
+	<FC.LogImportReasonFacilityMissing>{0} with missing facility def (mod may be absent)</FC.LogImportReasonFacilityMissing>
+	<FC.LogImportReasonFacilityNotFacility>{0} with non-connectable facility (reversed or invalid link declaration)</FC.LogImportReasonFacilityNotFacility>
+	<FC.LogImportReasonNoCategory>{0} with no shared category</FC.LogImportReasonNoCategory>
 	<FC.MsgExportEmpty>No enabled links to export, configure first</FC.MsgExportEmpty>
 	<FC.DlgExportTitle>Export Preset</FC.DlgExportTitle>
 	<FC.DlgExportMsg>Enter preset file name:</FC.DlgExportMsg>

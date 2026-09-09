@@ -347,6 +347,9 @@ namespace FacilityCompat
                     foreach (var facilityDef in affectedByFacilities.linkableFacilities)
                     {
                         if (facilityDef == null) continue;
+                        // 跳过死引用：被引用 def 不带设施 comp 时永远不会建立连接，
+                        // 不记入原始链接（与扫描器设施池过滤同一标准，避免残留永不被查询的死 key）
+                        if (facilityDef.GetCompProperties<CompProperties_Facility>() == null) continue;
                         var key = $"{category}|{facilityDef.defName}";
                         if (!result.TryGetValue(key, out var targets))
                             result[key] = targets = new HashSet<string>();

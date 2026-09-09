@@ -130,6 +130,9 @@ namespace FacilityCompat
 
             int imported = 0;
             int skipped = 0;
+            // 按原因分类的跳过计数：发行版只输出一条汇总，避免缺 mod 用户被逐条日志淹没
+            int skipNoTarget = 0, skipTargetMissing = 0, skipFacilityMissing = 0,
+                skipFacilityNotFacility = 0, skipNoCategory = 0;
 
             foreach (var elem in doc.Root?.Elements("Link") ?? Enumerable.Empty<XElement>())
             {
@@ -137,25 +140,77 @@ namespace FacilityCompat
                 var facility = (string?)elem.Attribute("Facility");
                 if (string.IsNullOrEmpty(target) || string.IsNullOrEmpty(facility))
                 {
+                    skipNoTarget++;
                     skipped++;
+                    // 跳过为预期内行为（缺 mod/死引用静默跳过）调试版输出详细日志
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogImportSkipNoTarget", facility ?? "");
                     continue;
                 }
 
                 // 目标 def 缺失（未装对应种族 mod）→ 跳过
                 var targetDef = DefDatabase<ThingDef>.GetNamedSilentFail(target!);
-                if (targetDef == null) { skipped++; continue; }
+                if (targetDef == null)
+                {
+                    skipTargetMissing++;
+                    skipped++;
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogImportSkipTargetMissing", target!);
+                    continue;
+                }
 
-                // 设施 def 缺失或非设施（未装对应设施 mod）→ 跳过
+                // 设施 def 缺失（未装对应设施 mod）→ 跳过
                 var facilityDef = DefDatabase<ThingDef>.GetNamedSilentFail(facility!);
-                if (facilityDef == null || facilityDef.GetCompProperties<CompProperties_Facility>() == null)
-                { skipped++; continue; }
+                if (facilityDef == null)
+                {
+                    skipFacilityMissing++;
+                    skipped++;
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogImportSkipFacilityMissing", facility!, target!);
+                    continue;
+                }
+
+                // 设施 def 存在但不带设施 comp：并非可连接设施 → 跳过。
+                // 常见成因是 mod 作者引用方向写反，或者直接把不带设施comp的def拿来声明设施
+                if (facilityDef.GetCompProperties<CompProperties_Facility>() == null)
+                {
+                    skipFacilityNotFacility++;
+                    skipped++;
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogImportSkipFacilityNotFacility", facility!, target!);
+                    continue;
+                }
 
                 // 目标与设施必须同属某类别的设施池（否则注入引擎无法处理）→ 否则跳过
                 if (!TryResolveCategory(settings, target!, facility!, out var category))
-                { skipped++; continue; }
+                {
+                    skipNoCategory++;
+                    skipped++;
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogImportSkipNoCategory", target!, facility!);
+                    continue;
+                }
 
                 settings.SetLink(category, facility!, target!, true);
                 imported++;
+            }
+
+            // 跳过汇总（发行版可见）：一条按原因分类的计数；逐条 defName 详情见调试版日志
+            if (skipped > 0)
+            {
+                var reasonParts = new List<string>(5);
+                AppendSkipReason(skipNoTarget, "FC.LogImportReasonNoTarget");
+                AppendSkipReason(skipTargetMissing, "FC.LogImportReasonTargetMissing");
+                AppendSkipReason(skipFacilityMissing, "FC.LogImportReasonFacilityMissing");
+                AppendSkipReason(skipFacilityNotFacility, "FC.LogImportReasonFacilityNotFacility");
+                AppendSkipReason(skipNoCategory, "FC.LogImportReasonNoCategory");
+                FCLogger.Msg("FC.LogImportSkipSummary", skipped, string.Join(", ", reasonParts));
+
+                // 局部函数：计数大于 0 时追加一条本地化原因片段
+                void AppendSkipReason(int count, string key)
+                {
+                    if (count > 0) reasonParts.Add(key.Translate(count).ToString());
+                }
             }
 
             return (imported, skipped);

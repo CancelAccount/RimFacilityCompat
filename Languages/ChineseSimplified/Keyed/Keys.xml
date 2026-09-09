@@ -39,6 +39,17 @@
 	<FC.MsgExported>预设已导出: {0}</FC.MsgExported>
 	<FC.MsgNoPresets>没有可导入的预设文件</FC.MsgNoPresets>
 	<FC.MsgImported>已导入 {0} 条连接，跳过 {1} 条（缺失或无效）</FC.MsgImported>
+	<FC.LogImportSkipNoTarget>导入跳过：预设条目的目标 defName 为空（Facility={0}）</FC.LogImportSkipNoTarget>
+	<FC.LogImportSkipTargetMissing>导入跳过：目标 def 不存在，可能未安装对应 mod（Target={0}）</FC.LogImportSkipTargetMissing>
+	<FC.LogImportSkipFacilityMissing>导入跳过：设施 def 不存在，可能未安装对应 mod（Facility={0}，Target={1}）</FC.LogImportSkipFacilityMissing>
+	<FC.LogImportSkipFacilityNotFacility>导入跳过：设施 def 存在但不带 CompProperties_Facility，不是可连接设施（Facility={0}，Target={1}）</FC.LogImportSkipFacilityNotFacility>
+	<FC.LogImportSkipNoCategory>导入跳过：目标与设施无共同设施类别，注入引擎无法处理（Target={0}，Facility={1}）</FC.LogImportSkipNoCategory>
+	<FC.LogImportSkipSummary>导入跳过汇总：共跳过 {0} 条（{1}）。</FC.LogImportSkipSummary>
+	<FC.LogImportReasonNoTarget>条目目标为空 {0} 条</FC.LogImportReasonNoTarget>
+	<FC.LogImportReasonTargetMissing>目标 def 缺失（可能未装对应 mod）{0} 条</FC.LogImportReasonTargetMissing>
+	<FC.LogImportReasonFacilityMissing>设施 def 缺失（可能未装对应 mod）{0} 条</FC.LogImportReasonFacilityMissing>
+	<FC.LogImportReasonFacilityNotFacility>设施非可连接设施（引用方向写反或误声明）{0} 条</FC.LogImportReasonFacilityNotFacility>
+	<FC.LogImportReasonNoCategory>目标与设施无共同类别 {0} 条</FC.LogImportReasonNoCategory>
 	<FC.MsgExportEmpty>没有可导出的连接，请先配置连接</FC.MsgExportEmpty>
 	<FC.DlgExportTitle>导出预设</FC.DlgExportTitle>
 	<FC.DlgExportMsg>请输入预设文件名：</FC.DlgExportMsg>
