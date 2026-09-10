@@ -13,8 +13,13 @@ namespace FacilityCompat
     /// </summary>
     public static class FCDebug
     {
-        /// <summary>全局版本标志：true = 调试版（含日志与可视化工具）。发版时记得改为 false。</summary>
+        /// <summary>全局版本标志：由编译配置决定——Debug 编译为 true（含日志与可视化工具），
+        /// Release 编译为 false（所有插桩短路为零开销）。无需手动修改。</summary>
+#if DEBUG
+        public static readonly bool DebugBuild = true;
+#else
         public static readonly bool DebugBuild = false;
+#endif
         /// <summary>日志关闭时复用的空作用域单例（避免每次分配）</summary>
         private static readonly IDisposable noopScope = new NoopScope();
         private static bool enableLog;  // 菜单开关的实际存储（发行版下 getter 短路，此字段不生效）

@@ -10,8 +10,8 @@
 *.sln.iml
 
 # C# 编译输出
-Source/obj/
-Source/bin/
+1.6/Source/obj/
+1.6/Source/bin/
 
 # 临时文件
 *.tmp
