@@ -1,0 +1,58 @@
+{
+  "version": 4,
+  "targets": {
+    "net472": {}
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {
+    "net472": []
+  },
+  "packageFolders": {
+    "C:\\Users\\Cancelation\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "e:\\steam\\steamapps\\common\\RimWorld\\Mods\\RimFacilityCompat\\1.6\\Source\\FacilityCompat.csproj",
+      "projectName": "FacilityCompat",
+      "projectPath": "e:\\steam\\steamapps\\common\\RimWorld\\Mods\\RimFacilityCompat\\1.6\\Source\\FacilityCompat.csproj",
+      "packagesPath": "C:\\Users\\Cancelation\\.nuget\\packages\\",
+      "outputPath": "e:\\steam\\steamapps\\common\\RimWorld\\Mods\\RimFacilityCompat\\1.6\\Source\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\Cancelation\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net472"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net472": {
+          "framework": "net472",
+          "targetAlias": "net472",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "10.0.400"
+    },
+    "frameworks": {
+      "net472": {
+        "framework": "net472",
+        "targetAlias": "net472",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400-preview.0.26322.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

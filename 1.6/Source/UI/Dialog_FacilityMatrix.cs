@@ -320,6 +320,10 @@ namespace FacilityCompat
                     scrollAccessory = Vector2.zero;
                 }
                 GUI.backgroundColor = prevBg;
+                // 选中类别叠加白色描边（与导出界面「全部来源」选中态一致），
+                // 强化当前所处分类的视觉提示，也直观告知这些 Tab 可点击切换
+                // （我真没想到有反馈不知道按钮可以点）
+                if (isSel) Widgets.DrawBox(rect, 2);
 
                 curX += w + TabGap;
             }

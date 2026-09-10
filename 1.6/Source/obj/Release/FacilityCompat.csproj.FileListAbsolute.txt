@@ -1,0 +1,13 @@
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Assemblies\FacilityCompat.dll
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.csproj.AssemblyReference.cache
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.GeneratedMSBuildEditorConfig.editorconfig
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.AssemblyInfoInputs.cache
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.AssemblyInfo.cs
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.csproj.CoreCompileInputs.cache
+e:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\Source\obj\Release\FacilityCompat.dll
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.csproj.AssemblyReference.cache
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.GeneratedMSBuildEditorConfig.editorconfig
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.AssemblyInfoInputs.cache
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.AssemblyInfo.cs
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.csproj.CoreCompileInputs.cache
+E:\steam\steamapps\common\RimWorld\Mods\RimFacilityCompat\1.6\Source\obj\release\FacilityCompat.dll
