@@ -1,4 +1,4 @@
-﻿﻿<#
+﻿<#
 .SYNOPSIS
     RimFacilityCompat 打包脚本：在一次运行中同时产出 Release 包与 Debug 包。
 
