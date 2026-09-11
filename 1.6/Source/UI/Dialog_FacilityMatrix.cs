@@ -68,6 +68,14 @@ namespace FacilityCompat
         private string searchMain = "";
         private string searchAccessory = "";
 
+        /// <summary>初始化日志标记：仅首帧绘制输出一次（记录窗口几何与命中格子数）</summary>
+        private bool initLogged;
+
+        /// <summary>两栏网格视口（窗口局部，绘制时记录）：诊断「点击未命中」时先判断点击是否落在
+        /// 网格区域内——类别 Tab、各类按钮与窗口外点击本就与格子无关，不记日志</summary>
+        private Rect mainGridView = Rect.zero;
+        private Rect accGridView = Rect.zero;
+
         /// <summary>构建窗口；settings 为数据层引用（读写均通过其公开成员）</summary>
         public Dialog_FacilityMatrix(FacilityCompatSettings settings)
         {
@@ -77,6 +85,16 @@ namespace FacilityCompat
             resizeable = true;
             closeOnAccept = false;
             currentCategory = FirstCategory();
+
+            // 初始化日志（仅调试版，供排查「配置界面无法点击/无内容」类反馈）：
+            // 记录数据规模与当前类别——类别/目标数为 0 说明扫描结果为空，界面自然无可点击项
+            if (FCDebug.DebugBuild)
+                FCLogger.Msg("FC.LogMatrixInit",
+                    settings.categories.Count,
+                    settings.categories.Values.Sum(i => i.targets.Count),
+                    settings.categories.Values.Sum(i => i.facilities.Values.Sum(f => f.Count)),
+                    currentCategory,
+                    settings.modDir ?? "");
         }
 
         /// <summary>初始尺寸：屏幕 85%，上限 1600×950</summary>
@@ -177,6 +195,15 @@ namespace FacilityCompat
 
             RouteMouse();       // 统一事件路由（绘制之后：当帧命中矩形已注册完毕）
             DrawDebugOverlay(); // 调试：窗口级坐标对照与滚动量显示
+
+            // 首帧初始化日志（仅调试版）：此时命中矩形已注册完毕，格子数即「实际可点击项数」——
+            // 两侧均为 0 说明可点击区域为空，是「界面无法点击」类反馈的直接证据
+            if (!initLogged)
+            {
+                initLogged = true;
+                if (FCDebug.DebugBuild)
+                    FCLogger.Msg("FC.LogMatrixFirstFrame", inRect, hitMap.MainCount, hitMap.AccessoryCount);
+            }
         }
 
         // ==================== 统一事件路由（窗口级，按下即触发） ====================
@@ -196,6 +223,7 @@ namespace FacilityCompat
             if (Input.GetMouseButtonDown(0) && Time.frameCount != lastClickFrame)
             {
                 lastClickFrame = Time.frameCount;
+                LogClick(); // 调试版：记录本次点击的完整判定上下文（命中/未命中均有，便于对照）
                 if (hitMap.TryHitMain(out string mainDef))
                 {
                     GUIUtility.keyboardControl = 0; // 对齐引擎按钮语义：点击格子让出键盘焦点（搜索框）
@@ -220,6 +248,60 @@ namespace FacilityCompat
                     ApplyBatch(state.SelDef, hitDef, rmb && !lmb); // 选中附属设备 → 命中的是主设施
             }
         }
+
+        /// <summary>
+        /// 点击诊断日志（仅调试版，编译期门控；每次左键按下至多 1 条）。
+        /// 一行给全判定链所需事实，用于定位「点 Tab / 点格子无响应、命中判定与应用位置错位」：
+        ///   1. 事件={0}：识别点击是否被 Layout 等非鼠标事件抢先消费；
+        ///   2. 窗口局部 / 全局 / 窗口矩形：三者自洽即坐标变换正常。「窗口局部」统一按
+        ///      「全局 − 窗口位置 − Margin」换算（DoWindowContents 的内容原点在窗口内缩 Margin 处），
+        ///      与 Event.current.mousePosition、Tab 按钮 rect 同系，可直接对照；
+        ///   3. 窗口内 / 整窗命中：整窗命中=0 而鼠标在窗口内 ⇒ 输入被上层窗口拦截
+        ///      （Mouse.IsOver 含 IsInputBlockedNow），此时界面必然整体无响应；
+        ///   4. 区域：M=主网格 A=附属网格 W=窗口其他（Tab/按钮/搜索行） O=窗口外；
+        ///   5. 几何命中（裸 rect.Contains，全局空间）与引擎命中（Mouse.IsOver）：两者不一致
+        ///      ⇒ 输入被拦截或坐标系不同源；均为空 ⇒ 纯几何未命中。
+        /// 坐标一律取自 UI.MousePositionOnUIInverted；Event.current.mousePosition 仅在
+        /// 窗口内 OnGUI 上下文可信，且不同事件阶段取值可能不一致，故只作对照不作判据。
+        /// </summary>
+        private void LogClick()
+        {
+            if (!FCDebug.DebugBuild) return;
+
+            Vector2 globalPos = UI.MousePositionOnUIInverted;   // 唯一判据来源（全局 UI 空间）
+            // 窗口矩形（全局空间）：仅平移窗口位置
+            var windowGlobal = new Rect(windowRect.x, windowRect.y, windowRect.width, windowRect.height);
+            // 内容坐标系原点（窗口局部 → 全局）：DoWindowContents 运行在
+            // GUI.BeginGroup(winRect.ContractedBy(Margin)) 内，局部坐标原点并不在窗口左上角，
+            // 而在窗口内缩 Margin 处。漏加 Margin 会让日志坐标与绘制/命中坐标系恒差 18px
+            // （旧打点即因此把「窗口局部」记成全局 − 窗口位置，白白多出 18px）。
+            Vector2 contentOrigin = windowRect.position + new Vector2(Margin, Margin);
+
+            string region = ToGlobal(mainGridView, contentOrigin).Contains(globalPos) ? "M"
+                : ToGlobal(accGridView, contentOrigin).Contains(globalPos) ? "A"
+                : windowGlobal.Contains(globalPos) ? "W" : "O";
+
+            hitMap.TryHitGeometry(Side.Main, globalPos, contentOrigin, out string geoHit);
+            if (string.IsNullOrEmpty(geoHit))
+                hitMap.TryHitGeometry(Side.Accessory, globalPos, contentOrigin, out geoHit);
+
+            string engineHit = hitMap.TryHitMain(out string hitMain) ? hitMain
+                : (hitMap.TryHitAccessory(out string hitAcc) ? hitAcc : "");
+
+            FCLogger.Msg("FC.LogMatrixClick",
+                Event.current.type,
+                globalPos - contentOrigin, globalPos, windowRect.position,
+                windowGlobal.Contains(globalPos) ? 1 : 0,
+                Mouse.IsOver(new Rect(0f, 0f, windowRect.width, windowRect.height)) ? 1 : 0,
+                region,
+                string.IsNullOrEmpty(geoHit) ? "-" : geoHit,
+                string.IsNullOrEmpty(engineHit) ? "-" : engineHit,
+                hitMap.MainCount, hitMap.AccessoryCount, currentCategory);
+        }
+
+        /// <summary>窗口局部（内容坐标系）矩形 → 全局 UI 矩形（平移内容原点，仅诊断比较用）</summary>
+        private static Rect ToGlobal(Rect local, Vector2 origin)
+            => new(local.x + origin.x, local.y + origin.y, local.width, local.height);
 
         /// <summary>格子单击统一入口（RouteMouse 转发）：
         /// 对侧已选中 → 切换该条连接（批量模式下应用批量状态）；
@@ -257,15 +339,16 @@ namespace FacilityCompat
         // ==================== 调试工具（由全局操作菜单开关） ====================
 
         /// <summary>
-        /// 窗口级调试可视化：品红十字 = Event.current.mousePosition（窗口局部坐标），
-        /// 青色十字 = 全局 UI 鼠标（UI.MousePositionOnUIInverted 换算到窗口局部）。
-        /// 两点分离即坐标变换异常的实锤；文本行附双栏滚动量。
+        /// 窗口级调试可视化：品红十字 = Event.current.mousePosition（窗口局部/内容坐标系），
+        /// 青色十字 = 全局 UI 鼠标按同一坐标系换算（须再减 Margin——DoWindowContents 运行在
+        /// GUI.BeginGroup(winRect.ContractedBy(Margin)) 内，旧实现漏减，两十字恒差 18px，
+        /// 会被误读成「坐标错位」）。两点分离即坐标变换异常的实锤；文本行附双栏滚动量。
         /// </summary>
         private void DrawDebugOverlay()
         {
             if (!FCDebug.EnableDraw) return;
             var evPos = Event.current.mousePosition;
-            var uiPos = UI.MousePositionOnUIInverted - windowRect.position;
+            var uiPos = UI.MousePositionOnUIInverted - windowRect.position - new Vector2(Margin, Margin);
             DrawDebugCross(evPos, Color.magenta);
             DrawDebugCross(uiPos, Color.cyan);
             // 文本框靠右边缘时收回窗口内（防截断不可读）
@@ -288,30 +371,46 @@ namespace FacilityCompat
 
         // ==================== 类别 Tab ====================
 
-        /// <summary>绘制类别 Tab 行（按文字宽度流式换行）；返回占用高度</summary>
+        /// <summary>
+        /// 类别 Tab 布局缓存：Tab 的 rect 一经算出即跨帧、跨事件阶段复用。
+        /// 存在理由——Tab 宽度由 Text.CalcSize 决定，而它依赖全局 Text.Font/FontSize
+        /// 与字体图集状态，其结果在帧之间、乃至同帧的不同事件阶段（Layout / MouseDown / Repaint）
+        /// 都可能出现细微差异。只要某个 Tab 的宽度变了，换行点就会跳变、其后整行 Tab 重排；
+        /// 用户按上一帧看到的位置点击，命中的却是重排后落在该位置的另一个 Tab
+        /// （表现为「点击后响应的 Tab 在光标右侧一段距离」）。
+        /// 缓存后绘制与命中永远共用同一组 rect，且跨帧恒定。
+        /// </summary>
+        private readonly List<(string key, Rect rect)> tabRects = new();
+
+        /// <summary>缓存对应的类别键序列（与当帧 keys 不一致即重算）</summary>
+        private string[] tabLayoutKeys = Array.Empty<string>();
+
+        /// <summary>缓存对应的可用宽度（窗口尺寸变化即重算）</summary>
+        private float tabLayoutWidth = -1f;
+
+        /// <summary>缓存对应的起始 y（理论恒为 inRect.y，纳入判断以防布局整体上移时缓存失效）</summary>
+        private float tabLayoutY = -1f;
+
+        /// <summary>绘制类别 Tab 行（按文字宽度流式换行）；返回占用高度。布局取自缓存，见 tabRects</summary>
         private float DrawCategoryTabs(float x, float y, float maxWidth)
         {
             var keys = settings.categories.Keys.OrderBy(k => k).ToList();
-            float curX = x;
-            float curY = y;
-            float rowMaxX = x + maxWidth;
+            if (tabLayoutY != y || tabLayoutWidth != maxWidth || !keys.SequenceEqual(tabLayoutKeys))
+                RebuildTabLayout(keys, x, y, maxWidth);
 
-            foreach (var key in keys)
+            foreach (var (key, rect) in tabRects)
             {
                 string name = CategoryDisplayName(key);
-                float w = Text.CalcSize(name).x + TabPadW;
-                if (curX + w > rowMaxX && curX > x)
-                {
-                    curX = x;
-                    curY += TabH + TabGap;
-                }
-
-                var rect = new Rect(curX, curY, w, TabH);
                 bool isSel = key == currentCategory;
                 var prevBg = GUI.backgroundColor;
                 if (isSel) GUI.backgroundColor = TabSelectedBgColor;
                 if (Widgets.ButtonText(rect, name))
                 {
+                    // 调试版：类别 Tab 点击日志——记录被点 Tab 的矩形与命中时的鼠标位置；
+                    // 若鼠标不在该矩形内，即命中判定与绘制坐标系不同源的实锤
+                    if (FCDebug.DebugBuild)
+                        FCLogger.Msg("FC.LogMatrixTabSwitch", currentCategory, key,
+                            rect, Event.current.mousePosition);
                     currentCategory = key;
                     state.ClearSelection("切换类别Tab"); // 批量模式（若有）由帧首检查自动退出并落盘
                     searchMain = "";
@@ -324,11 +423,47 @@ namespace FacilityCompat
                 // 强化当前所处分类的视觉提示，也直观告知这些 Tab 可点击切换
                 // （我真没想到有反馈不知道按钮可以点）
                 if (isSel) Widgets.DrawBox(rect, 2);
-
-                curX += w + TabGap;
             }
 
-            return curY + TabH - y;
+            return tabRects.Count > 0 ? tabRects[tabRects.Count - 1].rect.yMax - y : TabH;
+        }
+
+        /// <summary>
+        /// 重算类别 Tab 布局（唯一的布局改动点）。
+        /// 计算时把字体固定为 GameFont.Small：Widgets.ButtonText 绘制文字用的即该字体，
+        /// 二者同源才能保证「按钮框宽 = 文字宽 + 内边距」；否则继承来的字体一旦不同，
+        /// 算出的宽度与实际渲染文字不符，换行点便会漂移。
+        /// </summary>
+        private void RebuildTabLayout(List<string> keys, float x, float y, float maxWidth)
+        {
+            tabRects.Clear();
+            tabLayoutKeys = keys.ToArray();
+            tabLayoutWidth = maxWidth;
+            tabLayoutY = y;
+
+            var prevFont = Text.Font;
+            Text.Font = GameFont.Small;
+            try
+            {
+                float curX = x;
+                float curY = y;
+                float rowMaxX = x + maxWidth;
+                foreach (var key in keys)
+                {
+                    float w = Text.CalcSize(CategoryDisplayName(key)).x + TabPadW;
+                    if (curX + w > rowMaxX && curX > x)
+                    {
+                        curX = x;
+                        curY += TabH + TabGap;
+                    }
+                    tabRects.Add((key, new Rect(curX, curY, w, TabH)));
+                    curX += w + TabGap;
+                }
+            }
+            finally
+            {
+                Text.Font = prevFont;
+            }
         }
 
         /// <summary>类别显示名：displayName 为空时回退到 key</summary>
@@ -435,6 +570,10 @@ namespace FacilityCompat
             float contentW = viewRect.width - ScrollBarW;
             float contentH = sections.Sum(s => IconGridSection.MeasureHeight(s.entries.Count, contentW));
             var contentRect = new Rect(0f, 0f, contentW, Mathf.Max(contentH, viewRect.height));
+
+            // 记录网格视口（窗口局部），供点击未命中诊断判断点击是否落在网格区域内
+            if (side == Side.Main) mainGridView = viewRect;
+            else accGridView = viewRect;
 
             string tagCn = side == Side.Main ? "主设施栏" : "附属设备栏";
 

@@ -18,6 +18,12 @@ namespace FacilityCompat
         private readonly List<(string defName, Rect rect)> mainCells = new();
         private readonly List<(string defName, Rect rect)> accessoryCells = new();
 
+        /// <summary>当帧已注册的主设施命中格子数（诊断用：为 0 说明该栏无可点击项）</summary>
+        public int MainCount => mainCells.Count;
+
+        /// <summary>当帧已注册的附属设备命中格子数（诊断用：为 0 说明该栏无可点击项）</summary>
+        public int AccessoryCount => accessoryCells.Count;
+
         /// <summary>清空当帧缓存（DoWindowContents 每次调用开头执行；按事件多次调用，重建幂等）</summary>
         public void Clear()
         {
@@ -62,6 +68,38 @@ namespace FacilityCompat
 
         /// <summary>附属设备栏命中查询</summary>
         public bool TryHitAccessory(out string defName) => TryHit(InteractionState.Side.Accessory, out defName);
+
+        /// <summary>
+        /// 裸几何命中（仅 rect.Contains，不含 Mouse.IsOver 的遮挡/焦点检查）。
+        /// 坐标一律在「全局 UI 空间」比较：把窗口局部命中矩形平移 contentOrigin = windowRect.position + Window.Margin，因 DoWindowContents 的内容原点在窗口内缩 Margin 处
+        /// 后与 globalUIPos 判定。全程只用 UI.MousePositionOnUIInverted 一个鼠标来源——
+        /// Event.current.mousePosition 在不同事件阶段取值可能不一致，拿它做对拍会把真实点击误判为「不在格子上」（实测三帧推算出的窗口位置各不相同，
+        /// 其中即含 18px 的 Margin 恒定偏差）。
+        /// 与 TryHit 对拍即可区分点击未命中的成因：几何命中却 TryHit 未命中 ⇒ 输入被拦截
+        /// （上层窗口遮挡、焦点被搜索框占用）；两者均未命中 ⇒ 鼠标确实不在任何格子上。
+        /// 仅供诊断日志使用——正常交互必须走 TryHit（保留遮挡判定，防穿透）。
+        /// </summary>
+        public bool TryHitGeometry(InteractionState.Side side, Vector2 globalUIPos, Vector2 contentOrigin,
+            out string defName)
+        {
+            defName = "";
+            // 哪一边都没命中，返回 false
+            if (side == InteractionState.Side.None) return false;
+            // 遍历指定侧的命中矩形，判断是否包含全局鼠标位置
+            var cells = side == InteractionState.Side.Main ? mainCells : accessoryCells;
+            foreach (var (dn, rect) in cells)
+            {
+                var globalRect = new Rect(rect.x + contentOrigin.x, rect.y + contentOrigin.y,
+                    rect.width, rect.height);
+                // 若全局矩形包含全局鼠标位置，返回该格 defName
+                if (globalRect.Contains(globalUIPos))
+                {
+                    defName = dn;
+                    return true;
+                }
+            }
+            return false;
+        }
 
         /// <summary>选中侧的对侧栏命中查询（批量涂抹用；无选中时恒 false）</summary>
         public bool TryHitOpposite(InteractionState.Side selectedSide, out string defName)

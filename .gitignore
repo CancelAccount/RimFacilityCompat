@@ -28,3 +28,6 @@ Desktop.ini
 
 # 生成的 XML 文件
 1.6/Patches/FC_Generated.xml
+
+# 工作区配置
+*.code-workspace

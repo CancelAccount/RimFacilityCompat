@@ -30,7 +30,12 @@ namespace FacilityCompat
         {
             // 配置窗口已在则不重复弹出
             if (Find.WindowStack.WindowOfType<Dialog_FacilityMatrix>() == null)
+            {
+                // 初始化日志（仅调试版）：排查「配置界面无法点击」类反馈，记录创建时的窗口栈规模
+                if (FCDebug.DebugBuild)
+                    FCLogger.Msg("FC.LogMatrixOpen", Find.WindowStack.Count);
                 Find.WindowStack.Add(new Dialog_FacilityMatrix(Settings));
+            }
 
             // 关闭标准设置页（不播关窗音，配置窗口随即接管）
             Find.WindowStack.TryRemove(typeof(Dialog_ModSettings), false);

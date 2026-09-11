@@ -11,6 +11,11 @@
 	<FC.LogPatched>已重建 {0} 个目标的设施链接，覆盖 {1} 个类别。</FC.LogPatched>
 	<FC.LogPatchFailed>设施补丁应用失败</FC.LogPatchFailed>
 	<FC.LogRelinked>已重连 {0} 个已放置建筑。</FC.LogRelinked>
+	<FC.LogMatrixOpen>打开设施配置界面：创建新配置窗口（当前窗口栈 {0} 个）</FC.LogMatrixOpen>
+	<FC.LogMatrixInit>配置界面初始化：类别 {0} 个，目标 {1} 个，设施 {2} 个，当前类别「{3}」，Mod 目录：{4}</FC.LogMatrixInit>
+	<FC.LogMatrixFirstFrame>配置界面首帧绘制：内容区 {0}，已注册命中格子——主设施 {1} 个、附属设备 {2} 个</FC.LogMatrixFirstFrame>
+	<FC.LogMatrixClick>配置界面点击：事件={0} 窗口局部={1} 全局={2} 窗口={3} 窗口内={4} 整窗命中={5} 区域={6}（M=主网格 A=附属网格 W=窗口其他 O=窗口外）几何命中={7} 引擎命中={8} 格子=主{9}/附{10} 类别「{11}」</FC.LogMatrixClick>
+	<FC.LogMatrixTabSwitch>配置界面类别 Tab 切换：{0} → {1}｜按钮={2} 鼠标={3}</FC.LogMatrixTabSwitch>
 	<FC.MsgCopied>已复制 [{0}] 的配置（类别: {1}）</FC.MsgCopied>
 	<FC.MsgReset>已重置 [{0}] 的链接</FC.MsgReset>
 	<FC.MsgPasted>已粘贴配置到 [{0}]</FC.MsgPasted>

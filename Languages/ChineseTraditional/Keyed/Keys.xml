@@ -10,6 +10,11 @@
 	<FC.LogPatched>已重建 {0} 個目標的設施連結，覆蓋 {1} 個類別。</FC.LogPatched>
 	<FC.LogPatchFailed>設施補丁套用失敗</FC.LogPatchFailed>
 	<FC.LogRelinked>已重連 {0} 個已放置建築。</FC.LogRelinked>
+	<FC.LogMatrixOpen>開啟設施設定介面：建立新設定視窗（目前視窗堆疊 {0} 個）</FC.LogMatrixOpen>
+	<FC.LogMatrixInit>設定介面初始化：類別 {0} 個，目標 {1} 個，設施 {2} 個，目前類別「{3}」，Mod 目錄：{4}</FC.LogMatrixInit>
+	<FC.LogMatrixFirstFrame>設定介面首幀繪製：內容區 {0}，已註冊命中格子——主設施 {1} 個、附屬設備 {2} 個</FC.LogMatrixFirstFrame>
+	<FC.LogMatrixClick>設定介面點擊：事件={0} 區域座標={1} 全域={2} 視窗={3} 視窗內={4} 整窗命中={5} 區域={6}（M=主網格 A=附屬網格 W=視窗其他 O=視窗外）幾何命中={7} 引擎命中={8} 格子=主{9}/附{10} 類別「{11}」</FC.LogMatrixClick>
+	<FC.LogMatrixTabSwitch>設定介面類別 Tab 切換：{0} → {1}｜按鈕={2} 滑鼠={3}</FC.LogMatrixTabSwitch>
 	<FC.MsgCopied>已複製 [{0}] 的設定（類別: {1}）</FC.MsgCopied>
 	<FC.MsgReset>已重置 [{0}] 的連結配置</FC.MsgReset>
 	<FC.MsgPasted>已貼上設定到 [{0}]</FC.MsgPasted>

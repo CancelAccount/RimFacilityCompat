@@ -10,6 +10,11 @@
 	<FC.LogPatched>Rebuilt facility links on {0} targets across {1} categories.</FC.LogPatched>
 	<FC.LogPatchFailed>Facility patch application failed</FC.LogPatchFailed>
 	<FC.LogRelinked>Relinked {0} placed buildings.</FC.LogRelinked>
+	<FC.LogMatrixOpen>Opening facility config window: creating a new config window (window stack size: {0})</FC.LogMatrixOpen>
+	<FC.LogMatrixInit>Config window init: {0} categories, {1} targets, {2} facilities, current category "{3}", mod dir: {4}</FC.LogMatrixInit>
+	<FC.LogMatrixFirstFrame>Config window first frame: content rect {0}, registered hit cells - main {1}, accessory {2}</FC.LogMatrixFirstFrame>
+	<FC.LogMatrixClick>Config window click: event={0} local={1} global={2} window={3} inWindow={4} overWindow={5} region={6} (M=main grid A=accessory grid W=window other O=outside) geometryHit={7} engineHit={8} cells=main {9}/acc {10} category "{11}"</FC.LogMatrixClick>
+	<FC.LogMatrixTabSwitch>Config window category tab switched: {0} -&gt; {1} | rect={2} mouse={3}</FC.LogMatrixTabSwitch>
 	<FC.MsgCopied>Copied config of [{0}] (category: {1})</FC.MsgCopied>
 	<FC.MsgReset>Reset [{0}] links</FC.MsgReset>
 	<FC.MsgPasted>Pasted config to [{0}]</FC.MsgPasted>
