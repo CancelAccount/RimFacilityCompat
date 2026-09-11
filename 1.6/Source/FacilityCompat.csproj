@@ -9,6 +9,9 @@
     <OutputPath Condition="'$(Configuration)' == 'Debug'">..\AssembliesDebug</OutputPath>
     <OutputPath Condition="'$(Configuration)' != 'Debug'">..\Assemblies</OutputPath>
     <DebugType>none</DebugType>
+    <!-- 不把 git 提交号写入 AssemblyInformationalVersion：否则 dll 字节随当前 commit 变化，
+         导致每次重新构建后入库的 dll 都显示为已修改。对外版本号以 About.xml 的 modVersion 为准 -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
   </PropertyGroup>
 
   <ItemGroup>
