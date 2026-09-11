@@ -3,6 +3,7 @@
 	<name>Facility Compat 设施兼容补丁</name>
 	<author>Cancelation</author>
 	<packageId>Cancelation.FacilityCompat</packageId>
+	<modVersion>1.0.0</modVersion>
 	<supportedVersions>
 		<li>1.6</li>
 	</supportedVersions>

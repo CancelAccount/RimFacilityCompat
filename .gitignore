@@ -29,5 +29,11 @@ Desktop.ini
 # 生成的 XML 文件
 1.6/Patches/FC_Generated.xml
 
+# 调试版编译输出（与发行版 dll 隔离，不纳入版本控制）
+1.6/AssembliesDebug/
+
+# 打包产物
+dist/
+
 # 工作区配置
 *.code-workspace

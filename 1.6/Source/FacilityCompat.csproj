@@ -4,7 +4,10 @@
     <LangVersion>10</LangVersion>
     <Nullable>enable</Nullable>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
-    <OutputPath>..\Assemblies</OutputPath>
+    <!-- 输出目录按编译配置隔离：Release 写入仓库内的 1.6\Assemblies（供创意工坊上传与 clone 即玩），
+         Debug 写入 1.6\AssembliesDebug（仅供打包调试版，避免覆盖仓库内已入库的发行版 dll） -->
+    <OutputPath Condition="'$(Configuration)' == 'Debug'">..\AssembliesDebug</OutputPath>
+    <OutputPath Condition="'$(Configuration)' != 'Debug'">..\Assemblies</OutputPath>
     <DebugType>none</DebugType>
   </PropertyGroup>
 
