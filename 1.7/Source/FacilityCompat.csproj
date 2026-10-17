@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>10</LangVersion>
+    <Nullable>enable</Nullable>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <!-- 输出目录按编译配置隔离：Release 写入仓库内的 1.7\Assemblies（供创意工坊上传与 clone 即玩），
+         Debug 写入 1.7\AssembliesDebug（仅供打包调试版，避免覆盖仓库内已入库的发行版 dll） -->
+    <OutputPath Condition="'$(Configuration)' == 'Debug'">..\AssembliesDebug</OutputPath>
+    <OutputPath Condition="'$(Configuration)' != 'Debug'">..\Assemblies</OutputPath>
+    <DebugType>none</DebugType>
+    <!-- 游戏直接加载 mod dll，不生成 .deps.json（避免多余文件进入 1.7\Assemblies） -->
+    <GenerateDependencyFile>false</GenerateDependencyFile>
+    <!-- 不把 git 提交号写入 AssemblyInformationalVersion：否则 dll 字节随当前 commit 变化，
+         导致每次重新构建后入库的 dll 都显示为已修改。对外版本号以 About.xml 的 modVersion 为准 -->
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 1.7 起游戏改用 CoreCLR（net10.0）运行时，程序集直接位于游戏根目录，
+         原先的 RimWorldWin64_Data\Managed 目录已不存在 -->
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\..\..\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- UnityEngine 由 UnityStubs 提供（Waylith 运行时以 stub 形式模拟 Unity API） -->
+    <Reference Include="UnityStubs">
+      <HintPath>..\..\..\..\UnityStubs.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="RimWorld">
+      <HintPath>..\..\..\..\RimWorld.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

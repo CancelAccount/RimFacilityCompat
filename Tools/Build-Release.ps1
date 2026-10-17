@@ -34,16 +34,19 @@ $ErrorActionPreference = 'Stop'
 $PackageName    = 'RimFacilityCompat'                    # 发布包顶层文件夹名（zip 解压后的目录名）
 $AssemblyName   = 'FacilityCompat'                       # 编译产物 dll 名（取自 csproj 项目名）
 $IncludeDirs    = @('About', 'Languages', 'Presets')     # 进入发布包的目录白名单（相对 mod 根）
-$GameVersionDir = '1.6'                                  # 游戏版本目录
+# 需要从源码编译的版本目录。1.6 工程仍引用旧的 RimWorldWin64_Data\Managed，
+# 游戏升到 1.7 后该目录已不存在，故 1.6 沿用仓库内已入库的 dll，不再重建。
+$BuildVersionDirs   = @('1.7')
+# 进入发布包的版本目录（每个目录下需有 Assemblies\，Debug 包另需 AssembliesDebug\）
+$PackageVersionDirs = @('1.6', '1.7')
 $DistDirName    = 'dist'                                 # 打包输出目录（已被 .gitignore 忽略）
 $DebugModSuffix = 'debug'                                # 调试包版本号与文件名后缀
 # ==================
 
-$RepoRoot   = Split-Path -Parent $PSScriptRoot
-$CsprojPath = Join-Path $RepoRoot "$GameVersionDir\Source\$AssemblyName.csproj"
-$AboutPath  = Join-Path $RepoRoot 'About\About.xml'
-$DistDir    = Join-Path $RepoRoot $DistDirName
-$StageDir   = Join-Path $DistDir 'stage'
+$RepoRoot  = Split-Path -Parent $PSScriptRoot
+$AboutPath = Join-Path $RepoRoot 'About\About.xml'
+$DistDir   = Join-Path $RepoRoot $DistDirName
+$StageDir  = Join-Path $DistDir 'stage'
 
 <#
 .SYNOPSIS 输出阶段提示。
@@ -75,29 +78,30 @@ function Get-ModVersion {
 .PARAMETER Configuration 编译配置（Release / Debug）。
 #>
 function Invoke-Build {
-    param([string]$Configuration)
+    param([string]$Configuration, [string]$VersionDir)
 
-    Write-Step "编译 $Configuration 配置"
-    & dotnet build $CsprojPath -c $Configuration -v minimal
-    if ($LASTEXITCODE -ne 0) { throw "$Configuration 编译失败（exit $LASTEXITCODE）" }
+    $csproj = Join-Path $RepoRoot "$VersionDir\Source\$AssemblyName.csproj"
+    if (-not (Test-Path $csproj)) { throw "未找到工程文件：$csproj" }
+
+    Write-Step "编译 $Configuration 配置（$VersionDir）"
+    & dotnet build $csproj -c $Configuration -v minimal
+    if ($LASTEXITCODE -ne 0) { throw "$VersionDir $Configuration 编译失败（exit $LASTEXITCODE）" }
 }
 
 <#
 .SYNOPSIS 按白名单组装单个发布包目录。
 .PARAMETER ModRoot 目标包根目录（即包内顶层文件夹）。
-.PARAMETER DllPath 要放入 1.6/Assemblies 的 dll 路径。
+.PARAMETER VersionDirs 需要放入发布包的版本目录列表。
 .PARAMETER IsDebug 是否为调试包（决定是否改写 modVersion）。
 .PARAMETER Version 版本号（用于调试包改写）。
 #>
 function Copy-PackageLayout {
     param(
         [string]$ModRoot,
-        [string]$DllPath,
+        [string[]]$VersionDirs,
         [bool]$IsDebug,
         [string]$Version
     )
-
-    if (-not (Test-Path $DllPath)) { throw "未找到编译产物：$DllPath" }
 
     if (Test-Path $ModRoot) { Remove-Item $ModRoot -Recurse -Force }
     New-Item -ItemType Directory -Path $ModRoot -Force | Out-Null
@@ -109,10 +113,16 @@ function Copy-PackageLayout {
         Copy-Item -Path $src -Destination (Join-Path $ModRoot $dir) -Recurse -Force
     }
 
-    # 编译产物放入版本目录下的 Assemblies
-    $asmDir = Join-Path $ModRoot "$GameVersionDir\Assemblies"
-    New-Item -ItemType Directory -Path $asmDir -Force | Out-Null
-    Copy-Item -Path $DllPath -Destination $asmDir -Force
+    # 各版本目录的编译产物放入对应 <版本>\Assemblies
+    $dllSubDir = if ($IsDebug) { 'AssembliesDebug' } else { 'Assemblies' }
+    foreach ($ver in $VersionDirs) {
+        $dllPath = Join-Path $RepoRoot "$ver\$dllSubDir\$AssemblyName.dll"
+        if (-not (Test-Path $dllPath)) { throw "未找到 $ver 的编译产物：$dllPath" }
+
+        $asmDir = Join-Path $ModRoot "$ver\Assemblies"
+        New-Item -ItemType Directory -Path $asmDir -Force | Out-Null
+        Copy-Item -Path $dllPath -Destination $asmDir -Force
+    }
 
     # 调试包：改写包内版本号，便于玩家在游戏内 mod 列表区分（不改动仓库原文件）
     if ($IsDebug) {
@@ -173,8 +183,10 @@ if ($existingTag) {
     Write-Warning "tag v$version 已存在，请确认是否已提升 <modVersion>"
 }
 
-Invoke-Build 'Release'
-Invoke-Build 'Debug'
+foreach ($ver in $BuildVersionDirs) {
+    Invoke-Build 'Release' $ver
+    Invoke-Build 'Debug' $ver
+}
 
 if (Test-Path $StageDir) { Remove-Item $StageDir -Recurse -Force }
 New-Item -ItemType Directory -Path $StageDir -Force | Out-Null
@@ -183,11 +195,12 @@ $releaseModRoot = Join-Path $StageDir "release\$PackageName"
 $debugModRoot   = Join-Path $StageDir "$DebugModSuffix\$PackageName"
 
 Copy-PackageLayout -ModRoot $releaseModRoot `
-    -DllPath (Join-Path $RepoRoot "$GameVersionDir\Assemblies\$AssemblyName.dll") `
+    -VersionDirs $PackageVersionDirs `
     -IsDebug $false -Version $version
 
+# Debug 包只包含当前可编译的版本：1.6 的引用已失效，无法再产出可信的调试 dll
 Copy-PackageLayout -ModRoot $debugModRoot `
-    -DllPath (Join-Path $RepoRoot "$GameVersionDir\AssembliesDebug\$AssemblyName.dll") `
+    -VersionDirs $BuildVersionDirs `
     -IsDebug $true -Version $version
 
 $releaseZip = Join-Path $DistDir "$PackageName-$version.zip"
